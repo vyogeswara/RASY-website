@@ -1,15 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CTASection } from "@/components/CTASection";
-import { Shield, Zap, CheckCircle2, Globe, Users, Linkedin, Twitter, Mail } from "lucide-react";
+import { Shield, Users, Globe, Target, Twitter, Linkedin, Mail, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 
 const stats = [
-  { label: "Industry Experience", value: "12+ Years" },
-  { label: "Trusted Partnerships", value: "50+ Clients" },
-  { label: "Client Satisfaction", value: "98% Retention" },
-  { label: "Global Reach", value: "5 Continents" },
+  { value: "12+ Years", label: "Industry Experience" },
+  { value: "50+ Clients", label: "Trusted Partnerships" },
+  { value: "98% Retention", label: "Client Satisfaction" },
+  { value: "5 Continents", label: "Global Reach" },
 ];
 
 const team = [
@@ -23,117 +22,123 @@ const team = [
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col items-center bg-black">
+    <div className="flex flex-col items-center">
       {/* Hero Section */}
-      <section className="relative w-full py-32 flex flex-col items-center justify-center px-8 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-[radial-gradient(circle_at_50%_40%,rgba(0,112,255,0.2),transparent_70%)] opacity-70" />
-        
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-6xl md:text-8xl font-bold text-center mb-8 relative z-10"
-        >
-          About
-        </motion.h1>
-        
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="text-zinc-400 text-lg md:text-xl text-center max-w-2xl relative z-10"
-        >
-          Join a team that's shaping the future of digital defense — explore open roles and grow with us.
-        </motion.p>
+      <section className="relative w-full py-40 px-8 flex flex-col items-center bg-black hero-gradient-about overflow-hidden">
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-7xl md:text-9xl font-bold tracking-tighter mb-10"
+          >
+            About
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-zinc-400 text-lg md:text-2xl font-medium leading-relaxed"
+          >
+            Join a team that's shaping the future of digital defense — <br /> explore open roles and grow with us.
+          </motion.p>
+        </div>
       </section>
 
-      {/* Leadership Note */}
-      <section className="w-full py-20 px-8 flex justify-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="w-full max-w-4xl p-12 md:p-20 bg-[#0A0A0A] border border-white/5 rounded-[40px] text-center flex flex-col items-center gap-8 relative"
-        >
-          <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center">
-            <Shield className="w-6 h-6 text-zinc-400" />
+      {/* CEO Section */}
+      <section className="w-full py-40 px-8 bg-black">
+        <div className="max-w-7xl mx-auto flex flex-col items-center">
+          <h2 className="text-4xl font-bold tracking-tight mb-20">From Our CEO</h2>
+          
+          <div className="w-full max-w-5xl corner-border p-12 md:p-24 bg-zinc-900/40 backdrop-blur-md border border-white/5 relative overflow-hidden">
+             <div className="absolute inset-0 dot-grid-sm opacity-10" />
+             
+             <div className="relative z-10 flex flex-col items-center text-center">
+               <div className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center mb-12">
+                 <Target className="w-8 h-8 text-white" />
+               </div>
+               
+               <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-10">A Note from Our Leadership</h3>
+               
+               <p className="text-zinc-400 text-lg md:text-xl font-medium leading-relaxed mb-16 max-w-4xl">
+                 At CyberShade, our leadership believes that true cybersecurity is built on foresight, adaptability, and unwavering commitment. As we navigate an ever-evolving threat landscape, our mission remains clear — to empower organizations with proactive defense strategies and resilient digital infrastructures. This vision shapes every decision we make and every solution we deliver.
+               </p>
+               
+               <div className="flex flex-col items-center">
+                 <p className="text-2xl font-serif italic text-white mb-2">Jonas Kahnwald</p>
+                 <p className="text-xs font-bold tracking-widest text-zinc-600 uppercase">CEO FOUNDER</p>
+               </div>
+             </div>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold">A Note from Our Leadership</h2>
-          <p className="text-zinc-500 text-lg leading-relaxed max-w-3xl">
-            At CyberShade, our leadership believes that true cybersecurity is built on foresight, adaptability, and unwavering commitment. As we navigate an ever-evolving threat landscape, our mission remains clear — to empower organizations with proactive defense strategies and resilient digital infrastructures. This vision shapes every decision we make and every solution we deliver.
-          </p>
-          <div className="mt-8 flex flex-col items-center gap-2">
-            <p className="font-heading text-2xl italic">Jonas Kahnwald</p>
-            <p className="text-zinc-500 text-sm tracking-widest uppercase">CEO Founder</p>
-          </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Empowering Section */}
-      <section className="w-full py-32 px-8 flex justify-center bg-[#030303]">
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-          <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
-             <Image
-               src="https://images.unsplash.com/photo-1522071823992-b48404981880?w=800&h=600&fit=crop"
-               alt="Team working"
-               fill
-               className="object-cover grayscale"
-             />
-             <div className="absolute inset-0 bg-blue-500/10" />
+      <section className="w-full py-40 px-8 bg-black">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+          <div className="relative aspect-[4/3] rounded-[40px] overflow-hidden">
+            <Image 
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop"
+              alt="Team at work"
+              fill
+              className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+            />
           </div>
           
-          <div className="flex flex-col gap-8">
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              Empowering Digital Security
+          <div className="flex flex-col">
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-10">
+              Empowering Digital <br /> Security
             </h2>
-            <p className="text-zinc-500 leading-relaxed">
+            <p className="text-zinc-500 text-lg font-medium leading-relaxed mb-12">
               At CyberShade, we combine strategic thinking and technical excellence to protect what matters most — your digital assets. Our mission is to deliver innovative cybersecurity solutions with precision, passion, and purpose.
             </p>
-            <ul className="grid grid-cols-1 gap-4">
+            
+            <div className="flex flex-col gap-5">
               {[
                 "Focused on long-term partnerships",
                 "Built on trust and integrity",
                 "Passionate about innovation",
                 "Committed to your security",
-                "Driven by results",
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-zinc-400">
-                  <CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" />
-                  {item}
-                </li>
+                "Driven by results"
+              ].map((item) => (
+                <div key={item} className="flex items-center gap-4">
+                  <CheckCircle2 className="w-6 h-6 text-green-500" />
+                  <span className="text-base font-bold tracking-tight text-white">{item}</span>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Numbers Section */}
-      <section className="w-full py-32 px-8 flex flex-col items-center">
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-20">
-          <div>
-            <h2 className="text-4xl font-bold mb-6">Numbers That Define Us</h2>
-            <p className="text-zinc-500 mb-8 max-w-md leading-relaxed">
+      <section className="w-full py-40 px-8 bg-black">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+          <div className="flex flex-col">
+            <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-8">Numbers That Define Us</h2>
+            <p className="text-zinc-500 text-lg font-medium leading-relaxed mb-12">
               Behind every number lies a story of dedication, growth, and trust. These figures are more than just metrics — they reflect the consistency, expertise, and strong relationships we've cultivated with our clients over the years.
             </p>
+            
             <div className="flex flex-col gap-4">
-               {[
-                 "Delivered 150+ custom security audits tailored to client needs",
-                 "Achieved 100% client retention rate in the past 2 years",
-                 "Responded to 200+ real-time security incidents with zero data loss",
-                 "Developed in-house tools now used by global security teams",
-               ].map((item, i) => (
-                 <div key={i} className="flex items-center gap-3 text-sm text-zinc-400">
-                   <Zap className="w-4 h-4 text-blue-500 shrink-0" />
-                   {item}
-                 </div>
-               ))}
+              {[
+                "Delivered 150+ custom security audits tailored to client needs",
+                "Achieved 100% client retention rate in the past 2 years",
+                "Responded to 200+ real-time security incidents with zero data loss",
+                "Developed in-house tools now used by global security teams"
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-4">
+                  <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
+                  <span className="text-sm font-bold tracking-tight text-zinc-400">{item}</span>
+                </div>
+              ))}
             </div>
           </div>
           
-          <div className="grid grid-cols-2 gap-1 bg-white/5 p-1 rounded-3xl overflow-hidden border border-white/5">
-            {stats.map((stat, i) => (
-              <div key={i} className="bg-black p-10 flex flex-col gap-2">
-                <p className="text-3xl font-bold">{stat.value}</p>
-                <p className="text-xs text-zinc-500 uppercase tracking-widest">{stat.label}</p>
+          <div className="grid grid-cols-2 gap-px bg-white/5 border border-white/5">
+            {stats.map((stat) => (
+              <div key={stat.label} className="bg-black p-12 flex flex-col gap-4">
+                <p className="text-5xl font-bold tracking-tight text-white">{stat.value}</p>
+                <p className="text-sm font-bold tracking-tight text-zinc-600 uppercase tracking-widest">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -141,44 +146,56 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="w-full py-32 px-8 bg-black flex flex-col items-center border-t border-white/5">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl font-bold mb-4">The Team Securing Your Safety</h2>
-          <p className="text-zinc-400">Protecting your digital world with passion and expertise.</p>
+      <section className="w-full py-40 px-8 bg-black flex flex-col items-center">
+        <div className="text-center mb-32 max-w-4xl">
+          <h2 className="text-5xl font-bold tracking-tight mb-6">The Team Securing Your Safety</h2>
+          <p className="text-zinc-500 text-lg font-medium">Protecting your digital world with passion and expertise.</p>
         </div>
-        
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {team.map((member, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ y: -10 }}
-              className="group relative flex flex-col items-center text-center p-8 rounded-3xl bg-[#0A0A0A] border border-white/5"
-            >
-              <div className="relative w-40 h-40 mb-6">
-                 <div className="absolute inset-0 bg-blue-500/20 blur-3xl group-hover:bg-blue-500/40 transition-all rounded-full" />
-                 <Image
-                   src={member.img}
-                   alt={member.name}
-                   width={160}
-                   height={160}
-                   className="rounded-full relative z-10 grayscale hover:grayscale-0 transition-all duration-500 object-cover border-4 border-black"
-                 />
+            <div key={i} className="corner-border p-12 bg-zinc-900/40 backdrop-blur-md border border-white/5 flex flex-col items-center text-center group hover:border-blue-500/30 transition-all duration-500">
+              <div className="relative w-48 h-48 mb-10">
+                <div className="absolute inset-0 bg-blue-600/30 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-full" />
+                <Image 
+                  src={member.img}
+                  alt={member.name}
+                  width={192}
+                  height={192}
+                  className="rounded-full relative z-10 grayscale hover:grayscale-0 transition-all duration-700 object-cover border-4 border-black group-hover:border-blue-600/30"
+                />
               </div>
-              <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-              <p className="text-zinc-500 text-sm mb-6">{member.role}</p>
+              <h3 className="text-2xl font-bold tracking-tight mb-2">{member.name}</h3>
+              <p className="text-blue-500 text-[10px] font-bold tracking-[0.2em] uppercase mb-10">{member.role}</p>
               <div className="flex gap-4">
-                 {[Twitter, Linkedin, Mail].map((Icon, j) => (
-                   <button key={j} className="p-2 border border-white/5 rounded-lg text-zinc-600 hover:text-white hover:border-white/20 transition-all">
-                     <Icon className="w-4 h-4" />
-                   </button>
-                 ))}
+                {[Twitter, Linkedin, Mail].map((Icon, j) => (
+                  <button key={j} className="p-3 border border-white/10 rounded-xl text-zinc-500 hover:text-white hover:border-white/20 transition-all">
+                    <Icon className="w-5 h-5" />
+                  </button>
+                ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>
 
-      <CTASection />
+      {/* CTA Section */}
+      <section className="w-full py-32 px-8 bg-black flex justify-center">
+        <div className="w-full max-w-7xl rounded-[40px] bg-gradient-to-b from-blue-900/40 to-black border border-white/10 p-16 md:p-32 flex flex-col items-center text-center relative overflow-hidden">
+          <div className="absolute inset-0 dot-grid-sm opacity-20" />
+          
+          <div className="relative z-10 flex flex-col items-center">
+            <p className="text-[120px] font-bold text-white/5 leading-none mb-[-40px] select-none">b) :(</p>
+            <h2 className="text-5xl font-bold tracking-tight leading-tight mb-10 max-w-2xl mx-auto">
+              Partner with CyberShade to protect your business from <br />
+              modern cyber threats. Our experts are ready to guide you.
+            </h2>
+            <button className="bg-blue-600 hover:bg-blue-700 text-white rounded-none px-12 py-7 text-sm font-bold tracking-tight transition-all">
+              Get in Touch
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
