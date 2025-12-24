@@ -81,31 +81,39 @@ const AtomLogo = () => (
 );
 
 const LCorner = ({ className }: { className?: string }) => (
-  <div className={`absolute w-4 h-4 border-blue-600 ${className}`} />
+  <div className={`absolute w-3 h-3 border-blue-500 ${className}`} />
+);
+
+const Hexagon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={`w-8 h-8 text-zinc-800 ${className}`} fill="currentColor">
+    <path d="M12 2L20.66 7V17L12 22L3.34 17V7L12 2Z" />
+  </svg>
 );
 
 const PartnerCard = ({ index }: { index: number }) => {
   const Icon = abstractIcons[index];
   return (
-    <div className="relative w-full aspect-[2.2/1] group overflow-visible">
-      {/* Blue L-corners - precisely 1px solid blue */}
-      <LCorner className="top-0 left-0 border-t border-l" />
-      <LCorner className="top-0 right-0 border-t border-r" />
+    <div className="relative w-full aspect-[2.4/1] group">
+      {/* Blue L-corners */}
+      <LCorner className="top-0 left-0 border-t border-l opacity-0 group-hover:opacity-100 transition-opacity" />
+      <LCorner className="top-0 right-0 border-t border-r opacity-0 group-hover:opacity-100 transition-opacity" />
       <LCorner className="bottom-0 left-0 border-b border-l" />
       <LCorner className="bottom-0 right-0 border-b border-r" />
 
+      {/* Bottom Blue Highlight (Where the line starts) */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-blue-500 shadow-[0_0_8px_#3b82f6] z-10" />
+
       {/* Card Content */}
-      <div className="absolute inset-0 bg-zinc-900/40 backdrop-blur-md border border-white/5 transition-all duration-500 group-hover:bg-zinc-800/60 flex items-center justify-center overflow-hidden">
-        {/* Dot Grid Background */}
+      <div className="absolute inset-0 bg-[#0a0a0a] border border-white/5 flex items-center justify-center overflow-hidden">
         <div 
-          className="absolute inset-0 opacity-[0.05]" 
+          className="absolute inset-0 opacity-[0.03]" 
           style={{ 
-            backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", 
-            backgroundSize: "16px 16px" 
+            backgroundImage: "radial-gradient(circle, white 0.5px, transparent 0.5px)", 
+            backgroundSize: "12px 12px" 
           }} 
         />
         
-        <Icon className="w-12 h-12 text-zinc-500 group-hover:text-white transition-all duration-500 transform group-hover:scale-110" />
+        <Icon className="w-10 h-10 text-zinc-600 group-hover:text-zinc-200 transition-all duration-500" />
       </div>
     </div>
   );
@@ -114,8 +122,10 @@ const PartnerCard = ({ index }: { index: number }) => {
 export function PartnersSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const hexRefs = useRef<(HTMLDivElement | null)[]>([]);
   const logoRef = useRef<HTMLDivElement>(null);
   const [paths, setPaths] = useState<string[]>([]);
+  const [hexPaths, setHexPaths] = useState<string[]>([]);
   const isInView = useInView(containerRef, { once: false, amount: 0.1 });
 
   useEffect(() => {
@@ -125,34 +135,44 @@ export function PartnersSection() {
       const containerRect = containerRef.current.getBoundingClientRect();
       const logoRect = logoRef.current.getBoundingClientRect();
       
-      // Target point: Top center of the logo
-      const endX = logoRect.left + logoRect.width / 2 - containerRect.left;
-      const endY = logoRect.top - containerRect.top;
+      // Convergence point: Just above the logo
+      const logoCX = logoRect.left + logoRect.width / 2 - containerRect.left;
+      const logoCY = logoRect.top - containerRect.top + 10;
 
+      // 1. Paths from cards to logo
       const newPaths = cardsRef.current.map((card) => {
         if (!card) return "";
         const cardRect = card.getBoundingClientRect();
-        
-        // Start point: Bottom center of the card
         const startX = cardRect.left + cardRect.width / 2 - containerRect.left;
         const startY = cardRect.top + cardRect.height - containerRect.top;
 
-        // Cubic Bezier calculation for a smooth downward "S" curve
-        // Moving from card (startY) to logo (endY)
-        const verticalDistance = endY - startY;
-        const cp1y = startY + verticalDistance * 0.4;
-        const cp2y = startY + verticalDistance * 0.6;
+        const cp1y = startY + (logoCY - startY) * 0.5;
+        const cp2y = startY + (logoCY - startY) * 0.5;
 
-        return `M ${startX} ${startY} C ${startX} ${cp1y}, ${endX} ${cp2y}, ${endX} ${endY}`;
+        return `M ${startX} ${startY} C ${startX} ${cp1y}, ${logoCX} ${cp2y}, ${logoCX} ${logoCY}`;
+      });
+
+      // 2. Paths from logo to hexagons
+      const newHexPaths = hexRefs.current.map((hex) => {
+        if (!hex) return "";
+        const hexRect = hex.getBoundingClientRect();
+        const endX = hexRect.left + hexRect.width / 2 - containerRect.left;
+        const endY = hexRect.top - containerRect.top;
+        
+        const logoBottomY = logoRect.bottom - containerRect.top - 10;
+        const cp1y = logoBottomY + (endY - logoBottomY) * 0.5;
+        const cp2y = logoBottomY + (endY - logoBottomY) * 0.5;
+
+        return `M ${logoCX} ${logoBottomY} C ${logoCX} ${cp1y}, ${endX} ${cp2y}, ${endX} ${endY}`;
       });
 
       setPaths(newPaths);
+      setHexPaths(newHexPaths);
     };
 
     updatePaths();
     window.addEventListener("resize", updatePaths);
-    // Initial delay to ensure refs are set
-    const timer = setTimeout(updatePaths, 100);
+    const timer = setTimeout(updatePaths, 150);
     
     return () => {
       window.removeEventListener("resize", updatePaths);
@@ -162,93 +182,95 @@ export function PartnersSection() {
 
   return (
     <section ref={containerRef} className="w-full py-40 bg-black flex flex-col items-center relative z-20 overflow-hidden">
-      {/* Background Subtle Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,102,255,0.05),transparent_70%)]" />
 
       <div className="text-center mb-32 max-w-4xl px-8 relative z-10">
-        <h2 className="text-6xl font-bold tracking-tight leading-tight">
-          Powerful Solutions with <br /> <span className="text-blue-500">Trusted Partners</span>
+        <h2 className="text-5xl md:text-6xl font-bold tracking-tight">
+          Live Circuit <br /> <span className="text-blue-500">Global Network</span>
         </h2>
-        <p className="text-zinc-500 mt-8 text-xl font-medium max-w-2xl mx-auto">
-          Elevate your cybersecurity to the highest level alongside the world's leading brands.
-        </p>
       </div>
 
       <div className="w-full max-w-7xl px-8 relative">
         {/* SVG Overlay */}
-        <svg 
-          className="absolute inset-0 w-full h-full pointer-events-none z-0" 
-          style={{ minHeight: "1000px" }}
-          preserveAspectRatio="none"
-        >
+        <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" style={{ minHeight: "1200px" }}>
           <defs>
             <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="4" result="blur" />
+              <feGaussianBlur stdDeviation="3" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
-            
-            <linearGradient id="path-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="white" stopOpacity="0.05" />
-              <stop offset="100%" stopColor="white" stopOpacity="0.1" />
+            <linearGradient id="fade-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.05" />
             </linearGradient>
           </defs>
           
+          {/* Box to Logo Paths */}
           {paths.map((path, i) => (
-            <React.Fragment key={i}>
-              {/* Static background line (The "circuit") */}
-              <motion.path
-                d={path}
-                stroke="url(#path-gradient)"
-                strokeWidth="1.5"
-                fill="none"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isInView ? 1 : 0 }}
-                transition={{ duration: 1.5, delay: i * 0.05 }}
-              />
-              
-              {/* Animated tracer (Energy pulse moving from Box to Logo) */}
+            <React.Fragment key={`p-${i}`}>
+              <path d={path} stroke="rgba(255,255,255,0.05)" strokeWidth="1" fill="none" />
               {isInView && (
                 <motion.path
                   d={path}
-                  stroke="#0066ff"
-                  strokeWidth="2.5"
+                  stroke="#3b82f6"
+                  strokeWidth="2"
                   fill="none"
-                  strokeDasharray="100, 1000"
+                  strokeDasharray="50, 600"
                   filter="url(#neon-glow)"
-                  initial={{ strokeDashoffset: 1100 }}
+                  initial={{ strokeDashoffset: 650 }}
                   animate={{ strokeDashoffset: 0 }}
-                  transition={{
-                    duration: 3.5,
-                    repeat: Infinity,
-                    ease: "linear",
-                    delay: i * 0.3,
-                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: i * 0.4 }}
+                />
+              )}
+            </React.Fragment>
+          ))}
+
+          {/* Logo to Hexagon Paths */}
+          {hexPaths.map((path, i) => (
+            <React.Fragment key={`h-${i}`}>
+              <path d={path} stroke="rgba(255,255,255,0.03)" strokeWidth="1" fill="none" />
+              {isInView && (
+                <motion.path
+                  d={path}
+                  stroke="#3b82f6"
+                  strokeWidth="1.5"
+                  fill="none"
+                  strokeDasharray="30, 400"
+                  initial={{ strokeDashoffset: 430 }}
+                  animate={{ strokeDashoffset: 0 }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "linear", delay: 2 + i * 0.5 }}
                 />
               )}
             </React.Fragment>
           ))}
         </svg>
 
-        {/* 2x4 Grid of Partner Boxes */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-16 relative z-10 mb-64">
+        {/* Partner Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 relative z-10 mb-64">
           {[...Array(8)].map((_, i) => (
-            <div key={i} ref={(el) => { cardsRef.current[i] = el; }} className="relative">
+            <div key={i} ref={(el) => { cardsRef.current[i] = el; }}>
               <PartnerCard index={i} />
             </div>
           ))}
         </div>
 
-        {/* Central Logo Anchor */}
-        <div className="flex justify-center relative z-10">
+        {/* Central Logo */}
+        <div className="flex justify-center relative z-10 mb-48">
           <div ref={logoRef} className="relative">
-            {/* Connection point indicator */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_10px_#0066ff] z-20" />
-            <div className="animate-float">
-              <AtomLogo />
-            </div>
+            <div className="absolute top-[-10px] left-1/2 -translate-x-1/2 w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_15px_#3b82f6] z-20" />
+            <AtomLogo />
           </div>
+        </div>
+
+        {/* Hexagon Grid at Bottom */}
+        <div className="flex justify-center gap-12 relative z-10 opacity-40">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} ref={(el) => { hexRefs.current[i] = el; }}>
+              <Hexagon />
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
+
