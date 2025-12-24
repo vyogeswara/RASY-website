@@ -114,6 +114,43 @@
   background-size: 16px 16px;
 }
 
+.matrix-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+.planetary-sphere {
+  background: radial-gradient(ellipse at center, #0066ff 0%, transparent 70%);
+  filter: blur(60px);
+}
+
+.god-ray {
+  background: linear-gradient(135deg, rgba(0, 242, 255, 0.2) 0%, rgba(0, 112, 255, 0) 60%);
+  filter: blur(100px);
+}
+
+@keyframes atmospheric-shift {
+  0%, 100% { opacity: 0.4; transform: scale(1) rotate(0deg); }
+  50% { opacity: 0.7; transform: scale(1.1) rotate(2deg); }
+}
+
+.animate-atmospheric {
+  animation: atmospheric-shift 10s ease-in-out infinite;
+}
+
+@keyframes ripple-pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+.ripple-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 1px solid #00ff00;
+  animation: ripple-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
 .glow-ray-sharp {
   background: conic-gradient(from 180deg at 50% 0%, transparent 0deg, rgba(0, 112, 255, 0.3) 15deg, transparent 30deg);
   filter: blur(60px);
