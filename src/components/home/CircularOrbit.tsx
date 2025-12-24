@@ -129,7 +129,7 @@ export function CircularOrbit() {
                 className="absolute"
                 style={{
                   transformOrigin: `center ${radius}px`,
-                  top: `calc(50% - ${radius}px)`,
+                  top: "50%",
                   left: "50%",
                 }}
               >
