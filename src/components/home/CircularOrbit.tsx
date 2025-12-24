@@ -30,7 +30,6 @@ export function CircularOrbit() {
 
   useEffect(() => {
     setIsMounted(true);
-    startAnimation();
   }, []);
 
   const startAnimation = async () => {
