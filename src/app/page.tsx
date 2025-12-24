@@ -95,47 +95,61 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative w-full min-h-screen flex flex-col items-center justify-center pt-32 pb-40 px-8 overflow-hidden bg-black">
         {/* Glow Ray Effects Top Left */}
-        <div className="absolute top-[-20%] left-[-10%] w-[100%] h-[100%] glow-ray rotate-[35deg] pointer-events-none" />
-        <div className="absolute top-[-10%] left-[-5%] w-[80%] h-[80%] glow-ray rotate-[-5deg] pointer-events-none opacity-30" />
+        <div className="absolute top-[-10%] left-[-20%] w-[150%] h-[150%] pointer-events-none z-0">
+          <div className="absolute top-0 left-0 w-full h-full glow-ray-sharp rotate-[25deg] opacity-60" />
+          <div className="absolute top-0 left-[5%] w-full h-full glow-ray-sharp rotate-[15deg] opacity-40" />
+          <div className="absolute top-0 left-[10%] w-full h-full glow-ray-sharp rotate-[35deg] opacity-30" />
+        </div>
 
         {/* 10x5 Responsive Grid */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 grid grid-cols-10 grid-rows-5 border-b border-white/10 h-full w-full">
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute inset-0 grid grid-cols-10 grid-rows-5 border-b border-white/20 h-full w-full opacity-60">
             {[...Array(50)].map((_, i) => (
               <div key={i} className="border-r border-b border-white/5 relative">
                 {/* Dot at intersections */}
                 <div className="absolute -right-[1.5px] -bottom-[1.5px] w-[3px] h-[3px] bg-white/20 rounded-full z-10" />
                 
                 {/* Pulse animations */}
-                <div className="absolute top-0 left-0 w-full h-[1px] overflow-hidden opacity-30">
-                  <div className="grid-pulse-h" style={{ animationDelay: `${Math.random() * 5}s`, animationDuration: `${3 + Math.random() * 4}s` }} />
+                <div className="absolute top-0 left-0 w-full h-[1.5px] overflow-hidden opacity-20">
+                  <div className="grid-pulse-h" style={{ animationDelay: `${Math.random() * 8}s` }} />
                 </div>
-                <div className="absolute top-0 left-0 h-full w-[1px] overflow-hidden opacity-30">
-                  <div className="grid-pulse-v" style={{ animationDelay: `${Math.random() * 5}s`, animationDuration: `${3 + Math.random() * 4}s` }} />
+                <div className="absolute top-0 left-0 h-full w-[1.5px] overflow-hidden opacity-20">
+                  <div className="grid-pulse-v" style={{ animationDelay: `${Math.random() * 8}s` }} />
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Planet Arc */}
-        <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[180%] aspect-[2.5/1] planet-arc opacity-80 pointer-events-none z-10" />
-        <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[200%] h-[1px] bg-blue-500/40 blur-[1px] z-10" />
+        {/* Planet/Cloudinary Image & Arc */}
+        <div className="absolute bottom-[0%] left-1/2 -translate-x-1/2 w-[180%] aspect-[2.5/1] pointer-events-none z-10">
+          <div className="absolute inset-0 planet-arc opacity-60" />
+          <div className="absolute bottom-[20%] left-0 w-full h-[1px] bg-blue-500/50 blur-[2px]" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[60%] h-full">
+            <Image 
+              src="https://res.cloudinary.com/dslutbftw/image/upload/v1766544779/CCqBJMabxVDE9sutmlyZL4CF8k_qvd4bm.avif"
+              alt="Cyber Planet"
+              fill
+              className="object-contain object-bottom opacity-80"
+              priority
+            />
+          </div>
+        </div>
 
         {/* Content */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="l-border bg-black/60 backdrop-blur-md px-6 py-3 rounded-none mb-12 relative z-30 flex items-center gap-4 border border-white/5"
+          className="corner-border dot-grid-sm bg-black/40 backdrop-blur-md px-8 py-4 mb-14 relative z-30 flex items-center gap-4 border border-white/5"
         >
           <div className="w-3.5 h-3.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_15px_#22c55e]" />
-          <span className="text-sm font-bold tracking-[0.2em] text-white uppercase">System Security: ACTIVE</span>
+          <span className="text-sm font-bold tracking-[0.25em] text-white uppercase">System Security: ACTIVE</span>
         </motion.div>
         
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-6xl md:text-[110px] font-bold text-center max-w-7xl mb-10 relative z-30 leading-[0.85] tracking-tighter text-white"
+          className="text-6xl md:text-[120px] font-bold text-center max-w-7xl mb-12 relative z-30 leading-[0.85] tracking-tighter text-white"
         >
           SECURE YOUR <br /> DIGITAL WORLD
         </motion.h1>
@@ -144,9 +158,9 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-zinc-400 text-lg md:text-2xl text-center max-w-4xl mb-16 relative z-30 font-medium px-4 leading-relaxed"
+          className="text-zinc-400 text-lg md:text-2xl text-center max-w-4xl mb-20 relative z-30 font-medium px-4 leading-relaxed"
         >
-          Modern and powerful security solutions to protect against cyber threats. 
+          Modern and powerful security solutions to protect against cyber threats. <br className="hidden md:block" />
           Designed to safeguard your data, systems, and privacy. Stay secure now!
         </motion.p>
         
@@ -156,8 +170,8 @@ export default function Home() {
           transition={{ delay: 0.2 }}
           className="relative z-30"
         >
-          <div className="l-border p-[1px]">
-            <Button size="lg" className="bg-transparent hover:bg-white/5 text-white rounded-none px-14 py-8 text-xl font-bold border border-white/10 transition-all backdrop-blur-sm">
+          <div className="corner-border p-1">
+            <Button size="lg" className="bg-black/40 hover:bg-white/5 text-white rounded-none px-16 py-8 text-xl font-bold border border-white/10 transition-all backdrop-blur-sm">
               Get Started
             </Button>
           </div>
