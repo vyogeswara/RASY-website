@@ -143,9 +143,9 @@ export function HeroSection() {
       </div>
 
       {/* 3. Massive Planetary Horizon (Bottom) */}
-      <div className="absolute bottom-[-15%] left-1/2 -translate-x-1/2 w-[160%] h-[60%] pointer-events-none z-10">
+      <div className="absolute bottom-[-15%] left-1/2 -translate-x-1/2 w-[160%] h-[600px] pointer-events-none z-10">
         {/* Intense Blue Glow Arc */}
-        <div className="absolute inset-0 bg-radial-[50%_100%] from-[#0044ff]/40 via-transparent to-transparent blur-[80px] opacity-80" />
+        <div className="absolute inset-0 bg-[radial-gradient(50%_100%_at_50%_100%,rgba(0,68,255,0.4)_0%,transparent_70%)] blur-[80px] opacity-80" />
         
         {/* Planet Asset */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-full">
@@ -153,6 +153,7 @@ export function HeroSection() {
             src="https://res.cloudinary.com/dslutbftw/image/upload/v1766544779/CCqBJMabxVDE9sutmlyZL4CF8k_qvd4bm.avif"
             alt="Cyber Planet Horizon"
             fill
+            sizes="160vw"
             className="object-contain object-bottom scale-110 translate-y-[5%]"
             priority
           />
