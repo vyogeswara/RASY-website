@@ -222,6 +222,4 @@ export function PartnersSection() {
     </section>
   );
 }
-  );
-}
 
