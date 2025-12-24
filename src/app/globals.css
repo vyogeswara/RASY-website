@@ -119,14 +119,44 @@
   background-size: 4px 4px;
 }
 
-.planetary-sphere {
-  background: radial-gradient(ellipse at center, #0066ff 0%, transparent 70%);
+.badge-corner-marker {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border: 1px solid #0070FF;
+}
+
+.badge-corner-tl { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+.badge-corner-tr { top: -1px; right: -1px; border-left: 0; border-bottom: 0; }
+.badge-corner-bl { bottom: -1px; left: -1px; border-right: 0; border-top: 0; }
+.badge-corner-br { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+.god-ray-beam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150%;
+  height: 150%;
+  background: conic-gradient(
+    from 145deg at 0% 0%,
+    transparent 0deg,
+    rgba(0, 112, 255, 0.05) 5deg,
+    rgba(0, 242, 255, 0.1) 10deg,
+    rgba(0, 112, 255, 0.05) 15deg,
+    transparent 20deg
+  );
+  filter: blur(40px);
+  transform-origin: top left;
+}
+
+.planetary-glow-arc {
+  background: radial-gradient(ellipse at 50% 100%, rgba(0, 102, 255, 0.5) 0%, transparent 70%);
   filter: blur(60px);
 }
 
-.god-ray {
-  background: linear-gradient(135deg, rgba(0, 242, 255, 0.2) 0%, rgba(0, 112, 255, 0) 60%);
-  filter: blur(100px);
+.ground-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 242, 255, 0.3), transparent);
 }
 
 @keyframes atmospheric-shift {
