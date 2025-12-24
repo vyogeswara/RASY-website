@@ -44,7 +44,7 @@ export function CircularOrbit() {
     moveUp: { 
       scale: 1, 
       opacity: 1, 
-      y: `-${radius + 50}%`, // Adjusting for the centering
+      y: -radius, 
       transition: { duration: 0.8, ease: "circOut" } 
     },
     fanOut: (i: number) => ({
