@@ -81,13 +81,7 @@ const AtomLogo = () => (
 );
 
 const LCorner = ({ className }: { className?: string }) => (
-  <div className={`absolute w-3 h-3 border-blue-500 ${className}`} />
-);
-
-const Hexagon = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" className={`w-8 h-8 text-zinc-800 ${className}`} fill="currentColor">
-    <path d="M12 2L20.66 7V17L12 22L3.34 17V7L12 2Z" />
-  </svg>
+  <div className={`absolute w-4 h-4 border-blue-500 border-2 ${className}`} />
 );
 
 const PartnerCard = ({ index }: { index: number }) => {
@@ -95,13 +89,13 @@ const PartnerCard = ({ index }: { index: number }) => {
   return (
     <div className="relative w-full aspect-[2.4/1] group">
       {/* Blue L-corners */}
-      <LCorner className="top-0 left-0 border-t border-l opacity-0 group-hover:opacity-100 transition-opacity" />
-      <LCorner className="top-0 right-0 border-t border-r opacity-0 group-hover:opacity-100 transition-opacity" />
+      <LCorner className="top-0 left-0 border-t border-l" />
+      <LCorner className="top-0 right-0 border-t border-r" />
       <LCorner className="bottom-0 left-0 border-b border-l" />
       <LCorner className="bottom-0 right-0 border-b border-r" />
 
-      {/* Bottom Blue Highlight (Where the line starts) */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-blue-500 shadow-[0_0_8px_#3b82f6] z-10" />
+      {/* Connection Point Highlight */}
+      <div className="absolute -bottom-[1px] left-1/2 -translate-x-1/2 w-3 h-3 bg-blue-500 rounded-full shadow-[0_0_12px_#3b82f6] z-20" />
 
       {/* Card Content */}
       <div className="absolute inset-0 bg-[#0a0a0a] border border-white/5 flex items-center justify-center overflow-hidden">
@@ -122,10 +116,8 @@ const PartnerCard = ({ index }: { index: number }) => {
 export function PartnersSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const hexRefs = useRef<(HTMLDivElement | null)[]>([]);
   const logoRef = useRef<HTMLDivElement>(null);
   const [paths, setPaths] = useState<string[]>([]);
-  const [hexPaths, setHexPaths] = useState<string[]>([]);
   const isInView = useInView(containerRef, { once: false, amount: 0.1 });
 
   useEffect(() => {
@@ -135,39 +127,22 @@ export function PartnersSection() {
       const containerRect = containerRef.current.getBoundingClientRect();
       const logoRect = logoRef.current.getBoundingClientRect();
       
-      // Convergence point: Just above the logo
       const logoCX = logoRect.left + logoRect.width / 2 - containerRect.left;
       const logoCY = logoRect.top - containerRect.top + 10;
 
-      // 1. Paths from cards to logo
       const newPaths = cardsRef.current.map((card) => {
         if (!card) return "";
         const cardRect = card.getBoundingClientRect();
         const startX = cardRect.left + cardRect.width / 2 - containerRect.left;
         const startY = cardRect.top + cardRect.height - containerRect.top;
 
-        const cp1y = startY + (logoCY - startY) * 0.5;
-        const cp2y = startY + (logoCY - startY) * 0.5;
-
-        return `M ${startX} ${startY} C ${startX} ${cp1y}, ${logoCX} ${cp2y}, ${logoCX} ${logoCY}`;
-      });
-
-      // 2. Paths from logo to hexagons
-      const newHexPaths = hexRefs.current.map((hex) => {
-        if (!hex) return "";
-        const hexRect = hex.getBoundingClientRect();
-        const endX = hexRect.left + hexRect.width / 2 - containerRect.left;
-        const endY = hexRect.top - containerRect.top;
+        // Structured "Circuit" path: vertical then curve to logo
+        const midY = startY + (logoCY - startY) * 0.4;
         
-        const logoBottomY = logoRect.bottom - containerRect.top - 10;
-        const cp1y = logoBottomY + (endY - logoBottomY) * 0.5;
-        const cp2y = logoBottomY + (endY - logoBottomY) * 0.5;
-
-        return `M ${logoCX} ${logoBottomY} C ${logoCX} ${cp1y}, ${endX} ${cp2y}, ${endX} ${endY}`;
+        return `M ${startX} ${startY} L ${startX} ${midY} C ${startX} ${logoCY}, ${logoCX} ${midY}, ${logoCX} ${logoCY}`;
       });
 
       setPaths(newPaths);
-      setHexPaths(newHexPaths);
     };
 
     updatePaths();
@@ -185,59 +160,41 @@ export function PartnersSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,102,255,0.05),transparent_70%)]" />
 
       <div className="text-center mb-32 max-w-4xl px-8 relative z-10">
-        <h2 className="text-5xl md:text-6xl font-bold tracking-tight">
+        <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-white">
           Live Circuit <br /> <span className="text-blue-500">Global Network</span>
         </h2>
       </div>
 
       <div className="w-full max-w-7xl px-8 relative">
         {/* SVG Overlay */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" style={{ minHeight: "1200px" }}>
+        <svg className="absolute inset-0 w-full h-full pointer-events-none z-30" style={{ minHeight: "1000px" }}>
           <defs>
             <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feGaussianBlur stdDeviation="4" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
-            <linearGradient id="fade-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.05" />
-            </linearGradient>
           </defs>
           
           {/* Box to Logo Paths */}
           {paths.map((path, i) => (
             <React.Fragment key={`p-${i}`}>
-              <path d={path} stroke="rgba(255,255,255,0.05)" strokeWidth="1" fill="none" />
+              <path d={path} stroke="rgba(59, 130, 246, 0.15)" strokeWidth="1.5" fill="none" />
               {isInView && (
                 <motion.path
                   d={path}
                   stroke="#3b82f6"
-                  strokeWidth="2"
+                  strokeWidth="2.5"
                   fill="none"
-                  strokeDasharray="50, 600"
+                  strokeDasharray="60, 1000"
                   filter="url(#neon-glow)"
-                  initial={{ strokeDashoffset: 650 }}
+                  initial={{ strokeDashoffset: 1000 }}
                   animate={{ strokeDashoffset: 0 }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: i * 0.4 }}
-                />
-              )}
-            </React.Fragment>
-          ))}
-
-          {/* Logo to Hexagon Paths */}
-          {hexPaths.map((path, i) => (
-            <React.Fragment key={`h-${i}`}>
-              <path d={path} stroke="rgba(255,255,255,0.03)" strokeWidth="1" fill="none" />
-              {isInView && (
-                <motion.path
-                  d={path}
-                  stroke="#3b82f6"
-                  strokeWidth="1.5"
-                  fill="none"
-                  strokeDasharray="30, 400"
-                  initial={{ strokeDashoffset: 430 }}
-                  animate={{ strokeDashoffset: 0 }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "linear", delay: 2 + i * 0.5 }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    ease: "linear", 
+                    delay: i * 0.3 
+                  }}
                 />
               )}
             </React.Fragment>
@@ -245,7 +202,7 @@ export function PartnersSection() {
         </svg>
 
         {/* Partner Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 relative z-10 mb-64">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-24 relative z-10 mb-48">
           {[...Array(8)].map((_, i) => (
             <div key={i} ref={(el) => { cardsRef.current[i] = el; }}>
               <PartnerCard index={i} />
@@ -253,24 +210,18 @@ export function PartnersSection() {
           ))}
         </div>
 
-        {/* Central Logo */}
-        <div className="flex justify-center relative z-10 mb-48">
+        {/* Central Logo (Destination) */}
+        <div className="flex justify-center relative z-20 pb-20">
           <div ref={logoRef} className="relative">
-            <div className="absolute top-[-10px] left-1/2 -translate-x-1/2 w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_15px_#3b82f6] z-20" />
+            {/* Connection Hub */}
+            <div className="absolute top-[-8px] left-1/2 -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full shadow-[0_0_20px_#3b82f6] z-40" />
             <AtomLogo />
           </div>
         </div>
-
-        {/* Hexagon Grid at Bottom */}
-        <div className="flex justify-center gap-12 relative z-10 opacity-40">
-          {[...Array(6)].map((_, i) => (
-            <div key={i} ref={(el) => { hexRefs.current[i] = el; }}>
-              <Hexagon />
-            </div>
-          ))}
-        </div>
       </div>
     </section>
+  );
+}
   );
 }
 
