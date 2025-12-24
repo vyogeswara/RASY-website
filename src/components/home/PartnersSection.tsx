@@ -4,60 +4,62 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 
 const abstractIcons = [
-  // Icon 1
+  // Icon 1: Flower/4 Petals
   (props: any) => (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <path d="M12 2L15 8L21 9L17 14L18 20L12 17L6 20L7 14L3 9L9 8L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path d="M12 4C12 4 10 8 10 10C10 12 12 12 12 12C12 12 14 12 14 10C14 8 12 4 12 4Z" />
+      <path d="M12 20C12 20 14 16 14 14C14 12 12 12 12 12C12 12 10 12 10 14C10 16 12 20 12 20Z" />
+      <path d="M4 12C4 12 8 10 10 10C12 10 12 12 12 12C12 12 12 14 10 14C8 14 4 12 4 12Z" />
+      <path d="M20 12C20 12 16 14 14 14C12 14 12 12 12 12C12 12 12 10 14 10C16 10 20 12 20 12Z" />
     </svg>
   ),
-  // Icon 2
+  // Icon 2: Double Chevron
   (props: any) => (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M12 8V16M8 12H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path d="M6 6L11 12L6 18H9L14 12L9 6H6Z" />
+      <path d="M13 6L18 12L13 18H16L21 12L16 6H13Z" />
     </svg>
   ),
-  // Icon 3
+  // Icon 3: Cross/Sharp Petal
   (props: any) => (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M9 3V21M15 3V21M3 9H21M3 15H21" stroke="currentColor" strokeWidth="1.5" />
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10L12 2Z" />
     </svg>
   ),
-  // Icon 4
+  // Icon 4: Clover shape
   (props: any) => (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect x="5" y="5" width="6" height="6" rx="3" />
+      <rect x="13" y="5" width="6" height="6" rx="3" />
+      <rect x="5" y="13" width="6" height="6" rx="3" />
+      <rect x="13" y="13" width="6" height="6" rx="3" />
     </svg>
   ),
-  // Icon 5
+  // Icon 5: Asterisk
   (props: any) => (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <path d="M12 3L4 9V21H20V9L12 3Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M9 21V12H15V21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path d="M12 4V20M4 12H20M6.34 6.34L17.66 17.66M17.66 6.34L6.34 17.66" />
     </svg>
   ),
-  // Icon 6
+  // Icon 6: Link/Infinity
   (props: any) => (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M12 8L12 12L14 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path d="M9 8H7C4.79 8 3 9.79 3 12C3 14.21 4.79 16 7 16H9" />
+      <path d="M15 8H17C19.21 8 21 9.79 21 12C21 14.21 19.21 16 17 16H15" />
+      <path d="M8 12H16" />
     </svg>
   ),
-  // Icon 7
+  // Icon 7: Aperture
   (props: any) => (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <path d="M12 2L12 22M2 12H22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="1.5" />
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 4C14.07 4 15.94 4.78 17.37 6.07L13.5 12.78L7.14 9.1L8.5 6.72C9.53 4.98 10.65 4 12 4ZM4.78 7.37C5.83 6.07 7.21 5.09 8.78 4.45L10.5 7.42L12 10L6.78 13.01C5.22 11.72 4.22 9.68 4.07 7.37H4.78ZM6.07 17.37C4.78 15.94 4 14.07 4 12C4 10.65 4.98 9.53 6.72 8.5L9.1 7.14L12.78 13.5L6.07 17.37ZM12 20C9.93 20 8.06 19.22 6.63 17.93L10.5 11.22L16.86 14.9L15.5 17.28C14.47 19.02 13.35 20 12 20ZM19.22 16.63C18.17 17.93 16.79 18.91 15.22 19.55L13.5 16.58L12 14L17.22 10.99C18.78 12.28 19.78 14.32 19.93 16.63H19.22ZM17.93 6.63C19.22 8.06 20 9.93 20 12C20 13.35 19.02 14.47 17.28 15.5L14.9 16.86L11.22 10.5L17.93 6.63Z" />
     </svg>
   ),
-  // Icon 8
+  // Icon 8: Toggle
   (props: any) => (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <path d="M4 4H20V20H4V4Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M4 12H20M12 4V20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect x="4" y="8" width="16" height="8" rx="4" opacity="0.3" />
+      <circle cx="16" cy="12" r="3" />
     </svg>
   ),
 ];
