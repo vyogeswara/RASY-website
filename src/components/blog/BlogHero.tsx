@@ -9,8 +9,7 @@ export function BlogHero() {
       style={{
         backgroundColor: '#000000',
         backgroundImage: `
-          radial-gradient(circle at bottom left, #b000ff, transparent 60%),
-          radial-gradient(circle at bottom right, #da00ff, transparent 60%)
+          radial-gradient(ellipse at top center, #6b21a8 0%, transparent 60%)
         `,
         backgroundRepeat: 'no-repeat'
       }}
