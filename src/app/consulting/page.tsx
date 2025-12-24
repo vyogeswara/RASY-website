@@ -1,91 +1,105 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CTASection } from "@/components/CTASection";
 import { Star } from "lucide-react";
 
-const isoModules = [
-  { id: "ISO 27001", title: "Information Security Management", desc: "We fortified our systems to meet global standards for data protection." },
-  { id: "ISO 20000", title: "IT Service Management", desc: "We standardized our IT service delivery with globally accepted frameworks." },
-  { id: "ISO 9001", title: "Quality Management Systems", desc: "We laid the foundation for consistent quality across all operations." },
-  { id: "ISO 50001", title: "Energy Management Systems", desc: "We optimized energy performance for operational efficiency and cost savings." },
-  { id: "ISO 1000", title: "Quality Management Systems", desc: "We laid the foundation for consistent quality across all operations." },
-  { id: "ISO 22301", title: "Business Continuity Management", desc: "We ensured operational resilience in the face of unexpected disruptions." },
-  { id: "ISO 14001", title: "Environmental Management Systems", desc: "We committed to sustainable practices and environmental responsibility." },
-  { id: "ISO 45001", title: "Occupational Health and Safety", desc: "We strengthened our workplace health and safety protocols." },
-  { id: "ISO 27701", title: "Privacy Information Management", desc: "We elevated our data privacy capabilities for GDPR alignment and beyond." },
-  { id: "ISO 15504", title: "Software Process Improvement", desc: "We refined our software development lifecycle to enhance process maturity." },
-  { id: "ISO 10002", title: "Customer Satisfaction Management", desc: "We established robust feedback and complaint resolution processes." },
+const certifications = [
+  { title: "ISO 27001", sub: "Information Security Management", desc: "We fortified our systems to meet global standards for data protection." },
+  { title: "ISO 20000", sub: "IT Service Management", desc: "We standardized our IT service delivery with globally accepted frameworks." },
+  { title: "ISO 9001", sub: "Quality Management Systems", desc: "We laid the foundation for consistent quality across all operations." },
+  { title: "ISO 50001", sub: "Energy Management Systems", desc: "We optimized energy performance for operational efficiency and cost savings." },
+  { title: "ISO 1000", sub: "Quality Management Systems", desc: "We laid the foundation for consistent quality across all operations." },
+  { title: "ISO 22301", sub: "Business Continuity Management", desc: "We ensured operational resilience in the face of unexpected disruptions." },
+  { title: "ISO 14001", sub: "Environmental Management Systems", desc: "We committed to sustainable practices and environmental responsibility." },
+  { title: "ISO 45001", sub: "Occupational Health and Safety", desc: "We strengthened our workplace health and safety protocols." },
+  { title: "ISO 27701", sub: "Privacy Information Management", desc: "We elevated our data privacy capabilities for GDPR alignment and beyond." },
+  { title: "ISO 15504", sub: "Software Process Improvement", desc: "We refined our software development lifecycle to enhance process maturity." },
+  { title: "ISO 10002", sub: "Customer Satisfaction Management", desc: "We established robust feedback and complaint resolution processes." },
 ];
 
 export default function ConsultingPage() {
   return (
-    <div className="flex flex-col items-center bg-black">
+    <div className="flex flex-col items-center">
       {/* Hero Section */}
-      <section className="relative w-full py-32 flex flex-col items-center justify-center px-8 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-[radial-gradient(circle_at_50%_40%,rgba(212,0,255,0.2),transparent_70%)] opacity-70" />
-        
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-6xl md:text-8xl font-bold text-center mb-8 relative z-10"
-        >
-          Consulting
-        </motion.h1>
-        
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="text-zinc-400 text-lg md:text-xl text-center max-w-2xl relative z-10"
-        >
-          We provide guidance to help your business comply with standards such as ISO/IEC 27001, ISO 22301, and more.
-        </motion.p>
+      <section className="relative w-full py-40 px-8 flex flex-col items-center bg-black hero-gradient-consulting overflow-hidden">
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-7xl md:text-9xl font-bold tracking-tighter mb-10"
+          >
+            Consulting
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-white text-lg md:text-2xl font-bold tracking-tight leading-relaxed max-w-2xl mx-auto"
+          >
+            We provide guidance to help your business comply with standards such as ISO/IEC 27001, ISO 22301, and more.
+          </motion.p>
+        </div>
       </section>
 
-      {/* ISO Modules Grid */}
-      <section className="w-full py-20 px-8 flex flex-col items-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-zinc-800 mb-20 text-center max-w-xl leading-tight">
-           Empower Your Development with Modules
-        </h2>
-        
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
-          {isoModules.map((module, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="p-10 border border-white/5 flex flex-col items-center text-center gap-4 hover:bg-zinc-900/30 transition-all cursor-default"
-            >
-              <h3 className="text-2xl font-bold">{module.id}</h3>
-              <p className="text-sm font-bold text-zinc-400">{module.title}</p>
-              <p className="text-xs text-zinc-500 leading-relaxed">{module.desc}</p>
-            </motion.div>
+      {/* ISO Grid */}
+      <section className="w-full py-40 px-8 bg-black">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {certifications.map((cert, i) => (
+            <div key={i} className="corner-border p-10 bg-zinc-900/40 backdrop-blur-md border border-white/5 flex flex-col text-center items-center gap-6 group hover:border-blue-500/30 transition-all duration-500">
+              <div>
+                <h3 className="text-3xl font-bold tracking-tight mb-1">{cert.title}</h3>
+                <p className="text-[10px] font-bold tracking-[0.2em] text-zinc-500 uppercase">{cert.sub}</p>
+              </div>
+              <p className="text-zinc-500 text-base font-medium leading-relaxed">{cert.desc}</p>
+            </div>
           ))}
         </div>
+      </section>
 
-        {/* Circular Star Graphic */}
-        <div className="mt-32 relative w-64 h-64 flex items-center justify-center">
-           {[...Array(8)].map((_, i) => (
+      {/* Star Badge Section */}
+      <section className="w-full py-40 px-8 bg-black flex justify-center">
+        <div className="relative w-64 h-64 flex items-center justify-center">
+           {[...Array(12)].map((_, i) => (
              <motion.div
                key={i}
-               initial={{ rotate: i * 45, opacity: 0.5 }}
-               animate={{ rotate: i * 45 + 360 }}
-               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                className="absolute"
-               style={{ transformOrigin: "center center", width: "100%", height: "2px" }}
+               animate={{ rotate: 360 }}
+               transition={{ duration: 15, repeat: Infinity, ease: "linear", delay: i * 0.5 }}
+               style={{ width: "100%", height: "100%" }}
              >
-                <div className="absolute right-0 top-1/2 -translate-y-1/2">
-                  <Star className="w-10 h-10 text-zinc-200 fill-zinc-200" />
-                </div>
+               <Star 
+                 className="w-8 h-8 text-white fill-white absolute" 
+                 style={{ 
+                   top: "-16px", 
+                   left: "50%", 
+                   transform: `translateX(-50%) scale(${1 - (i % 3) * 0.2})`,
+                   opacity: 1 - (i % 3) * 0.3
+                 }} 
+               />
              </motion.div>
            ))}
-           <div className="w-12 h-12 bg-white rounded-full blur-2xl opacity-20" />
         </div>
       </section>
 
-      <CTASection />
+      {/* CTA Section */}
+      <section className="w-full py-32 px-8 bg-black flex justify-center">
+        <div className="w-full max-w-7xl rounded-[40px] bg-gradient-to-b from-blue-900/40 to-black border border-white/10 p-16 md:p-32 flex flex-col items-center text-center relative overflow-hidden">
+          <div className="absolute inset-0 dot-grid-sm opacity-20" />
+          
+          <div className="relative z-10 flex flex-col items-center">
+            <h2 className="text-5xl font-bold tracking-tighter leading-tight mb-4 text-white">Stay Ahead of Cyber</h2>
+            <h3 className="text-5xl font-bold tracking-tighter leading-tight mb-10 text-white/40">Threat</h3>
+            
+            <p className="text-zinc-400 text-lg font-medium mb-12 max-w-2xl">
+              Partner with CyberShade to protect your business from modern cyber threats. Our experts are ready to guide you.
+            </p>
+            
+            <button className="bg-blue-600 hover:bg-blue-700 text-white rounded-none px-12 py-7 text-sm font-bold tracking-tight transition-all">
+              Get in Touch
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
