@@ -35,27 +35,28 @@ export function CircularOrbit() {
 
   const startAnimation = async () => {
     // Initial state: all icons at center
-    await controls.set({ scale: 0, x: 0, y: 0, opacity: 0 });
+    await controls.set({ scale: 0, x: 0, y: 0, opacity: 0, rotate: 0 });
     
     // Step 1: All icons move to the top (12 o'clock) position together (stacked)
-    await controls.start((i) => ({
+    await controls.start({
       scale: 1,
       opacity: 1,
       y: -radius,
       x: 0,
       transition: { duration: 0.8, ease: "circOut" }
-    }));
+    });
 
     // Step 2: Expansion - icons fan out clockwise to their positions
     // We'll use rotation around center logic for the fan-out
-    await controls.start((i) => {
+    // We trigger both the outer (parent) rotation and the inner (child) counter-rotation
+    controls.start((i) => {
       const angle = (i * 360) / securityIcons.length;
       return {
         rotate: angle,
         transition: { 
-          duration: 1.2, 
-          delay: 0.2,
-          ease: "circOut" 
+          duration: 1.5, 
+          delay: i * 0.1, // Staggered fan out looks better
+          ease: [0.16, 1, 0.3, 1] // Custom ease for smooth expansion
         }
       };
     });
@@ -91,7 +92,7 @@ export function CircularOrbit() {
         </div>
 
         {/* Vertical Separator Line */}
-        <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-[1px] bg-white/10 -translate-x-1/2" />
+        <div className="hidden lg:block absolute left-1/2 top-1/4 bottom-1/4 w-[1px] bg-white/10 -translate-x-1/2" />
 
         {/* Right Column (Fan-Out Radial Animation) */}
         <div className="relative flex items-center justify-center min-h-[600px] lg:h-[700px]">
@@ -106,30 +107,36 @@ export function CircularOrbit() {
                 className="absolute"
                 style={{
                   transformOrigin: `0px ${radius}px`,
-                  top: "calc(50% - 220px)", // Adjusted to account for radius and center correctly
+                  top: `calc(50% - ${radius}px)`,
                   left: "50%",
                 }}
               >
                 {/* Individual Icon Container - Counter-rotates to stay upright */}
                 <motion.div
                   className={`w-20 h-20 rounded-full ${item.color} flex items-center justify-center shadow-[0_0_30px_rgba(37,99,235,0.4)] border-2 border-white/20 relative z-10`}
+                  custom={i}
                   animate={controls}
-                  // We need to counter-rotate this div specifically to keep icon upright
-                  // Since the parent rotates, we rotate this by -angle
                   style={{
                     x: "-50%",
                     y: "-50%",
                   }}
                   variants={{
-                    animate: (i: number) => ({
-                      rotate: -(i * 360) / securityIcons.length
-                    })
+                    // This is a bit tricky: we need to counter-rotate as the parent rotates
+                    // Since controls.start is used with custom function, we can provide the logic there
                   }}
                 >
-                  <item.icon className="w-10 h-10 text-white" />
-                  
-                  {/* Subtle Text for the logo if needed */}
-                  {/* <span className="absolute -bottom-6 text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{item.name}</span> */}
+                  <motion.div
+                    animate={controls}
+                    style={{ rotate: 0 }}
+                    variants={{
+                      animate: (i: number) => ({
+                        rotate: -(i * 360) / securityIcons.length
+                      })
+                    }}
+                    // Instead of variants, let's use the same controls for rotation
+                  >
+                    <item.icon className="w-10 h-10 text-white" />
+                  </motion.div>
                 </motion.div>
               </motion.div>
             ))}
