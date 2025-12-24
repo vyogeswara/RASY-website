@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Globe, Search, Server, Shield, Lock, Database } from "lucide-react";
+import { Lock, Hexagon, RefreshCw, BrickWall, Network, Cloud } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const insights = [
@@ -14,28 +14,28 @@ const insights = [
   {
     title: "Penetration Testing",
     description: "Identify and eliminate security vulnerabilities through ethical hacking and risk assessments.",
-    icon: Search,
+    icon: Hexagon,
   },
   {
     title: "Maintenance Contracts",
     description: "Ensure continuous system stability with proactive monitoring, updates, and expert support.",
-    icon: Server,
+    icon: RefreshCw,
   },
   {
     title: "Firewall Solutions",
     description: "Safeguard your digital assets with next-generation firewall technologies that provide real-time threat detection, intrusion prevention, and adaptive security measures to counter evolving cyber threats.",
-    icon: Shield,
+    icon: BrickWall,
     isFeatured: true,
   },
   {
     title: "Data Loss Prevention",
     description: "Safeguard sensitive information with AI-driven data security and real-time monitoring.",
-    icon: Lock,
+    icon: Network,
   },
   {
     title: "Server Solutions",
     description: "Deploy high-performance, scalable, and secure server architectures tailored to your needs.",
-    icon: Database,
+    icon: Cloud,
   },
 ];
 
