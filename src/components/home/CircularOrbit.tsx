@@ -122,7 +122,7 @@ export function CircularOrbit() {
                 key={item.id}
                 custom={i}
                 initial="initial"
-                whileInView={startAnimation}
+                onViewportEnter={i === 0 ? startAnimation : undefined}
                 viewport={{ once: true, margin: "-100px" }}
                 animate={controls}
                 variants={parentVariants}
@@ -134,7 +134,7 @@ export function CircularOrbit() {
                 }}
               >
                 <motion.div
-                  className={`w-20 h-20 rounded-full ${item.color} flex items-center justify-center shadow-[0_0_30px_rgba(37,99,235,0.4)] border-2 border-white/20 relative z-10`}
+                  className={`w-20 h-20 rounded-full ${item.color} group flex items-center justify-center shadow-[0_0_30px_rgba(37,99,235,0.4)] border-2 border-white/20 relative z-10`}
                   custom={i}
                   initial="initial"
                   animate={controls}
