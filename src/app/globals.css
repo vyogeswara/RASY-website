@@ -95,7 +95,7 @@
 
 .corner-border {
   --b: 1px;
-  --s: 16px;
+  --s: 24px;
   --c: rgba(0, 112, 255, 0.8);
   background:
     linear-gradient(var(--c) 0 0) top left/var(--s) var(--b),
