@@ -184,12 +184,12 @@ export function PartnersSection() {
                   stroke="#0055ff"
                   strokeWidth="2"
                   fill="none"
-                  strokeDasharray="40, 400"
+                  strokeDasharray="100, 1000"
                   filter="url(#glow)"
-                  initial={{ strokeDashoffset: 440 }}
-                  animate={{ strokeDashoffset: -440 }}
+                  initial={{ strokeDashoffset: 1100 }}
+                  animate={{ strokeDashoffset: -1100 }}
                   transition={{
-                    duration: 3,
+                    duration: 4,
                     repeat: Infinity,
                     ease: "linear",
                     delay: i * 0.2,
