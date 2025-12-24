@@ -26,7 +26,7 @@ const tags = [
 export function CircularOrbit() {
   const [isMounted, setIsMounted] = useState(false);
   const controls = useAnimation();
-  const radius = 220; // Radius of the circle
+  const radius = 220;
 
   useEffect(() => {
     setIsMounted(true);
@@ -34,32 +34,40 @@ export function CircularOrbit() {
   }, []);
 
   const startAnimation = async () => {
-    // Initial state: all icons at center
-    await controls.set({ scale: 0, x: 0, y: 0, opacity: 0, rotate: 0 });
-    
-    // Step 1: All icons move to the top (12 o'clock) position together (stacked)
-    await controls.start({
-      scale: 1,
-      opacity: 1,
-      y: -radius,
-      x: 0,
-      transition: { duration: 0.8, ease: "circOut" }
-    });
+    await controls.set("initial");
+    await controls.start("moveUp");
+    await controls.start("fanOut");
+  };
 
-    // Step 2: Expansion - icons fan out clockwise to their positions
-    // We'll use rotation around center logic for the fan-out
-    // We trigger both the outer (parent) rotation and the inner (child) counter-rotation
-    controls.start((i) => {
-      const angle = (i * 360) / securityIcons.length;
-      return {
-        rotate: angle,
-        transition: { 
-          duration: 1.5, 
-          delay: i * 0.1, // Staggered fan out looks better
-          ease: [0.16, 1, 0.3, 1] // Custom ease for smooth expansion
-        }
-      };
-    });
+  const parentVariants = {
+    initial: { scale: 0, x: 0, y: 0, opacity: 0, rotate: 0 },
+    moveUp: { 
+      scale: 1, 
+      opacity: 1, 
+      y: -radius, 
+      transition: { duration: 0.8, ease: "circOut" } 
+    },
+    fanOut: (i: number) => ({
+      rotate: (i * 360) / securityIcons.length,
+      transition: { 
+        duration: 1.5, 
+        delay: i * 0.05, 
+        ease: [0.16, 1, 0.3, 1] 
+      }
+    })
+  };
+
+  const childVariants = {
+    initial: { rotate: 0 },
+    moveUp: { rotate: 0 },
+    fanOut: (i: number) => ({
+      rotate: -(i * 360) / securityIcons.length,
+      transition: { 
+        duration: 1.5, 
+        delay: i * 0.05, 
+        ease: [0.16, 1, 0.3, 1] 
+      }
+    })
   };
 
   if (!isMounted) return null;
@@ -83,7 +91,6 @@ export function CircularOrbit() {
                 key={tag} 
                 className="corner-border p-6 bg-white/5 border border-white/5 relative overflow-hidden group hover:border-blue-500/50 transition-colors duration-500"
               >
-                {/* Dot Grid Background */}
                 <div className="absolute inset-0 dot-grid-sm opacity-20 pointer-events-none" />
                 <span className="relative z-10 text-white font-bold tracking-tight uppercase text-sm">{tag}</span>
               </div>
@@ -98,12 +105,13 @@ export function CircularOrbit() {
         <div className="relative flex items-center justify-center min-h-[600px] lg:h-[700px]">
           <div className="relative w-full h-full flex items-center justify-center">
             
-            {/* The Icons */}
             {securityIcons.map((item, i) => (
               <motion.div
                 key={item.id}
                 custom={i}
+                initial="initial"
                 animate={controls}
+                variants={parentVariants}
                 className="absolute"
                 style={{
                   transformOrigin: `0px ${radius}px`,
@@ -111,37 +119,22 @@ export function CircularOrbit() {
                   left: "50%",
                 }}
               >
-                {/* Individual Icon Container - Counter-rotates to stay upright */}
                 <motion.div
                   className={`w-20 h-20 rounded-full ${item.color} flex items-center justify-center shadow-[0_0_30px_rgba(37,99,235,0.4)] border-2 border-white/20 relative z-10`}
                   custom={i}
+                  initial="initial"
                   animate={controls}
+                  variants={childVariants}
                   style={{
                     x: "-50%",
                     y: "-50%",
                   }}
-                  variants={{
-                    // This is a bit tricky: we need to counter-rotate as the parent rotates
-                    // Since controls.start is used with custom function, we can provide the logic there
-                  }}
                 >
-                  <motion.div
-                    animate={controls}
-                    style={{ rotate: 0 }}
-                    variants={{
-                      animate: (i: number) => ({
-                        rotate: -(i * 360) / securityIcons.length
-                      })
-                    }}
-                    // Instead of variants, let's use the same controls for rotation
-                  >
-                    <item.icon className="w-10 h-10 text-white" />
-                  </motion.div>
+                  <item.icon className="w-10 h-10 text-white" />
                 </motion.div>
               </motion.div>
             ))}
 
-            {/* Central Glow (Optional, but looks nice) */}
             <div className="absolute w-64 h-64 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
           </div>
         </div>
