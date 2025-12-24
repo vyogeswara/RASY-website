@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CTASection } from "@/components/CTASection";
-import { Shield, Lock, Server, Globe, Users, Zap, Search, Mail, Cpu, Database } from "lucide-react";
+import { Shield, Lock, Server, Globe, Users, Zap, Search, Mail, Cpu, Database, Twitter, Linkedin } from "lucide-react";
 import Image from "next/image";
 
 const partners = [
