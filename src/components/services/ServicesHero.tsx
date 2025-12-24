@@ -4,7 +4,17 @@ import { motion } from "framer-motion";
 
 export function ServicesHero() {
   return (
-    <section className="relative w-full py-40 px-8 flex flex-col items-center bg-black hero-gradient-services overflow-hidden">
+    <section 
+      className="relative w-full py-40 px-8 flex flex-col items-center overflow-hidden"
+      style={{
+        backgroundColor: '#000000',
+        backgroundImage: `
+          radial-gradient(circle at bottom left, #ff2e63, transparent 60%),
+          radial-gradient(circle at bottom right, #ffc837, transparent 60%)
+        `,
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
