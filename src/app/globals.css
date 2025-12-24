@@ -92,53 +92,36 @@
   }
 }
 
-.l-border {
-  position: relative;
+.corner-border {
+  --b: 2px;
+  --s: 12px;
+  --c: #0070FF;
+  background:
+    linear-gradient(var(--c) 0 0) top left/var(--s) var(--b),
+    linear-gradient(var(--c) 0 0) top left/var(--b) var(--s),
+    linear-gradient(var(--c) 0 0) top right/var(--s) var(--b),
+    linear-gradient(var(--c) 0 0) top right/var(--b) var(--s),
+    linear-gradient(var(--c) 0 0) bottom left/var(--s) var(--b),
+    linear-gradient(var(--c) 0 0) bottom left/var(--b) var(--s),
+    linear-gradient(var(--c) 0 0) bottom right/var(--s) var(--b),
+    linear-gradient(var(--c) 0 0) bottom right/var(--b) var(--s);
+  background-repeat: no-repeat;
 }
 
-.l-border::before, .l-border::after {
-  content: '';
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-color: #0070FF;
-  z-index: 30;
-  pointer-events: none;
+.dot-grid-sm {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 12px 12px;
 }
 
-/* Top Left */
-.l-border::before {
-  top: -2px;
-  left: -2px;
-  border-top: 2px solid #0070FF;
-  border-left: 2px solid #0070FF;
+.glow-ray-sharp {
+  background: conic-gradient(from 180deg at 50% 0%, transparent 0deg, rgba(0, 112, 255, 0.4) 15deg, transparent 30deg);
+  filter: blur(40px);
 }
 
-/* Bottom Right */
-.l-border::after {
-  bottom: -2px;
-  right: -2px;
-  border-bottom: 2px solid #0070FF;
-  border-right: 2px solid #0070FF;
-}
-
-.glow-ray {
-  background: conic-gradient(from 180deg at 50% 50%, transparent 0deg, #0070FF 20deg, transparent 40deg);
-  filter: blur(80px);
-  opacity: 0.4;
-}
-
-@keyframes grid-pulse {
+@keyframes grid-pulse-h {
   0% { transform: translateX(-100%); opacity: 0; }
   50% { opacity: 1; }
   100% { transform: translateX(100%); opacity: 0; }
-}
-
-.grid-pulse-h {
-  height: 1px;
-  width: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 112, 255, 0.8), transparent);
-  animation: grid-pulse 4s infinite linear;
 }
 
 @keyframes grid-pulse-v {
@@ -147,11 +130,18 @@
   100% { transform: translateY(100%); opacity: 0; }
 }
 
+.grid-pulse-h {
+  height: 1.5px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 112, 255, 0.6), transparent);
+  animation: grid-pulse-h 6s infinite ease-in-out;
+}
+
 .grid-pulse-v {
-  width: 1px;
+  width: 1.5px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, rgba(0, 112, 255, 0.8), transparent);
-  animation: grid-pulse-v 4s infinite linear;
+  background: linear-gradient(180deg, transparent, rgba(0, 112, 255, 0.6), transparent);
+  animation: grid-pulse-v 6s infinite ease-in-out;
 }
 
 .planet-arc {
