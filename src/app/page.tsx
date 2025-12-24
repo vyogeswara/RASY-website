@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Shield, Lock, Server, Globe, Users, Zap, Search, Mail, Cpu, Database, Twitter, Linkedin, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const partners = [
   { name: "Logo 1", icon: Shield },
