@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 const abstractIcons = [
   // Icon 1: Flower/4 Petals
@@ -68,40 +68,44 @@ const AtomLogo = () => (
   <div className="relative w-24 h-24 flex items-center justify-center">
     <div className="absolute inset-0 bg-blue-500/20 blur-2xl rounded-full" />
     <svg viewBox="0 0 100 100" className="w-full h-full text-white relative z-10">
-      <circle cx="50" cy="50" r="6" fill="currentColor" />
-      <ellipse cx="50" cy="50" rx="35" ry="12" stroke="currentColor" strokeWidth="1.5" fill="none" className="rotate-[60deg] origin-center opacity-60" />
-      <ellipse cx="50" cy="50" rx="35" ry="12" stroke="currentColor" strokeWidth="1.5" fill="none" className="rotate-[-60deg] origin-center opacity-60" />
-      <ellipse cx="50" cy="50" rx="35" ry="12" stroke="currentColor" strokeWidth="1.5" fill="none" className="opacity-60" />
+      {/* Eye center */}
+      <circle cx="50" cy="50" r="10" stroke="currentColor" strokeWidth="1.5" fill="none" />
+      <circle cx="50" cy="50" r="4" fill="currentColor" />
+      
+      {/* Orbitals */}
+      <ellipse cx="50" cy="50" rx="38" ry="14" stroke="currentColor" strokeWidth="1.5" fill="none" className="rotate-[60deg] origin-center opacity-80" />
+      <ellipse cx="50" cy="50" rx="38" ry="14" stroke="currentColor" strokeWidth="1.5" fill="none" className="rotate-[-60deg] origin-center opacity-80" />
+      <ellipse cx="50" cy="50" rx="38" ry="14" stroke="currentColor" strokeWidth="1.5" fill="none" className="opacity-80" />
     </svg>
   </div>
 );
 
 const LCorner = ({ className }: { className?: string }) => (
-  <div className={`absolute w-3 h-3 border-blue-500/50 ${className}`} />
+  <div className={`absolute w-4 h-4 border-blue-600 ${className}`} />
 );
 
 const PartnerCard = ({ index }: { index: number }) => {
   const Icon = abstractIcons[index];
   return (
-    <div className="relative w-full aspect-[2/1] group">
-      {/* Blue L-corners */}
-      <LCorner className="top-0 left-0 border-t-1 border-l-1" />
-      <LCorner className="top-0 right-0 border-t-1 border-r-1" />
-      <LCorner className="bottom-0 left-0 border-b-1 border-l-1" />
-      <LCorner className="bottom-0 right-0 border-b-1 border-r-1" />
+    <div className="relative w-full aspect-[2.2/1] group overflow-visible">
+      {/* Blue L-corners - precisely 1px solid blue */}
+      <LCorner className="top-0 left-0 border-t border-l" />
+      <LCorner className="top-0 right-0 border-t border-r" />
+      <LCorner className="bottom-0 left-0 border-b border-l" />
+      <LCorner className="bottom-0 right-0 border-b border-r" />
 
-      {/* Glassmorphic Background with Dot Grid */}
-      <div className="absolute inset-0 bg-zinc-900/40 backdrop-blur-sm border border-white/5 transition-all duration-500 group-hover:bg-zinc-800/60 flex items-center justify-center overflow-hidden">
-        {/* Dot Grid */}
+      {/* Card Content */}
+      <div className="absolute inset-0 bg-zinc-900/40 backdrop-blur-md border border-white/5 transition-all duration-500 group-hover:bg-zinc-800/60 flex items-center justify-center overflow-hidden">
+        {/* Dot Grid Background */}
         <div 
-          className="absolute inset-0 opacity-[0.03]" 
+          className="absolute inset-0 opacity-[0.05]" 
           style={{ 
             backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", 
-            backgroundSize: "12px 12px" 
+            backgroundSize: "16px 16px" 
           }} 
         />
         
-        <Icon className="w-10 h-10 text-zinc-500 group-hover:text-white transition-colors duration-500" />
+        <Icon className="w-12 h-12 text-zinc-500 group-hover:text-white transition-all duration-500 transform group-hover:scale-110" />
       </div>
     </div>
   );
@@ -120,21 +124,24 @@ export function PartnersSection() {
 
       const containerRect = containerRef.current.getBoundingClientRect();
       const logoRect = logoRef.current.getBoundingClientRect();
-      const startX = logoRect.left + logoRect.width / 2 - containerRect.left;
-      const startY = logoRect.top - containerRect.top;
+      
+      // Target point: Top center of the logo
+      const endX = logoRect.left + logoRect.width / 2 - containerRect.left;
+      const endY = logoRect.top - containerRect.top;
 
       const newPaths = cardsRef.current.map((card) => {
         if (!card) return "";
         const cardRect = card.getBoundingClientRect();
-        const endX = cardRect.left + cardRect.width / 2 - containerRect.left;
-        const endY = cardRect.top + cardRect.height - containerRect.top;
+        
+        // Start point: Bottom center of the card
+        const startX = cardRect.left + cardRect.width / 2 - containerRect.left;
+        const startY = cardRect.top + cardRect.height - containerRect.top;
 
-        // Cubic Bezier calculation
-        // Control points to create a smooth "S" curve
-        // Start point: (startX, startY)
-        // End point: (endX, endY)
-        const cp1y = startY - (startY - endY) * 0.5;
-        const cp2y = startY - (startY - endY) * 0.5;
+        // Cubic Bezier calculation for a smooth downward "S" curve
+        // Moving from card (startY) to logo (endY)
+        const verticalDistance = endY - startY;
+        const cp1y = startY + verticalDistance * 0.4;
+        const cp2y = startY + verticalDistance * 0.6;
 
         return `M ${startX} ${startY} C ${startX} ${cp1y}, ${endX} ${cp2y}, ${endX} ${endY}`;
       });
@@ -144,55 +151,77 @@ export function PartnersSection() {
 
     updatePaths();
     window.addEventListener("resize", updatePaths);
-    return () => window.removeEventListener("resize", updatePaths);
+    // Initial delay to ensure refs are set
+    const timer = setTimeout(updatePaths, 100);
+    
+    return () => {
+      window.removeEventListener("resize", updatePaths);
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
-    <section ref={containerRef} className="w-full py-32 bg-black flex flex-col items-center relative z-20 overflow-hidden">
-      <div className="text-center mb-24 max-w-4xl px-8">
-        <h2 className="text-5xl font-bold tracking-tight leading-tight">
-          Powerful Solutions with <br /> Trusted Partners
+    <section ref={containerRef} className="w-full py-40 bg-black flex flex-col items-center relative z-20 overflow-hidden">
+      {/* Background Subtle Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent pointer-events-none" />
+
+      <div className="text-center mb-32 max-w-4xl px-8 relative z-10">
+        <h2 className="text-6xl font-bold tracking-tight leading-tight">
+          Powerful Solutions with <br /> <span className="text-blue-500">Trusted Partners</span>
         </h2>
-        <p className="text-zinc-500 mt-6 text-lg font-medium">Elevate your cybersecurity to the highest level alongside the world's leading brands.</p>
+        <p className="text-zinc-500 mt-8 text-xl font-medium max-w-2xl mx-auto">
+          Elevate your cybersecurity to the highest level alongside the world's leading brands.
+        </p>
       </div>
 
-      <div className="w-full max-w-6xl px-8 relative">
+      <div className="w-full max-w-7xl px-8 relative">
         {/* SVG Overlay */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" style={{ minHeight: "800px" }}>
+        <svg 
+          className="absolute inset-0 w-full h-full pointer-events-none z-0" 
+          style={{ minHeight: "1000px" }}
+          preserveAspectRatio="none"
+        >
           <defs>
-            <filter id="glow">
+            <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="4" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
+            
+            <linearGradient id="path-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="white" stopOpacity="0.05" />
+              <stop offset="100%" stopColor="white" stopOpacity="0.1" />
+            </linearGradient>
           </defs>
+          
           {paths.map((path, i) => (
             <React.Fragment key={i}>
-              {/* Static background line */}
+              {/* Static background line (The "circuit") */}
               <motion.path
                 d={path}
-                stroke="white"
-                strokeWidth="1"
+                stroke="url(#path-gradient)"
+                strokeWidth="1.5"
                 fill="none"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: isInView ? 0.05 : 0 }}
-                transition={{ duration: 1, delay: i * 0.1 }}
+                animate={{ opacity: isInView ? 1 : 0 }}
+                transition={{ duration: 1.5, delay: i * 0.05 }}
               />
-              {/* Animated tracer */}
+              
+              {/* Animated tracer (Energy pulse moving from Box to Logo) */}
               {isInView && (
                 <motion.path
                   d={path}
-                  stroke="#0055ff"
-                  strokeWidth="2"
+                  stroke="#0066ff"
+                  strokeWidth="2.5"
                   fill="none"
                   strokeDasharray="100, 1000"
-                  filter="url(#glow)"
+                  filter="url(#neon-glow)"
                   initial={{ strokeDashoffset: 1100 }}
-                  animate={{ strokeDashoffset: -1100 }}
+                  animate={{ strokeDashoffset: 0 }}
                   transition={{
-                    duration: 4,
+                    duration: 3.5,
                     repeat: Infinity,
                     ease: "linear",
-                    delay: i * 0.2,
+                    delay: i * 0.3,
                   }}
                 />
               )}
@@ -200,19 +229,23 @@ export function PartnersSection() {
           ))}
         </svg>
 
-        {/* 2x4 Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 relative z-10 mb-48">
+        {/* 2x4 Grid of Partner Boxes */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-16 relative z-10 mb-64">
           {[...Array(8)].map((_, i) => (
-            <div key={i} ref={(el) => { cardsRef.current[i] = el; }}>
+            <div key={i} ref={(el) => { cardsRef.current[i] = el; }} className="relative">
               <PartnerCard index={i} />
             </div>
           ))}
         </div>
 
-        {/* Bottom Logo */}
+        {/* Central Logo Anchor */}
         <div className="flex justify-center relative z-10">
-          <div ref={logoRef} className="animate-float">
-            <AtomLogo />
+          <div ref={logoRef} className="relative">
+            {/* Connection point indicator */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_10px_#0066ff] z-20" />
+            <div className="animate-float">
+              <AtomLogo />
+            </div>
           </div>
         </div>
       </div>
