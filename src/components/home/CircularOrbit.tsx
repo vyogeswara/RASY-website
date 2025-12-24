@@ -40,15 +40,16 @@ export function CircularOrbit() {
   };
 
   const parentVariants = {
-    initial: { scale: 0, x: 0, y: 0, opacity: 0, rotate: 0 },
+    initial: { scale: 0, x: "-50%", y: "-50%", opacity: 0, rotate: 0 },
     moveUp: { 
       scale: 1, 
       opacity: 1, 
-      y: -radius, 
+      y: `-${radius + 50}%`, // Adjusting for the centering
       transition: { duration: 0.8, ease: "circOut" } 
     },
     fanOut: (i: number) => ({
       rotate: (i * 360) / securityIcons.length,
+      y: -radius,
       transition: { 
         duration: 1.5, 
         delay: i * 0.05, 
@@ -105,16 +106,29 @@ export function CircularOrbit() {
         <div className="relative flex items-center justify-center min-h-[600px] lg:h-[700px]">
           <div className="relative w-full h-full flex items-center justify-center">
             
+            <motion.div 
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: "circOut" }}
+              className="absolute z-0"
+            >
+              <div className="w-96 h-96 border border-white/5 rounded-full" />
+              <div className="absolute inset-0 w-full h-full border border-blue-500/10 rounded-full scale-125 animate-pulse" />
+            </motion.div>
+
             {securityIcons.map((item, i) => (
               <motion.div
                 key={item.id}
                 custom={i}
                 initial="initial"
+                whileInView={startAnimation}
+                viewport={{ once: true, margin: "-100px" }}
                 animate={controls}
                 variants={parentVariants}
                 className="absolute"
                 style={{
-                  transformOrigin: `0px ${radius}px`,
+                  transformOrigin: `center ${radius}px`,
                   top: `calc(50% - ${radius}px)`,
                   left: "50%",
                 }}
@@ -125,12 +139,13 @@ export function CircularOrbit() {
                   initial="initial"
                   animate={controls}
                   variants={childVariants}
-                  style={{
-                    x: "-50%",
-                    y: "-50%",
-                  }}
                 >
                   <item.icon className="w-10 h-10 text-white" />
+                  
+                  {/* Label that appears on hover */}
+                  <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    <span className="text-xs font-bold text-blue-400 tracking-widest uppercase">{item.name}</span>
+                  </div>
                 </motion.div>
               </motion.div>
             ))}
