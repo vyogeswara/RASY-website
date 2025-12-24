@@ -93,21 +93,49 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center">
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-8 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] cyber-gradient-blue opacity-30 pointer-events-none" />
-        
+      <section className="relative w-full min-h-screen flex flex-col items-center justify-center pt-32 pb-40 px-8 overflow-hidden bg-black">
+        {/* Glow Ray Effects Top Left */}
+        <div className="absolute top-[-20%] left-[-10%] w-[100%] h-[100%] glow-ray rotate-[35deg] pointer-events-none" />
+        <div className="absolute top-[-10%] left-[-5%] w-[80%] h-[80%] glow-ray rotate-[-5deg] pointer-events-none opacity-30" />
+
+        {/* 10x5 Responsive Grid */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 grid grid-cols-10 grid-rows-5 border-b border-white/10 h-full w-full">
+            {[...Array(50)].map((_, i) => (
+              <div key={i} className="border-r border-b border-white/5 relative">
+                {/* Dot at intersections */}
+                <div className="absolute -right-[1.5px] -bottom-[1.5px] w-[3px] h-[3px] bg-white/20 rounded-full z-10" />
+                
+                {/* Pulse animations */}
+                <div className="absolute top-0 left-0 w-full h-[1px] overflow-hidden opacity-30">
+                  <div className="grid-pulse-h" style={{ animationDelay: `${Math.random() * 5}s`, animationDuration: `${3 + Math.random() * 4}s` }} />
+                </div>
+                <div className="absolute top-0 left-0 h-full w-[1px] overflow-hidden opacity-30">
+                  <div className="grid-pulse-v" style={{ animationDelay: `${Math.random() * 5}s`, animationDuration: `${3 + Math.random() * 4}s` }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Planet Arc */}
+        <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[180%] aspect-[2.5/1] planet-arc opacity-80 pointer-events-none z-10" />
+        <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[200%] h-[1px] bg-blue-500/40 blur-[1px] z-10" />
+
+        {/* Content */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="bg-zinc-900/50 border border-zinc-800 rounded-full px-4 py-1 text-sm font-medium mb-8 backdrop-blur-sm relative z-10"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="l-border bg-black/60 backdrop-blur-md px-6 py-3 rounded-none mb-12 relative z-30 flex items-center gap-4 border border-white/5"
         >
-          <span className="text-blue-500 mr-2">●</span> CyberSecurity 2025
+          <div className="w-3.5 h-3.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_15px_#22c55e]" />
+          <span className="text-sm font-bold tracking-[0.2em] text-white uppercase">System Security: ACTIVE</span>
         </motion.div>
         
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-6xl md:text-8xl font-bold text-center max-w-5xl mb-8 relative z-10"
+          className="text-6xl md:text-[110px] font-bold text-center max-w-7xl mb-10 relative z-30 leading-[0.85] tracking-tighter text-white"
         >
           SECURE YOUR <br /> DIGITAL WORLD
         </motion.h1>
@@ -116,49 +144,42 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-zinc-400 text-lg md:text-xl text-center max-w-2xl mb-12 relative z-10"
+          className="text-zinc-400 text-lg md:text-2xl text-center max-w-4xl mb-16 relative z-30 font-medium px-4 leading-relaxed"
         >
           Modern and powerful security solutions to protect against cyber threats. 
-          Designed to safeguard your data, systems, and users. Stay secure now.
+          Designed to safeguard your data, systems, and privacy. Stay secure now!
         </motion.p>
         
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
-          className="relative z-10"
+          className="relative z-30"
         >
-          <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white rounded-md px-10">
-            Get Started
-          </Button>
+          <div className="l-border p-[1px]">
+            <Button size="lg" className="bg-transparent hover:bg-white/5 text-white rounded-none px-14 py-8 text-xl font-bold border border-white/10 transition-all backdrop-blur-sm">
+              Get Started
+            </Button>
+          </div>
         </motion.div>
-
-        {/* Hero Globe Element */}
-        <div className="mt-20 relative w-full max-w-4xl aspect-video bg-blue-600/5 rounded-[40px] border border-blue-500/10 overflow-hidden">
-           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,112,255,0.2),transparent_70%)]" />
-           <div className="absolute inset-0 flex items-center justify-center">
-             <div className="w-64 h-64 border-2 border-blue-500/20 rounded-full animate-pulse" />
-             <div className="absolute w-96 h-96 border border-blue-500/10 rounded-full" />
-           </div>
-        </div>
       </section>
 
       {/* Partners Section */}
-      <section className="w-full py-20 bg-black flex flex-col items-center gap-12">
-        <h2 className="text-3xl font-bold text-center">
+      <section className="w-full py-24 bg-black flex flex-col items-center gap-16 relative z-20">
+        <h2 className="text-4xl font-bold text-center leading-tight">
           Powerful Solutions with <br /> Trusted Partners
         </h2>
         
-        <div className="flex flex-wrap justify-center gap-12 md:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all">
+        <div className="flex flex-wrap justify-center gap-16 md:gap-32 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
           {partners.map((partner, i) => (
-            <partner.icon key={i} className="w-10 h-10" />
+            <partner.icon key={i} className="w-12 h-12" />
           ))}
         </div>
         
-        <div className="mt-8 flex flex-col items-center gap-4">
-           <div className="w-px h-24 bg-gradient-to-b from-blue-500 to-transparent" />
-           <div className="w-12 h-12 rounded-full border border-blue-500/30 flex items-center justify-center">
-             <Shield className="w-6 h-6 text-blue-500" />
+        <div className="mt-12 flex flex-col items-center gap-6">
+           <div className="w-px h-32 bg-gradient-to-b from-blue-500 to-transparent" />
+           <div className="w-14 h-14 rounded-full border border-blue-500/30 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+             <Shield className="w-7 h-7 text-blue-500" />
            </div>
         </div>
       </section>
@@ -166,22 +187,22 @@ export default function Home() {
       {/* Security Insights Section */}
       <section className="w-full py-32 px-8 flex flex-col items-center bg-black relative">
         <div className="text-center mb-20">
-          <h2 className="text-4xl font-bold mb-4">Security Insights</h2>
-          <p className="text-zinc-400">Gain complete visibility and protect your digital assets with real-time security intelligence.</p>
+          <h2 className="text-5xl font-bold mb-6 tracking-tight">Security Insights</h2>
+          <p className="text-zinc-400 text-lg">Gain complete visibility and protect your digital assets with real-time security intelligence.</p>
         </div>
         
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {insights.map((item, i) => (
             <motion.div
               key={i}
-              whileHover={{ y: -5 }}
-              className="p-8 bg-[#0A0A0A] border border-white/5 rounded-2xl flex flex-col gap-4 group hover:border-blue-500/50 transition-colors"
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="p-10 bg-[#0A0A0A] border border-white/5 rounded-3xl flex flex-col gap-6 group hover:border-blue-500/40 transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-colors">
-                <item.icon className="w-6 h-6" />
+              <div className="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
+                <item.icon className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold">{item.title}</h3>
-              <p className="text-zinc-500 text-sm leading-relaxed">{item.description}</p>
+              <h3 className="text-2xl font-bold">{item.title}</h3>
+              <p className="text-zinc-500 text-base leading-relaxed">{item.description}</p>
             </motion.div>
           ))}
         </div>
@@ -189,29 +210,29 @@ export default function Home() {
 
       {/* Cyber Training Section */}
       <section className="w-full py-32 px-8 bg-[#030303] flex justify-center">
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-20">
-          <div className="flex flex-col gap-8">
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              Strengthen Your <br /> Digital Defense with <br /> Expert Cyber Training
+        <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-24">
+          <div className="flex flex-col gap-10">
+            <h2 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tighter">
+              Strengthen Your <br /> Digital Defense <br /> with Expert <br /> Cyber Training
             </h2>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-4">
               {["B2B Services Projects", "Web development", "60.000+ Happy Users Inc.", "Best Incident Response", "30+ Team Trained"].map((tag) => (
-                <span key={tag} className="px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-xs text-zinc-400">
+                <span key={tag} className="px-5 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-xs font-bold text-zinc-400 uppercase tracking-widest">
                   {tag}
                 </span>
               ))}
             </div>
           </div>
           
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             {trainingModules.map((module, i) => (
-              <div key={i} className="flex gap-4 p-4 hover:bg-white/5 rounded-xl transition-colors cursor-pointer group">
-                <div className="w-10 h-10 rounded-lg border border-white/10 flex items-center justify-center text-zinc-500 group-hover:text-white group-hover:border-white/30 transition-all shrink-0">
-                  <Zap className="w-4 h-4" />
+              <div key={i} className="flex gap-6 p-6 hover:bg-white/5 rounded-2xl transition-all duration-300 cursor-pointer group border border-transparent hover:border-white/5">
+                <div className="w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center text-zinc-500 group-hover:text-white group-hover:border-blue-500/50 group-hover:bg-blue-500/10 transition-all shrink-0">
+                  <Zap className="w-5 h-5" />
                 </div>
-                <div>
-                  <h4 className="font-bold mb-1">{module.title}</h4>
-                  <p className="text-zinc-500 text-sm">{module.description}</p>
+                <div className="flex flex-col justify-center">
+                  <h4 className="text-xl font-bold mb-1 group-hover:text-blue-400 transition-colors">{module.title}</h4>
+                  <p className="text-zinc-500 text-sm leading-relaxed">{module.description}</p>
                 </div>
               </div>
             ))}
@@ -221,34 +242,34 @@ export default function Home() {
 
       {/* Team Section */}
       <section className="w-full py-32 px-8 bg-black flex flex-col items-center">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl font-bold mb-4">The Team Securing Your Safety</h2>
-          <p className="text-zinc-400">Protecting your digital world with passion and expertise.</p>
+        <div className="text-center mb-24">
+          <h2 className="text-5xl font-bold mb-6 tracking-tight">The Team Securing Your Safety</h2>
+          <p className="text-zinc-400 text-lg">Protecting your digital world with passion and expertise.</p>
         </div>
         
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {team.map((member, i) => (
             <motion.div
               key={i}
-              whileHover={{ y: -10 }}
-              className="group relative flex flex-col items-center text-center p-8 rounded-3xl bg-[#0A0A0A] border border-white/5"
+              whileHover={{ y: -12 }}
+              className="group relative flex flex-col items-center text-center p-10 rounded-[40px] bg-[#0A0A0A] border border-white/5 hover:border-blue-500/20 transition-all duration-500"
             >
-              <div className="relative w-40 h-40 mb-6">
-                 <div className="absolute inset-0 bg-blue-500/20 blur-3xl group-hover:bg-blue-500/40 transition-all rounded-full" />
+              <div className="relative w-48 h-48 mb-8">
+                 <div className="absolute inset-0 bg-blue-500/20 blur-3xl group-hover:bg-blue-500/40 transition-all duration-700 rounded-full" />
                  <Image
                    src={member.img}
                    alt={member.name}
-                   width={160}
-                   height={160}
-                   className="rounded-full relative z-10 grayscale hover:grayscale-0 transition-all duration-500 object-cover border-4 border-black"
+                   width={192}
+                   height={192}
+                   className="rounded-full relative z-10 grayscale hover:grayscale-0 transition-all duration-700 object-cover border-4 border-black group-hover:border-blue-500/30 shadow-2xl"
                  />
               </div>
-              <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-              <p className="text-zinc-500 text-sm mb-6">{member.role}</p>
-              <div className="flex gap-4">
+              <h3 className="text-2xl font-bold mb-2">{member.name}</h3>
+              <p className="text-blue-500 text-sm font-bold uppercase tracking-[0.2em] mb-8">{member.role}</p>
+              <div className="flex gap-5">
                  {[Twitter, Linkedin, Mail].map((Icon, j) => (
-                   <button key={j} className="p-2 border border-white/5 rounded-lg text-zinc-600 hover:text-white hover:border-white/20 transition-all">
-                     <Icon className="w-4 h-4" />
+                   <button key={j} className="p-3 border border-white/10 rounded-xl text-zinc-500 hover:text-white hover:border-blue-500/50 hover:bg-blue-500/10 transition-all duration-300">
+                     <Icon className="w-5 h-5" />
                    </button>
                  ))}
               </div>
@@ -259,25 +280,28 @@ export default function Home() {
 
       {/* Testimonials Section */}
       <section className="w-full py-32 px-8 bg-[#030303] flex flex-col items-center">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl font-bold mb-4">Voices of Our Trusted Clients</h2>
-          <p className="text-zinc-400">Hear the stories of their cybersecurity journey with us.</p>
+        <div className="text-center mb-24">
+          <h2 className="text-5xl font-bold mb-6 tracking-tight">Voices of Our Trusted Clients</h2>
+          <p className="text-zinc-400 text-lg">Hear the stories of their cybersecurity journey with us.</p>
         </div>
         
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((t, i) => (
-            <div key={i} className="p-8 bg-[#0A0A0A] border border-white/5 rounded-2xl flex flex-col gap-6">
-              <div className="flex gap-1">
+            <div key={i} className="p-10 bg-[#0A0A0A] border border-white/5 rounded-[32px] flex flex-col gap-8 relative overflow-hidden group hover:border-blue-500/30 transition-all">
+              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                <Shield className="w-20 h-20 text-blue-500" />
+              </div>
+              <div className="flex gap-1.5">
                 {[...Array(t.rating)].map((_, j) => (
                   <Zap key={j} className="w-4 h-4 text-blue-500 fill-blue-500" />
                 ))}
               </div>
-              <p className="text-zinc-300 italic">"{t.quote}"</p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-zinc-800" />
+              <p className="text-zinc-300 text-lg italic leading-relaxed relative z-10">"{t.quote}"</p>
+              <div className="flex items-center gap-4 mt-auto">
+                <div className="w-12 h-12 rounded-full bg-zinc-800 border border-white/10" />
                 <div>
-                  <p className="text-sm font-bold">{t.author}</p>
-                  <p className="text-xs text-zinc-500">{t.role}</p>
+                  <p className="text-base font-bold text-white">{t.author}</p>
+                  <p className="text-sm text-zinc-500 font-medium">{t.role}</p>
                 </div>
               </div>
             </div>
