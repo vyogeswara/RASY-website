@@ -17,8 +17,8 @@ function GridTracers() {
     if (!ctx) return;
 
     let width = canvas.width = window.innerWidth;
-    let height = canvas.height = 850;
-    const gridSize = 160; // Larger grid like in images
+    let height = canvas.height = 1000;
+    const gridSize = 120; 
 
     interface Tracer {
       x: number;
@@ -39,18 +39,18 @@ function GridTracers() {
       return {
         x,
         y,
-        length: Math.random() * 200 + 100,
-        speed: Math.random() * 2 + 1,
+        length: Math.random() * 300 + 150,
+        speed: Math.random() * 4 + 2,
         vertical,
-        opacity: Math.random() * 0.4 + 0.1
+        opacity: Math.random() * 0.5 + 0.2
       };
     };
 
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
       
-      // Draw static grid
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
+      // Draw subtle grid
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.03)";
       ctx.lineWidth = 1;
 
       for (let x = 0; x <= width; x += gridSize) {
@@ -68,7 +68,7 @@ function GridTracers() {
       }
 
       // Update and draw tracers
-      if (tracers.length < 8 && Math.random() > 0.98) {
+      if (tracers.length < 12 && Math.random() > 0.95) {
         tracers.push(createTracer());
       }
 
@@ -103,7 +103,7 @@ function GridTracers() {
 
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
-      height = canvas.height = 850;
+      height = canvas.height = 1000;
     };
 
     window.addEventListener("resize", handleResize);
@@ -117,112 +117,124 @@ function GridTracers() {
 
 export function HeroSection() {
   return (
-    <section className="relative w-full h-screen min-h-[850px] flex flex-col items-center justify-start px-[5%] overflow-hidden bg-[#000000]">
-      {/* Layer 5: God Rays (Multiple beams for depth) */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-20">
-        <div className="god-ray-beam opacity-40 animate-atmospheric" style={{ transform: 'rotate(-5deg)' }} />
-        <div className="god-ray-beam opacity-30 animate-atmospheric" style={{ transform: 'rotate(10deg)', animationDelay: '-2s' }} />
-        <div className="god-ray-beam opacity-20 animate-atmospheric" style={{ transform: 'rotate(25deg)', animationDelay: '-5s' }} />
-      </div>
-
-      {/* Layer 3: Active Data Grid */}
+    <section className="relative w-full h-screen min-h-[900px] flex flex-col items-center justify-start overflow-hidden bg-[#000000]">
+      {/* 1. Background Grid & Tracers */}
       <div className="absolute inset-0 pointer-events-none">
         <GridTracers />
       </div>
 
-      {/* Layer 4: Horizontal Ground Line */}
-      <div className="absolute bottom-[20%] left-0 w-full ground-line z-20" />
+      {/* 2. Volumetric God Rays (Top Left) */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-20">
+        <div className="absolute top-0 left-0 w-[80%] h-[80%] opacity-40 animate-atmospheric" 
+          style={{ 
+            background: 'conic-gradient(from 140deg at 0% 0%, transparent 0deg, rgba(0, 112, 255, 0.15) 10deg, rgba(0, 242, 255, 0.2) 20deg, rgba(0, 112, 255, 0.1) 30deg, transparent 40deg)',
+            filter: 'blur(60px)',
+            transformOrigin: 'top left'
+          }} 
+        />
+        <div className="absolute top-0 left-0 w-[60%] h-[60%] opacity-30 animate-atmospheric" 
+          style={{ 
+            background: 'conic-gradient(from 150deg at 0% 0%, transparent 0deg, rgba(0, 112, 255, 0.1) 8deg, rgba(0, 242, 255, 0.15) 15deg, transparent 25deg)',
+            filter: 'blur(40px)',
+            transformOrigin: 'top left',
+            animationDelay: '-3s'
+          }} 
+        />
+      </div>
 
-      {/* Layer 2: Planetary Sphere (The Horizon) */}
-      <div className="absolute bottom-[-20%] left-1/2 -translate-x-1/2 w-[180%] h-[50%] pointer-events-none z-10 overflow-hidden">
-        {/* The large elliptical glow arc */}
-        <div className="absolute inset-0 planetary-glow-arc opacity-60" />
+      {/* 3. Massive Planetary Horizon (Bottom) */}
+      <div className="absolute bottom-[-15%] left-1/2 -translate-x-1/2 w-[160%] h-[60%] pointer-events-none z-10">
+        {/* Intense Blue Glow Arc */}
+        <div className="absolute inset-0 bg-radial-[50%_100%] from-[#0044ff]/40 via-transparent to-transparent blur-[80px] opacity-80" />
         
-        {/* The actual planet asset positioned for the horizon curve */}
-        <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[70%] h-[150%] opacity-100">
+        {/* Planet Asset */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-full">
           <Image 
             src="https://res.cloudinary.com/dslutbftw/image/upload/v1766544779/CCqBJMabxVDE9sutmlyZL4CF8k_qvd4bm.avif"
-            alt="Cyber Horizon"
+            alt="Cyber Planet Horizon"
             fill
-            className="object-contain object-bottom scale-110"
+            className="object-contain object-bottom scale-110 translate-y-[5%]"
             priority
           />
         </div>
+
+        {/* Sharp Horizontal Ground Line */}
+        <div className="absolute top-[65%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-400/50 to-transparent z-20" />
       </div>
 
-      {/* Hero Content Stack */}
-      <div className="relative z-30 flex flex-col items-center text-center max-w-[1400px] w-full pt-[120px]">
+      {/* 4. Content Stack */}
+      <div className="relative z-30 flex flex-col items-center text-center w-full pt-[160px] px-6">
         
-        {/* A. System Security Badge (Centered and Styled per Image 3) */}
+        {/* A. System Security Badge */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="group relative flex items-center gap-3 px-6 h-10 mb-24 bg-black/80 backdrop-blur-xl border border-white/5 hover:border-blue-500/50 transition-all duration-500"
+          className="relative flex items-center gap-3 px-8 h-12 mb-20 bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/5"
         >
-          {/* Micro-dot matrix background */}
-          <div className="absolute inset-0 matrix-dots opacity-30" />
+          {/* Dot Matrix Texture */}
+          <div className="absolute inset-0 matrix-dots opacity-20 pointer-events-none" />
           
-          {/* Blue Corner Markers */}
-          <div className="badge-corner-marker badge-corner-tl" />
-          <div className="badge-corner-marker badge-corner-tr" />
-          <div className="badge-corner-marker badge-corner-bl" />
-          <div className="badge-corner-marker badge-corner-br" />
+          {/* Blue Corner L-Markers */}
+          <div className="absolute -top-[1px] -left-[1px] w-3 h-3 border-t-2 border-l-2 border-[#0070FF]" />
+          <div className="absolute -top-[1px] -right-[1px] w-3 h-3 border-t-2 border-r-2 border-[#0070FF]" />
+          <div className="absolute -bottom-[1px] -left-[1px] w-3 h-3 border-b-2 border-l-2 border-[#0070FF]" />
+          <div className="absolute -bottom-[1px] -right-[1px] w-3 h-3 border-b-2 border-r-2 border-[#0070FF]" />
 
-          {/* Pulsing Indicator */}
-          <div className="relative w-2.5 h-2.5">
-            <div className="absolute inset-0 bg-[#00ff00] rounded-full shadow-[0_0_8px_#00ff00]" />
-            <div className="ripple-pulse" />
+          {/* Status Indicator */}
+          <div className="relative w-3 h-3">
+            <div className="absolute inset-0 bg-[#00ff00] rounded-full shadow-[0_0_12px_#00ff00]" />
+            <div className="absolute inset-[-4px] border border-[#00ff00]/40 rounded-full animate-ping" />
           </div>
           
-          <span className="text-[11px] font-bold tracking-[0.4em] text-white uppercase relative z-10">
+          <span className="text-[13px] font-bold tracking-[0.3em] text-white uppercase relative z-10">
             System Security: ACTIVE
           </span>
         </motion.div>
 
-        {/* Headline and Subtext (Positioned lower to interact with planetary arc) */}
-        <div className="flex flex-col items-center mt-auto mb-[15vh]">
-          {/* B. Main Headline */}
+        {/* B. Main Headline (Positioned above the planet's crest) */}
+        <div className="flex flex-col items-center max-w-[1200px]">
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-[48px] md:text-[100px] font-[800] leading-[1] tracking-tighter mb-8 text-white uppercase"
+            className="text-[60px] md:text-[110px] font-black leading-[0.95] tracking-[-0.04em] mb-10 text-white uppercase"
             style={{ 
-              textShadow: "0 0 40px rgba(0,100,255,0.6)",
+              textShadow: "0 0 50px rgba(0,100,255,0.4)",
               fontFamily: "'Space Grotesk', sans-serif"
             }}
           >
-            SECURE YOUR <br /> DIGITAL WORLD
+            SECURE YOUR <br /> 
+            <span className="text-white">DIGITAL WORLD</span>
           </motion.h1>
 
-          {/* C. Subtext */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-white/80 text-lg md:text-xl max-w-[650px] mb-12 font-medium leading-relaxed tracking-tight"
+            className="text-white/70 text-lg md:text-xl max-w-[700px] mb-14 font-medium leading-relaxed"
           >
             Modern and powerful security solutions to protect against cyber threats. 
             Designed to safeguard your data, systems, and privacy. Stay secure now!
           </motion.p>
 
-          {/* D. CTA Button */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
           >
             <Link href="/services">
-              <div className="relative group cursor-pointer">
-                {/* Button Glow Effect */}
-                <div className="absolute inset-0 bg-blue-600/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative group">
+                {/* Button Glow */}
+                <div className="absolute inset-[-10px] bg-blue-500/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
                 <Button 
-                  className="relative px-10 h-14 bg-transparent border border-white/20 hover:border-white/100 text-white rounded-none transition-all duration-300 text-base font-bold uppercase tracking-widest"
+                  className="relative px-12 h-16 bg-transparent border border-white/30 hover:border-white text-white rounded-none transition-all duration-300 text-base font-black uppercase tracking-[0.2em]"
                 >
                   Get Started
                 </Button>
-                {/* Tiny corner lines for button */}
-                <div className="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-blue-500/50 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-blue-500/50 opacity-0 group-hover:opacity-100 transition-opacity" />
+                
+                {/* Tiny accent corners for button */}
+                <div className="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-blue-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-blue-400 opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
             </Link>
           </motion.div>
