@@ -3,45 +3,45 @@
 import { Zap } from "lucide-react";
 
 const trainingModules = [
-  { title: "Risk Awareness Training", description: "Learn to identify and mitigate cyber risks effectively." },
-  { title: "Phishing Attack Defense", description: "Protect your organization from sophisticated phishing attempts." },
-  { title: "Incident Response Drills", description: "Prepare your team for rapid response to security incidents." },
-  { title: "Penetration Testing Basics", description: "Understand the fundamentals of security testing." },
-  { title: "Data Protection Strategies", description: "Implement best practices for safeguarding sensitive data." },
-  { title: "Threat Intelligence Services", description: "Stay informed about emerging cyber threats." },
-  { title: "Secure Software Development", description: "Build security into your software development lifecycle." },
-  { title: "Compliance Management Support", description: "Ensure your business meets industry security standards." },
+  { title: "Prompt Engineering", description: "Master the art of crafting effective AI prompts for optimal results." },
+  { title: "Context Engineering", description: "Learn to structure context for AI systems to maximize accuracy." },
+  { title: "Building AI Agents", description: "Design and deploy autonomous AI agents for business automation." },
+  { title: "Workflow Automation", description: "Automate business processes with AI-powered workflow tools." },
+  { title: "Chatbot Design", description: "Create intelligent conversational interfaces for customer engagement." },
+  { title: "Voice Agent Design", description: "Build voice-enabled AI assistants for seamless interactions." },
+  { title: "AI Website Design", description: "Leverage AI tools to design and develop modern websites." },
+  { title: "Cybersecurity Fundamentals", description: "Enterprise security training for threat awareness and prevention." },
 ];
 
 export function TrainingSection() {
   return (
-    <section className="w-full py-40 px-8 bg-black">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-32">
-        <div className="flex flex-col">
-          <h2 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-12">
-            Strengthen Your <br /> Digital Defense <br /> with Expert <br /> Cyber Training
+    <section className="w-full py-32 px-8 bg-black">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-20">
+        <div className="lg:col-span-2 flex flex-col pt-4">
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-[1] mb-10 text-white uppercase">
+            Corporate <br /> AI Training <br /> Programs
           </h2>
-          <p className="text-zinc-500 text-xl font-medium mb-16 max-w-lg leading-relaxed">
-            Empower your team with advanced security training designed to mitigate risks and ensure robust protection.
+          <p className="text-zinc-500 text-lg font-medium mb-12 max-w-sm leading-relaxed">
+            Empower your team with hands-on AI and cybersecurity training from industry experts.
           </p>
-          <div className="flex flex-wrap gap-3 mt-auto">
-            {["B2B Services Projects", "Web Development", "60,000+ Happy Users Inc.", "Best Incident Response", "30+ Team Trained"].map((tag) => (
-              <span key={tag} className="px-6 py-3 border border-white/10 bg-white/5 text-[10px] font-bold tracking-widest uppercase text-zinc-400">
+          <div className="flex flex-wrap gap-2.5 mt-auto">
+            {["Prompt Engineering", "AI Agents", "Chatbots", "Voice AI", "Automation"].map((tag) => (
+              <span key={tag} className="px-5 py-2.5 border border-white/10 bg-white/5 text-[9px] font-bold tracking-[0.2em] uppercase text-zinc-400 hover:border-blue-500/30 transition-colors">
                 {tag}
               </span>
             ))}
           </div>
         </div>
 
-        <div className="flex flex-col gap-6">
+        <div className="lg:col-span-3 flex flex-col gap-4">
           {trainingModules.map((module, i) => (
-            <div key={i} className="p-8 hover:bg-white/5 border border-transparent hover:border-white/5 transition-all group cursor-pointer flex gap-8 items-center">
-              <div className="w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center text-zinc-500 group-hover:text-white group-hover:bg-blue-600 group-hover:border-blue-600 transition-all">
-                <Zap className="w-5 h-5" />
+            <div key={i} className="p-6 hover:bg-white/5 border border-transparent hover:border-white/5 transition-all group cursor-pointer flex gap-6 items-center">
+              <div className="w-10 h-10 border border-white/10 flex items-center justify-center text-zinc-600 group-hover:text-blue-400 group-hover:border-blue-500/30 transition-all">
+                <Zap className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="text-xl font-bold mb-1 tracking-tight">{module.title}</h4>
-                <p className="text-zinc-500 text-sm font-medium">{module.description}</p>
+                <h4 className="text-lg font-bold mb-0.5 tracking-tight text-white uppercase">{module.title}</h4>
+                <p className="text-zinc-500 text-xs font-medium">{module.description}</p>
               </div>
             </div>
           ))}

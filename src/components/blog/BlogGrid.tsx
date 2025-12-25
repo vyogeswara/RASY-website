@@ -3,55 +3,55 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const BLOG_POSTS = [
+const PROGRAMS = [
   {
-    date: "Apr 8, 2025",
-    title: "Net Breach",
-    description: "Simulated penetration test revealing unauthorized network access paths through misconfigured firewalls and outdated credentials.",
-    tags: ["Pentesting", "Network Security"],
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800"
+    date: "Flagship Program",
+    title: "Upskill 2.0",
+    description: "Our comprehensive AI training program covering prompt engineering, context engineering, AI agents, workflow automation, chatbots, and voice agents.",
+    tags: ["AI Training", "Certification"],
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800"
   },
   {
-    date: "Mar 2, 2025",
-    title: "Data Leak",
-    description: "Internal document mishandling led to exposure of confidential files, logs, and credentials stored in unsecured cloud environments and accessible links.",
-    tags: ["Cloud Security"],
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800"
+    date: "AI Fundamentals",
+    title: "Prompt Engineering",
+    description: "Master the art of crafting effective AI prompts for optimal results. Learn techniques for clear instructions and structured outputs.",
+    tags: ["AI Training", "Core Skills"],
+    image: "https://images.unsplash.com/photo-1676573409967-986a47db2440?auto=format&fit=crop&q=80&w=800"
   },
   {
-    date: "Feb 20, 2025",
-    title: "Firewall Gaps",
-    description: "Simulated penetration test revealing unauthorized network access paths through misconfigured firewalls and outdated credentials.",
-    tags: ["Vulnerability Management", "Network Security"],
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc4b?auto=format&fit=crop&q=80&w=800"
+    date: "AI Development",
+    title: "Building AI Agents",
+    description: "Design and deploy autonomous AI agents for business automation. Learn agent architectures, tools integration, and deployment strategies.",
+    tags: ["AI Development", "Advanced"],
+    image: "https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&q=80&w=800"
   },
   {
-    date: "Apr 8, 2025",
-    title: "Jq{.x8} >",
-    description: "A curated set of security tools used for vulnerability scanning, network analysis, and incident response in environments.",
-    tags: ["Best Practices", "Security Tools"],
+    date: "Automation",
+    title: "Workflow Automation",
+    description: "Automate business processes with AI-powered workflow tools. Connect systems, automate tasks, and build intelligent pipelines.",
+    tags: ["Automation", "Business"],
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800"
   },
   {
-    date: "Mar 12, 2025",
-    title: "^5l)H^u:x",
-    description: "Comprehensive port scanning exercise uncovered exposed services on misconfigured public-facing servers.",
-    tags: ["Pentesting", "Network Security"],
-    image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=800"
+    date: "Conversational AI",
+    title: "Chatbot Design",
+    description: "Create intelligent conversational interfaces for customer engagement. Build chatbots that understand context and deliver value.",
+    tags: ["Chatbots", "Customer Experience"],
+    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&q=80&w=800"
   },
   {
-    date: "Feb 8, 2025",
-    title: "Zje&h&0^w",
-    description: "Cloud breach caused by compromised authentication tokens stored in client-side scripts and leaked via browser extensions.",
-    tags: ["Cloud Security", "Incident Response"],
+    date: "Voice Technology",
+    title: "Voice Agent Design",
+    description: "Build voice-enabled AI assistants for seamless interactions. Learn speech recognition, natural language processing, and voice UX.",
+    tags: ["Voice AI", "Advanced"],
+    image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    date: "Security Training",
+    title: "Cybersecurity Fundamentals",
+    description: "Enterprise security training covering threat awareness, incident response, and security best practices for modern organizations.",
+    tags: ["Cybersecurity", "Enterprise"],
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    date: "Mar 30, 2025",
-    title: "Ezo",
-    description: "Port scanning is a fundamental technique in cybersecurity used to identify open ports and services running on a target system.",
-    tags: ["Pentesting", "Network Security"],
-    image: "https://images.unsplash.com/photo-1510511459019-5dee592da1f0?auto=format&fit=crop&q=80&w=800"
   }
 ];
 
@@ -60,11 +60,11 @@ export function BlogGrid() {
     <section className="w-full py-24 px-8 bg-black">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-20 text-white tracking-tighter">
-          Cybersecurity Insights & Updates
+          Training Programs & Workshops
         </h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {BLOG_POSTS.map((post, index) => (
+          {PROGRAMS.map((post, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -87,23 +87,23 @@ export function BlogGrid() {
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
-              
+
               <div className="p-8">
                 <div className="text-zinc-500 text-sm font-medium mb-4">
                   {post.date}
                 </div>
-                
+
                 <h3 className="text-xl font-bold text-white mb-4 tracking-tight group-hover:text-blue-400 transition-colors">
                   {post.title}
                 </h3>
-                
+
                 <p className="text-zinc-400 text-sm leading-relaxed mb-6 line-clamp-3">
                   {post.description}
                 </p>
-                
+
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
-                    <span 
+                    <span
                       key={tag}
                       className="px-3 py-1 bg-white/5 border border-white/10 text-zinc-400 text-[10px] uppercase tracking-widest font-bold"
                     >

@@ -7,8 +7,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "CyberShade | Secure Your Digital World",
-  description: "Modern and powerful security solutions to protect against cyber threats.",
+  title: "RASY | AI & Cybersecurity Technologies",
+  description: "AI-powered solutions and enterprise cybersecurity. Virtual receptionists, chatbots, threat intelligence, and corporate AI training.",
 };
 
 export default function RootLayout({

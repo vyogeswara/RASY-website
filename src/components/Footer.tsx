@@ -7,7 +7,7 @@ const footerLinks = [
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
   { name: "Consulting", href: "/consulting" },
-  { name: "Blog", href: "/blog" },
+  { name: "Programs", href: "/blog" },
   { name: "Careers", href: "/careers" },
 ];
 
@@ -17,10 +17,10 @@ export function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         <div className="mb-12">
           <svg width="48" height="48" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white footer-logo">
-            <circle cx="16" cy="16" r="14" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.2"/>
-            <circle cx="16" cy="16" r="10" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.4"/>
-            <circle cx="16" cy="16" r="6" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.7"/>
-            <circle cx="16" cy="16" r="2" fill="currentColor"/>
+            <circle cx="16" cy="16" r="14" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.2" />
+            <circle cx="16" cy="16" r="10" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.4" />
+            <circle cx="16" cy="16" r="6" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.7" />
+            <circle cx="16" cy="16" r="2" fill="currentColor" />
           </svg>
         </div>
 
@@ -52,8 +52,8 @@ export function Footer() {
         </div>
 
         <div className="w-full border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-sm text-zinc-600 font-medium">© 2025 CyberShade. All Rights Reserved</p>
-          <p className="text-sm text-zinc-600 font-medium">Made by Ahmet Köse. Built with Framer</p>
+          <p className="text-sm text-zinc-600 font-medium">© 2025 RASY AI & Cybersecurity Technologies. All Rights Reserved</p>
+          <p className="text-sm text-zinc-600 font-medium">Intelligent Security for Modern Business</p>
         </div>
       </div>
     </footer>

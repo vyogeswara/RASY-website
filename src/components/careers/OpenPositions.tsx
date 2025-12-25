@@ -1,142 +1,59 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Clock, MapPin, Globe, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-const TEAMS = [
-  {
-    name: "Engineering Team",
-    positions: [
-      {
-        title: "Back-end Software Engineer",
-        time: "Full-time",
-        location: "New York, USA",
-        remote: "Remote possible"
-      },
-      {
-        title: "Front-end Developer",
-        time: "Full-time",
-        location: "New York, USA",
-        remote: "On-site only"
-      },
-      {
-        title: "DevOps Engineer",
-        time: "Full-time",
-        location: "Remote",
-        remote: "Remote only"
-      }
-    ]
-  },
-  {
-    name: "Marketing Team",
-    positions: [
-      {
-        title: "Digital Marketing Specialist",
-        time: "Full-time",
-        location: "Remote (USA)",
-        remote: "Remote only"
-      },
-      {
-        title: "Content Strategist",
-        time: "Part-time",
-        location: "Austin, USA",
-        remote: "Remote possible"
-      },
-      {
-        title: "Community Manager",
-        time: "Full-time",
-        location: "New York, USA",
-        remote: "On-site only"
-      }
-    ]
-  },
-  {
-    name: "Product Team",
-    positions: [
-      {
-        title: "Product Manager",
-        time: "Full-time",
-        location: "San Francisco, USA",
-        remote: "Hybrid possible"
-      },
-      {
-        title: "UX/UI Designer",
-        time: "Part-time",
-        location: "Remote (USA)",
-        remote: "Remote only"
-      },
-      {
-        title: "Product Analyst",
-        time: "Full-time",
-        location: "New York, USA",
-        remote: "On-site only"
-      }
-    ]
-  }
-];
+import { Clock, Briefcase, Sparkles } from "lucide-react";
 
 export function OpenPositions() {
   return (
     <section className="w-full py-24 px-8 bg-black">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold text-zinc-500 mb-16 tracking-tight">
-          Open positions
-        </h2>
+      <div className="max-w-4xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative bg-[#050505] border border-white/10 p-16 md:p-24"
+        >
+          {/* L-Corners */}
+          <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-blue-500/50" />
+          <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-blue-500/50" />
+          <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-blue-500/50" />
+          <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-blue-500/50" />
 
-        <div className="space-y-24">
-          {TEAMS.map((team, teamIndex) => (
-            <div key={teamIndex}>
-              <h3 className="text-3xl font-bold text-white mb-12 tracking-tight">
-                {team.name}
-              </h3>
-              
-              <div className="space-y-4">
-                {team.positions.map((job, jobIndex) => (
-                  <motion.div
-                    key={jobIndex}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: jobIndex * 0.1 }}
-                    viewport={{ once: true }}
-                    className="group relative bg-[#050505] border border-white/5 p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all duration-300 hover:border-blue-500/30"
-                  >
-                    {/* L-Corners */}
-                    <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-blue-500/0 group-hover:border-blue-500/50 transition-all duration-300" />
-                    <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-blue-500/0 group-hover:border-blue-500/50 transition-all duration-300" />
-                    <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-blue-500/0 group-hover:border-blue-500/50 transition-all duration-300" />
-                    <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-blue-500/0 group-hover:border-blue-500/50 transition-all duration-300" />
-
-                    <div>
-                      <h4 className="text-xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">
-                        {job.title}
-                      </h4>
-                      
-                      <div className="flex flex-wrap items-center gap-6 text-zinc-500 text-sm">
-                        <div className="flex items-center gap-2">
-                          <Clock className="w-4 h-4" />
-                          <span>{job.time}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <MapPin className="w-4 h-4" />
-                          <span>{job.location}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Globe className="w-4 h-4" />
-                          <span>{job.remote}</span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-none px-8 py-4 h-auto text-xs font-bold uppercase tracking-widest transition-all">
-                      Contact
-                    </Button>
-                  </motion.div>
-                ))}
-              </div>
+          <div className="flex justify-center mb-8">
+            <div className="w-20 h-20 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center">
+              <Sparkles className="w-10 h-10 text-blue-400" />
             </div>
-          ))}
-        </div>
+          </div>
+
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tighter">
+            Coming Soon
+          </h2>
+
+          <p className="text-zinc-400 text-lg md:text-xl font-medium leading-relaxed mb-12 max-w-2xl mx-auto">
+            We're building something amazing! Career opportunities at RASY will be available soon.
+            Stay tuned for exciting roles in AI innovation and cybersecurity.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-6 text-zinc-500">
+            <div className="flex items-center gap-2">
+              <Briefcase className="w-5 h-5" />
+              <span className="text-sm font-medium">AI & Cybersecurity Roles</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Clock className="w-5 h-5" />
+              <span className="text-sm font-medium">Launching Q1 2025</span>
+            </div>
+          </div>
+
+          <div className="mt-12 pt-8 border-t border-white/5">
+            <p className="text-zinc-500 text-sm">
+              Interested? Reach out to us at{" "}
+              <a href="mailto:careers@rasy.ai" className="text-blue-400 hover:text-blue-300 transition-colors">
+                careers@rasy.ai
+              </a>
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

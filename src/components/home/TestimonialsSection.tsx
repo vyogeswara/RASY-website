@@ -5,95 +5,92 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "CyberShade took our security to new heights with their innovative solutions and expertise. Their team's dedication and precision truly set them apart.",
+    quote: "RASY transformed our business with their AI-powered chatbots and virtual receptionists. Their innovative approach to automation has been remarkable.",
     author: "Sarah Mitchell",
     role: "IT Director",
     image: "https://i.pravatar.cc/150?u=sarah",
   },
   {
-    quote: "CyberShade raised our defenses with their groundbreaking tools and thoughtful strategies. Their crew's ingenuity and focus on detail truly distinguish them.",
+    quote: "The cybersecurity solutions from RASY elevated our defenses. Their SOC team provides round-the-clock monitoring that gives us complete peace of mind.",
     author: "James Carter",
     role: "CTO",
     image: "https://i.pravatar.cc/150?u=james",
   },
   {
-    quote: "Their team's dedication is evident. CyberShade's strategies are effective. We always felt supported and secure with their services. They are a reliable partner.",
+    quote: "Their AI training programs on prompt engineering and agent building have upskilled our entire team. RASY is a trusted partner in digital transformation.",
     author: "Emily Nguyen",
-    role: "Security Analyst",
+    role: "Training Manager",
     image: "https://i.pravatar.cc/150?u=emily",
   },
   {
-    quote: "Innovative solutions and support. CyberShade is our trusted security partner. They consistently protect our systems and exceed our expectations.",
+    quote: "From lead generation to sales automation, RASY's AI solutions have significantly improved our efficiency and customer engagement.",
     author: "Mark Reynolds",
     role: "CEO",
     image: "https://i.pravatar.cc/150?u=mark",
   },
   {
-    quote: "CyberShade elevated our systems with fresh ideas and a brilliant tactical approach. Their group's creativity and care for detail make them exceptional.",
+    quote: "RASY's threat intelligence and incident response services helped us prevent major security breaches. Their expertise is unmatched.",
     author: "Laura Evans",
-    role: "Operations Manager",
+    role: "Security Manager",
     image: "https://i.pravatar.cc/150?u=laura",
   },
   {
-    quote: "CyberShade advanced our security with clever designs and a solid strategic vision. Their team's inventiveness and accuracy truly set them apart in the field.",
+    quote: "The combination of AI innovation and enterprise security that RASY offers is exactly what modern businesses need. Highly recommended!",
     author: "David Patel",
     role: "Systems Engineer",
     image: "https://i.pravatar.cc/150?u=david",
   },
 ];
 
+import { TechFrame } from "@/components/shared/TechFrame";
+
 export function TestimonialsSection() {
   return (
-    <section className="w-full py-40 px-8 bg-black relative overflow-hidden">
-      {/* Globe Background */}
-      <div className="absolute inset-x-0 bottom-0 z-0 opacity-40 h-2/3">
-        <Image 
+    <section className="w-full py-32 px-8 bg-black relative overflow-hidden flex flex-col items-center">
+      {/* Globe Background (Centered/Adjusted) */}
+      <div className="absolute inset-x-0 top-[20%] z-0 opacity-20 h-[600px] pointer-events-none">
+        <Image
           src="https://res.cloudinary.com/dslutbftw/image/upload/v1766588409/bD343IbRUhCvL2zEbQ19NOy31z4_me0one.avif"
           alt="Globe Background"
           fill
-          className="object-contain object-bottom"
+          className="object-contain"
         />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-32">
-          <h2 className="text-6xl font-bold tracking-tight mb-8 leading-tight">Voices of Our Trusted <br /> Clients</h2>
-          <p className="text-zinc-400 text-xl font-medium max-w-2xl mx-auto">
-            Hear the stories of their cybersecurity journey with us.
+      <div className="max-w-7xl mx-auto relative z-10 w-full">
+        <div className="text-center mb-24">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">What Our Clients Say</h2>
+          <p className="text-zinc-500 text-lg font-medium max-w-xl mx-auto">
+            Real stories from businesses we've helped transform with AI and cybersecurity.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
-            <div 
-              key={i} 
-              className="corner-border p-10 bg-black/40 backdrop-blur-xl border border-white/5 flex flex-col gap-8 relative overflow-hidden group hover:border-blue-500/40 transition-all duration-500"
+            <TechFrame
+              key={i}
+              className="p-8 bg-[#0a0a0a]/60 backdrop-blur-md border border-white/5 flex flex-col gap-6 h-full"
             >
-              {/* Dot Grid Overlay */}
-              <div className="absolute inset-0 dot-grid-sm opacity-20 pointer-events-none" />
-              
-              <div className="relative z-10 flex flex-col h-full">
-                <div className="flex gap-1 mb-8">
-                  {[...Array(5)].map((_, j) => (
-                    <Star key={j} className="w-4 h-4 text-white fill-white" />
-                  ))}
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, j) => (
+                  <Star key={j} className="w-4 h-4 text-blue-500 fill-blue-500/20" />
+                ))}
+              </div>
+
+              <p className="text-zinc-300 text-base font-medium leading-relaxed italic">
+                "{t.quote}"
+              </p>
+
+              <div className="flex items-center gap-4 mt-auto">
+                <div className="relative w-10 h-10 rounded-full overflow-hidden border border-white/10">
+                  <Image src={t.image} alt={t.author} fill className="object-cover grayscale" />
                 </div>
-                
-                <p className="text-zinc-200 text-lg font-medium leading-relaxed mb-10">
-                  "{t.quote}"
-                </p>
-                
-                <div className="flex items-center gap-4 mt-auto">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden border border-white/10">
-                    <Image src={t.image} alt={t.author} fill className="object-cover" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-white tracking-tight">{t.author}</h4>
-                    <p className="text-sm text-zinc-500 font-medium">{t.role}</p>
-                  </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white uppercase tracking-wider">{t.author}</h4>
+                  <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">{t.role}</p>
                 </div>
               </div>
-            </div>
+            </TechFrame>
           ))}
         </div>
       </div>

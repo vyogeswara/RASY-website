@@ -3,6 +3,7 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Shield, Globe, Lock, Cpu, Database, Server, Zap, Search, ShieldCheck } from "lucide-react";
+import { TechFrame } from "@/components/shared/TechFrame";
 
 const securityIcons = [
   { id: 1, name: "ISO", color: "bg-[#2563EB]", icon: ShieldCheck },
@@ -17,10 +18,10 @@ const securityIcons = [
 ];
 
 const tags = [
-  "Certified Security",
-  "Global Partnerships",
-  "Advanced Threat Prevention",
-  "Compliance & Protection"
+  "AI Innovation",
+  "Enterprise Security",
+  "Digital Transformation",
+  "Corporate Training"
 ];
 
 export function CircularOrbit() {
@@ -40,19 +41,19 @@ export function CircularOrbit() {
 
   const parentVariants = {
     initial: { scale: 0, x: "-50%", y: "-50%", opacity: 0, rotate: 0 },
-    moveUp: { 
-      scale: 1, 
-      opacity: 1, 
-      y: -radius, 
-      transition: { duration: 0.8, ease: "circOut" } 
+    moveUp: {
+      scale: 1,
+      opacity: 1,
+      y: -radius,
+      transition: { duration: 0.8, ease: "circOut" }
     },
     fanOut: (i: number) => ({
       rotate: (i * 360) / securityIcons.length,
       y: -radius,
-      transition: { 
-        duration: 1.5, 
-        delay: i * 0.05, 
-        ease: [0.16, 1, 0.3, 1] 
+      transition: {
+        duration: 1.5,
+        delay: i * 0.05,
+        ease: [0.16, 1, 0.3, 1]
       }
     })
   };
@@ -62,10 +63,10 @@ export function CircularOrbit() {
     moveUp: { rotate: 0 },
     fanOut: (i: number) => ({
       rotate: -(i * 360) / securityIcons.length,
-      transition: { 
-        duration: 1.5, 
-        delay: i * 0.05, 
-        ease: [0.16, 1, 0.3, 1] 
+      transition: {
+        duration: 1.5,
+        delay: i * 0.05,
+        ease: [0.16, 1, 0.3, 1]
       }
     })
   };
@@ -75,37 +76,37 @@ export function CircularOrbit() {
   return (
     <section className="w-full py-40 bg-black overflow-hidden relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative">
-        
+
         {/* Left Column */}
         <div className="relative z-10">
-          <h2 className="text-7xl font-bold tracking-tighter mb-8 leading-[1.1] text-white">
-            Take Security to the <br /> Next Level
+          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-[1.1] text-white uppercase">
+            AI Meets <br /> Cybersecurity
           </h2>
-          <p className="text-zinc-400 text-xl font-medium max-w-xl mb-12 leading-relaxed">
-            With our certified security standards and strong partnerships, we provide maximum protection against cyber threats. We comply with ISO 27001, SOC 2, GDPR, and more.
+          <p className="text-zinc-500 text-lg md:text-xl font-medium max-w-xl mb-12 leading-relaxed">
+            Leveraging artificial intelligence to deliver smarter security decisions, automated workflows, and next-generation protection.
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {tags.map((tag) => (
-              <div 
-                key={tag} 
-                className="corner-border p-6 bg-white/5 border border-white/5 relative overflow-hidden group hover:border-blue-500/50 transition-colors duration-500"
+              <TechFrame
+                key={tag}
+                className="p-6 bg-white/5 border border-white/5"
               >
-                <div className="absolute inset-0 dot-grid-sm opacity-20 pointer-events-none" />
-                <span className="relative z-10 text-white font-bold tracking-tight uppercase text-sm">{tag}</span>
-              </div>
+                <span className="relative z-10 text-white font-bold tracking-[0.2em] uppercase text-[10px]">{tag}</span>
+              </TechFrame>
             ))}
           </div>
         </div>
 
-        {/* Vertical Separator Line */}
-        <div className="hidden lg:block absolute left-1/2 top-1/4 bottom-1/4 w-[1px] bg-white/10 -translate-x-1/2" />
+        {/* Vertical Separator line (Move to center if needed) */}
+        <div className="hidden lg:block absolute left-1/2 top-[20%] bottom-[20%] w-[1px] bg-white/5 -translate-x-1/2" />
 
-        {/* Right Column (Fan-Out Radial Animation) */}
+        {/* Right Column (Halo Radial Animation) */}
         <div className="relative flex items-center justify-center min-h-[600px] lg:h-[700px]">
           <div className="relative w-full h-full flex items-center justify-center">
-            
-            <motion.div 
+
+            {/* Center Hub Glow */}
+            <motion.div
               initial={{ scale: 0, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
@@ -113,7 +114,8 @@ export function CircularOrbit() {
               className="absolute z-0"
             >
               <div className="w-96 h-96 border border-white/5 rounded-full" />
-              <div className="absolute inset-0 w-full h-full border border-blue-500/10 rounded-full scale-125 animate-pulse" />
+              <div className="absolute inset-0 w-full h-full border border-blue-500/5 rounded-full scale-125 animate-pulse" />
+              <div className="absolute inset-[-100px] bg-blue-600/5 rounded-full blur-[120px]" />
             </motion.div>
 
             {securityIcons.map((item, i) => (
@@ -133,23 +135,23 @@ export function CircularOrbit() {
                 }}
               >
                 <motion.div
-                  className={`w-20 h-20 rounded-full ${item.color} group flex items-center justify-center shadow-[0_0_30px_rgba(37,99,235,0.4)] border-2 border-white/20 relative z-10`}
+                  className={`w-14 h-14 rounded-full border border-blue-500/40 bg-blue-500/10 group flex items-center justify-center hover:bg-blue-600/30 transition-all duration-500 relative z-10`}
                   custom={i}
                   initial="initial"
                   animate={controls}
                   variants={childVariants}
                 >
-                  <item.icon className="w-10 h-10 text-white" />
-                  
-                  {/* Label that appears on hover */}
-                  <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    <span className="text-xs font-bold text-blue-400 tracking-widest uppercase">{item.name}</span>
-                  </div>
+                  <div className="absolute inset-0 bg-blue-500/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <item.icon className="w-6 h-6 text-blue-400 group-hover:text-white transition-colors" />
+
+                  {/* Outer Halo Rim */}
+                  <div className="absolute inset-[-4px] border border-blue-500/10 rounded-full group-hover:border-blue-500/30 transition-all" />
                 </motion.div>
               </motion.div>
             ))}
 
-            <div className="absolute w-64 h-64 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
+            {/* Core Glow */}
+            <div className="absolute w-32 h-32 bg-blue-600/20 rounded-full blur-[60px] pointer-events-none animate-pulse" />
           </div>
         </div>
       </div>

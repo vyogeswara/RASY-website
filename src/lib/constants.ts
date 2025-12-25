@@ -1,76 +1,108 @@
-import { Shield, Lock, Server, Globe, Zap, Search, Mail, Cpu, Database } from "lucide-react";
+import { Shield, Lock, Server, Globe, Zap, Search, Cpu, Database, Bot, Users, Megaphone, Palette, Layout, GraduationCap, AlertTriangle, Eye, Network, Laptop, Cloud, Building2 } from "lucide-react";
 
 export const services = [
+  // AI Services (8)
   {
-    title: "Network Solutions",
-    description: "Secure your network infrastructure with fast, reliable, and scalable routing and switching for seamless performance and strong protection.",
-    icon: Globe,
+    title: "Website Designing",
+    description: "Create stunning, modern websites using AI-powered design tools and frameworks for exceptional user experiences.",
+    icon: Layout,
   },
   {
-    title: "Penetration Testing",
-    description: "Test your critical systems and digital infrastructure for potential weak points by simulating cyber attacks. Ethical hacking reveals security vulnerabilities.",
+    title: "Virtual Receptionists",
+    description: "AI-powered virtual receptionists that handle calls, schedule appointments, and provide 24/7 customer support.",
+    icon: Users,
+  },
+  {
+    title: "Lead Generation",
+    description: "Intelligent lead generation systems that identify, qualify, and nurture prospects across digital channels.",
     icon: Search,
   },
   {
-    title: "Maintenance Contracts",
-    description: "Keep your systems stable and secure with maintenance contracts offering regular scheduled updates and proactive real-time monitoring.",
-    icon: Server,
+    title: "Chatbots",
+    description: "Smart conversational AI chatbots that engage visitors and automate customer interactions seamlessly.",
+    icon: Bot,
   },
   {
-    title: "Firewall Solutions",
-    description: "Protect digital assets with real-time firewall defenses that detect threats and prevent intrusions with intelligent filtering rules.",
-    icon: Shield,
-  },
-  {
-    title: "DLP",
-    description: "Prevent data leaks with AI-driven monitoring tools that track, detect, and block unauthorized access to your sensitive information.",
-    icon: Lock,
-  },
-  {
-    title: "Server Solutions",
-    description: "Build reliable, secure, and scalable server setups expertly configured and customized to your organization's performance and capacity requirements.",
-    icon: Database,
-  },
-  {
-    title: "Cybersecurity Audits",
-    description: "Conduct in-depth security audits to effectively uncover hidden threats and ensure essential and relevant industry standards, providing clear visibility.",
-    icon: Cpu,
-  },
-  {
-    title: "Email Security",
-    description: "Shield your email channels from spam, phishing, and breaches with advanced filtering, encryption, authentication tools, and continuous monitoring.",
-    icon: Mail,
-  },
-  {
-    title: "Device Security",
-    description: "Safeguard devices across your network with real-time monitoring, threat detection, malware defense, and secure access enforcement.",
+    title: "Sales Automation",
+    description: "Streamline your sales process with AI-driven automation, from lead scoring to follow-up sequences.",
     icon: Zap,
   },
   {
-    title: "SIEM Integration",
-    description: "Centralize your security monitoring efforts with advanced real-time log analysis and intelligent event correlation. Implement automated alerts.",
+    title: "Branding",
+    description: "AI-enhanced branding solutions to create compelling brand identities and visual assets.",
+    icon: Palette,
+  },
+  {
+    title: "Digital Marketing",
+    description: "Data-driven digital marketing strategies powered by AI to amplify your online presence and reach.",
+    icon: Megaphone,
+  },
+  {
+    title: "AI Trainings",
+    description: "Corporate AI training programs including prompt engineering, AI agents, chatbots, and workflow automation.",
+    icon: GraduationCap,
+  },
+  // Cybersecurity Services (9)
+  {
+    title: "Threat Intelligence",
+    description: "Stay ahead of cybercriminals with real-time intelligence on emerging threats tailored to your organization.",
+    icon: Eye,
+  },
+  {
+    title: "Vulnerability Management",
+    description: "Comprehensive risk assessment to identify vulnerabilities and provide actionable security insights.",
+    icon: Cpu,
+  },
+  {
+    title: "Incident Response",
+    description: "Rapid incident containment with comprehensive forensics analysis and tailored recovery strategies.",
+    icon: AlertTriangle,
+  },
+  {
+    title: "Security Operations Center",
+    description: "24/7 threat monitoring with AI-driven analytics and expert-led incident management.",
     icon: Shield,
+  },
+  {
+    title: "Identity and Access Management",
+    description: "Seamless user authentication with multi-factor verification and role-based access control.",
+    icon: Lock,
+  },
+  {
+    title: "Network Security",
+    description: "Comprehensive network defense with advanced firewalls, intrusion detection, and zero-trust architectures.",
+    icon: Network,
+  },
+  {
+    title: "Endpoint Security",
+    description: "Protect devices across your network with real-time monitoring, threat detection, and malware defense.",
+    icon: Laptop,
+  },
+  {
+    title: "Cloud Security",
+    description: "Secure cloud architecture with continuous monitoring, compliance assurance, and data protection.",
+    icon: Cloud,
+  },
+  {
+    title: "Security Architecture",
+    description: "Custom-tailored, end-to-end security frameworks aligned with industry best practices and standards.",
+    icon: Building2,
   },
 ];
 
 export const faqs = [
-  { q: "What industries do you serve?", a: "We serve a wide range of industries including finance, healthcare, technology, and government sectors, providing tailored security solutions for each." },
+  { q: "What AI services do you offer?", a: "We offer website designing, virtual receptionists, lead generation, chatbots, sales automation, branding, digital marketing, and comprehensive AI training programs." },
   { q: "How do I get started with a service?", a: "You can get started by clicking the 'Request a Demo' button or contacting us directly through our 'Get in Touch' section." },
-  { q: "Are your solutions scalable for growing businesses?", a: "Yes, all our security architectures are designed with scalability in mind to grow alongside your business." },
-  { q: "Do you offer support after project completion?", a: "Absolutely. We offer various maintenance contracts and 24/7 support services to ensure ongoing security." },
-  { q: "Can you customize services for specific needs?", a: "Customization is at the core of what we do. We tailor every security strategy to the unique requirements of our clients." },
+  { q: "Do you offer corporate AI training?", a: "Yes! Our Upskill 2.0 program covers prompt engineering, context engineering, AI agents, workflow automation, chatbot design, voice agents, and website design using AI." },
+  { q: "What cybersecurity services do you provide?", a: "We provide threat intelligence, vulnerability management, incident response, SOC operations, IAM, network security, endpoint security, cloud security, and security architecture services." },
+  { q: "Can you customize services for specific needs?", a: "Customization is at the core of what we do. We tailor every AI and security solution to the unique requirements of our clients." },
 ];
 
 export const certifications = [
-  { title: "ISO 27001", sub: "Information Security Management", desc: "We fortified our systems to meet global standards for data protection." },
-  { title: "ISO 20000", sub: "IT Service Management", desc: "We standardized our IT service delivery with globally accepted frameworks." },
-  { title: "ISO 9001", sub: "Quality Management Systems", desc: "We laid the foundation for consistent quality across all operations." },
-  { title: "ISO 50001", sub: "Energy Management Systems", desc: "We optimized energy performance for operational efficiency and cost savings." },
-  { title: "ISO 1000", sub: "Quality Management Systems", desc: "We laid the foundation for consistent quality across all operations." },
-  { title: "ISO 22301", sub: "Business Continuity Management", desc: "We ensured operational resilience in the face of unexpected disruptions." },
-  { title: "ISO 14001", sub: "Environmental Management Systems", desc: "We committed to sustainable practices and environmental responsibility." },
-  { title: "ISO 45001", sub: "Occupational Health and Safety", desc: "We strengthened our workplace health and safety protocols." },
-  { title: "ISO 27701", sub: "Privacy Information Management", desc: "We elevated our data privacy capabilities for GDPR alignment and beyond." },
-  { title: "ISO 15504", sub: "Software Process Improvement", desc: "We refined our software development lifecycle to enhance process maturity." },
-  { title: "ISO 10002", sub: "Customer Satisfaction Management", desc: "We established robust feedback and complaint resolution processes." },
+  { title: "ISO 27001", sub: "Information Security Management", desc: "Certified systems meeting global standards for data protection and information security." },
+  { title: "ISO 20000", sub: "IT Service Management", desc: "Standardized IT service delivery with globally accepted frameworks and best practices." },
+  { title: "ISO 9001", sub: "Quality Management Systems", desc: "Foundation for consistent quality across all AI and cybersecurity operations." },
+  { title: "ISO 22301", sub: "Business Continuity Management", desc: "Operational resilience ensuring business continuity in face of disruptions." },
+  { title: "ISO 27701", sub: "Privacy Information Management", desc: "Elevated data privacy capabilities for GDPR alignment and regulatory compliance." },
+  { title: "ISO 14001", sub: "Environmental Management", desc: "Commitment to sustainable practices and environmental responsibility." },
 ];
