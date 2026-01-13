@@ -12,7 +12,7 @@ export default function ImpactSection() {
     offset: ["start 80%", "start 20%"]
   });
 
-  const fullText = "We help organizations reimagine security resilience with our Cybersecurity Platform, AI-Driven Solutions, and Intelligent Threat Defense. Unlock protection, automation, and innovation across every security layer.";
+  const fullText = "We help enterprises to reimagine security resilience with our Cybersecurity Platform, AI-Driven Solutions, and Intelligent Threat Defense. Unlock protection, automation, and innovation across every security layer.";
   const words = fullText.split(" ");
   const totalWords = words.length;
 

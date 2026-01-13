@@ -3,8 +3,7 @@ import "./globals.css";
 import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import Navbar from "@/components/sections/navbar";
 
 export const metadata: Metadata = {
   title: "RASY | AI & Cybersecurity Technologies",
@@ -36,13 +35,15 @@ export default function RootLayout({
           data-debug="true"
           data-custom-data='{"appName": "YourApp", "version": "1.0.0", "greeting": "hi"}'
         />
+        {/* Navbar is fixed/sticky and renders above all pages */}
         <Navbar />
         <main className="min-h-screen">
           {children}
         </main>
-        <Footer />
+        {/* Footer is now included in individual page components */}
         <VisualEditsMessenger />
       </body>
     </html>
   );
 }
+

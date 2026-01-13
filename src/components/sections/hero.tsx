@@ -151,7 +151,7 @@ const Hero = () => {
                             textShadow: '0 1px 2px rgba(0, 0, 0, 0.32)'
                         }}
                     >
-                        We help businesses prevent attacks, detect threats early, and secure systems through expert-led, AI-powered cybersecurity services.
+                        We help enterprises to prevent attacks, detect threats early, and secure systems through expert-led, AI-powered cybersecurity services.
                     </motion.p>
                 </div>
 

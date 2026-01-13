@@ -19,7 +19,7 @@ const IntroVideo = () => {
       {/* Left Column: Mission Statement */}
       <div className="w-full md:w-1/2 flex flex-col justify-center">
         <h2 className="text-[#999999] text-[32px] md:text-[40px] lg:text-[48px] font-medium leading-[1.2] tracking-[-0.02em] max-w-[550px]">
-          We help enterprises reimagining business growth with our AI Platform, Work Solutions, and Intelligent Marketplace. Unlock efficiency, automation, and innovation across every workflow.
+          We help enterprises to reimagine business growth with our AI Platform, Work Solutions, and Intelligent Marketplace. Unlock efficiency, automation, and innovation across every workflow.
         </h2>
       </div>
 

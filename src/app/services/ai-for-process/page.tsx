@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "@/components/sections/navbar";
 import Footer from "@/components/sections/footer";
 
 // Tokens from style.css
@@ -141,7 +140,7 @@ function FeaturesSection() {
             });
         }, observerOptions);
 
-        itemRefs.current.forEach((item) => {
+        itemRefs.current.forEach((item: HTMLDivElement | null) => {
             if (item) observer.observe(item);
         });
 
@@ -786,7 +785,6 @@ export default function AIForProcessPage() {
     return (
         <main className="min-h-screen" style={{ backgroundColor: tokens.bgDark }}>
             {/* Note: SVG Defs can be included inline or within the checklist icon style directly as done above for simplicity */}
-            <Navbar />
             <HeroSection />
             <FeaturesSection />
             <UseCasesSection />

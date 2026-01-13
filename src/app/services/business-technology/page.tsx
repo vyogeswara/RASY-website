@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "@/components/sections/navbar";
 import Footer from "@/components/sections/footer";
 
 // Exact color tokens from Framer extraction
@@ -22,6 +21,7 @@ const tokens = {
     darkBg: "#06070a",
     borderColor: "#2f3950",
     cardBorder: "rgba(125, 164, 255, 0.16)",
+    easeFramer: [0.23, 1, 0.32, 1] as const,
 };
 
 // ============================================================
@@ -178,7 +178,7 @@ function ProductivitySection() {
         }, observerOptions);
 
         // Observe all feature items
-        itemRefs.current.forEach((item) => {
+        itemRefs.current.forEach((item: HTMLDivElement | null) => {
             if (item) observer.observe(item);
         });
 
@@ -874,7 +874,6 @@ function WhySection() {
 export default function AIForWorkPage() {
     return (
         <main className="min-h-screen" style={{ backgroundColor: tokens.black }}>
-            <Navbar />
             <HeroSection />
             <ProductivitySection />
             <UseCasesSection />
