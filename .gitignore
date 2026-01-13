@@ -12,11 +12,13 @@
 
 # testing
 /coverage
-
+/re/
+/copies/
 # next.js
 /.next/
 /out/
-
+/.orchids/
+/Web design/
 # production
 /build
 
