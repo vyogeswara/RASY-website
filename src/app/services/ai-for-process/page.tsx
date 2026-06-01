@@ -26,7 +26,7 @@ const tokens = {
 // ============================================================
 function HeroSection() {
     return (
-        <section className="relative pt-[160px] pb-[100px] text-center overflow-hidden">
+        <section className="relative overflow-hidden px-5 pb-16 pt-32 text-center md:pb-[100px] md:pt-[160px]">
             {/* Background Gradient Mask */}
             <div
                 className="absolute top-0 left-0 w-full h-full z-0 opacity-60"
@@ -44,7 +44,7 @@ function HeroSection() {
                 />
             </div>
 
-            <div className="relative z-10 flex flex-col items-center px-5 container max-w-[1200px] mx-auto">
+            <div className="container relative z-10 mx-auto flex max-w-[1200px] flex-col items-center">
                 {/* Tag Pill */}
                 <div
                     className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[99px] mb-6"
@@ -69,7 +69,7 @@ function HeroSection() {
 
                 {/* Hero Title */}
                 <h1
-                    className="text-[48px] md:text-[82px] leading-[1.1] mb-5 font-medium"
+                    className="mb-5 text-[38px] font-medium leading-[1.1] sm:text-[48px] md:text-[82px]"
                     style={{
                         background: "linear-gradient(to bottom, #fff, #999)",
                         WebkitBackgroundClip: "text",
@@ -82,7 +82,7 @@ function HeroSection() {
 
                 {/* Hero Subtext */}
                 <p
-                    className="text-[18px] md:text-[20px] max-w-[600px] mx-auto"
+                    className="mx-auto max-w-[600px] text-[16px] md:text-[20px]"
                     style={{ color: tokens.textSecondary, letterSpacing: "-0.01em" }}
                 >
                     Simplify complex business processes with autonomous AI agents.
@@ -148,7 +148,7 @@ function FeaturesSection() {
     }, []);
 
     return (
-        <section className="py-[100px] px-5">
+        <section className="px-5 py-14 md:py-[100px]">
             <div className="container max-w-[1200px] mx-auto w-full relative z-10">
                 {/* Section Label */}
                 <div className="flex flex-col w-full mb-10">
@@ -170,7 +170,7 @@ function FeaturesSection() {
                     </h2>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-[80px] items-start pb-[100px]">
+                <div className="grid grid-cols-1 items-start gap-10 pb-16 lg:grid-cols-[1fr_1.2fr] lg:gap-[80px] lg:pb-[100px]">
                     {/* Left: Accordion List */}
                     <div className="flex flex-col relative">
                         {/* Bright Blue Beam Glow Effect - Standardized */}
@@ -337,7 +337,7 @@ function UseCasesSection() {
         <section
             className="use-cases-section w-full flex justify-center"
             style={{
-                padding: "100px 20px",
+                padding: "clamp(56px, 8vw, 100px) 20px",
                 backgroundColor: tokens.bgDark,
             }}
         >
@@ -444,7 +444,7 @@ function UseCasesSection() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.4 }}
-                            className="tab-pane grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-10 lg:gap-16"
+                            className="tab-pane grid grid-cols-1 gap-8 lg:grid-cols-[360px_1fr] lg:gap-16 xl:grid-cols-[400px_1fr]"
                         >
                             {/* Left Column - Text & Features */}
                             <div className="text-column flex flex-col justify-center p-8 lg:p-10">
@@ -553,7 +553,7 @@ function ValuePropsSection() {
         <section
             className="why-section"
             style={{
-                padding: "100px 20px",
+                padding: "clamp(56px, 8vw, 100px) 20px",
                 backgroundColor: "#06070a",
                 display: "flex",
                 justifyContent: "center",

@@ -54,8 +54,7 @@ function HeroSection() {
 
             {/* Content */}
             <div
-                className="relative z-10 flex flex-col items-center w-full max-w-[1200px] px-5 md:px-10"
-                style={{ paddingTop: "128px", paddingBottom: "40px", gap: "12px" }}
+                className="relative z-10 flex w-full max-w-[1200px] flex-col items-center gap-3 px-5 pb-10 pt-28 sm:px-6 md:px-10 md:pt-32"
             >
                 {/* Badge with icon - matching reference exactly */}
                 <motion.div
@@ -88,7 +87,7 @@ function HeroSection() {
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-center text-[46px] md:text-[58px] lg:text-[82px]"
+                    className="text-center text-[38px] sm:text-[46px] md:text-[58px] lg:text-[82px]"
                     style={{
                         fontFamily: "'Inter Display', sans-serif",
                         fontWeight: 500,
@@ -106,14 +105,14 @@ function HeroSection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
-                    className="text-center text-[16px] md:text-[18px]"
+                    className="max-w-[520px] text-center text-[15px] md:text-[18px]"
                     style={{
                         fontFamily: "'Inter', sans-serif",
                         fontWeight: 500,
                         letterSpacing: "-0.03em",
                         lineHeight: "1.4em",
                         color: tokens.white,
-                        maxWidth: "310px",
+                        maxWidth: "520px",
                     }}
                 >
                     Streamline operations with integrated technology services that enhance productivity and customer engagement.
@@ -190,7 +189,7 @@ function ProductivitySection() {
             ref={sectionRef}
             className="features-section w-full flex justify-center"
             style={{
-                padding: "100px 20px",
+                padding: "clamp(56px, 8vw, 100px) 20px",
                 backgroundColor: tokens.black,
             }}
         >
@@ -428,7 +427,7 @@ function UseCasesSection() {
         <section
             className="use-cases-section w-full flex justify-center"
             style={{
-                padding: "100px 20px",
+                padding: "clamp(56px, 8vw, 100px) 20px",
                 backgroundColor: tokens.black,
             }}
         >
@@ -533,7 +532,7 @@ function UseCasesSection() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.4 }}
-                            className="tab-pane grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-10 lg:gap-16"
+                            className="tab-pane grid grid-cols-1 gap-8 lg:grid-cols-[360px_1fr] lg:gap-16 xl:grid-cols-[400px_1fr]"
                         >
                             {/* Left Column - Text & Features */}
                             <div className="text-column flex flex-col justify-center p-8 lg:p-10">
@@ -642,7 +641,7 @@ function WhySection() {
         <section
             className="why-section"
             style={{
-                padding: "100px 20px",
+                padding: "clamp(56px, 8vw, 100px) 20px",
                 backgroundColor: "#06070a",
                 display: "flex",
                 justifyContent: "center",

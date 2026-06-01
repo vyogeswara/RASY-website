@@ -41,20 +41,20 @@ export function SolutionCard({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="relative w-full overflow-hidden rounded-3xl"
+            className="relative w-full overflow-hidden rounded-[22px] md:rounded-3xl"
             style={{
                 backgroundColor: tokens.cardBg,
                 border: `1px solid ${tokens.cardBorder}`,
             }}
         >
             {/* Content - More padding and spacing like original */}
-            <div className="flex flex-col md:flex-row py-10 md:py-12 px-8 md:px-10 gap-8 md:gap-12">
+            <div className="flex flex-col gap-7 px-6 py-8 sm:px-8 md:flex-row md:gap-12 md:px-10 md:py-12">
                 {/* Left: Title + Button */}
                 <div className="flex flex-col gap-6 flex-1 min-w-0">
                     {/* Title Block */}
                     <div className="flex flex-col gap-3">
                         <h3
-                            className="text-2xl md:text-[28px] font-normal"
+                            className="text-[22px] font-normal leading-tight md:text-[28px]"
                             style={{
                                 fontFamily: "'Inter Display', sans-serif",
                                 color: tokens.white,
@@ -63,7 +63,7 @@ export function SolutionCard({
                             {title}
                         </h3>
                         <p
-                            className="text-sm md:text-[15px] leading-relaxed max-w-[300px]"
+                            className="max-w-[520px] text-sm leading-relaxed md:max-w-[300px] md:text-[15px]"
                             style={{
                                 fontFamily: "'Inter Display', sans-serif",
                                 color: tokens.mutedText,
@@ -76,7 +76,7 @@ export function SolutionCard({
                     {/* Learn More Button - Exact original styling */}
                     <Link
                         href={href}
-                        className="inline-flex justify-center items-center w-fit transition-all hover:brightness-125"
+                        className="inline-flex w-full items-center justify-center transition-all hover:brightness-125 sm:w-fit"
                         style={{
                             padding: "10px 16px",
                             backgroundColor: "rgb(12, 15, 22)",
@@ -117,7 +117,7 @@ export function SolutionCard({
                     </p>
                     <div className="flex flex-col gap-3">
                         {features.map((feature, index) => (
-                            <div key={index} className="flex items-center gap-2.5">
+                            <div key={index} className="flex items-start gap-2.5">
                                 {/* Gradient dot */}
                                 <div
                                     className="w-1.5 h-1.5 rounded-full flex-shrink-0"
@@ -141,7 +141,7 @@ export function SolutionCard({
             </div>
 
             {/* Bottom Gradient Image - Original aspect 1791x278 */}
-            <div className="relative w-full" style={{ aspectRatio: "6.44 / 1" }}>
+            <div className="relative h-[70px] w-full sm:h-[90px] md:h-auto" style={{ aspectRatio: "6.44 / 1" }}>
                 <Image
                     src={gradientImage}
                     alt=""

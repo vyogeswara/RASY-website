@@ -18,10 +18,7 @@ export function AIHero() {
             style={{ backgroundColor: tokens.black }}
         >
             {/* Background Gradient Image - Exact from original */}
-            <div
-                className="absolute top-0 left-0 right-0 w-full pointer-events-none"
-                style={{ height: "calc(100vh - 100px)" }}
-            >
+            <div className="pointer-events-none absolute left-0 right-0 top-0 h-[560px] w-full md:h-[680px] lg:h-[760px]">
                 <Image
                     src="https://framerusercontent.com/images/H3Q7Up1GD9JyEYygvN5U7fWpqYQ.webp"
                     alt=""
@@ -33,7 +30,7 @@ export function AIHero() {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 flex flex-col items-center gap-6 w-full max-w-[1200px] px-5 md:px-10 pt-32 md:pt-40 pb-16">
+            <div className="relative z-10 flex w-full max-w-[1200px] flex-col items-center gap-5 px-5 pb-14 pt-28 sm:px-6 md:gap-6 md:px-10 md:pb-16 md:pt-40">
                 {/* Badge */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -57,7 +54,7 @@ export function AIHero() {
                     initial={{ opacity: 0, y: 80, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-center text-4xl sm:text-5xl md:text-6xl lg:text-[82px] font-medium max-w-[700px]"
+                    className="max-w-[760px] text-center text-[38px] font-medium sm:text-5xl md:text-6xl lg:text-[82px]"
                     style={{
                         fontFamily: "'Inter Display', sans-serif",
                         color: tokens.white,
@@ -73,7 +70,7 @@ export function AIHero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
-                    className="text-center text-base md:text-lg max-w-[380px]"
+                    className="max-w-[520px] text-center text-base md:text-lg"
                     style={{
                         fontFamily: "'Inter', sans-serif",
                         color: "rgb(209, 212, 227)",

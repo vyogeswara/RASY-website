@@ -39,17 +39,17 @@ export function ContactForm() {
     `;
 
     return (
-        <section className="py-16 md:py-20 px-5 md:px-10" id="support">
+        <section className="px-5 py-14 sm:px-6 md:px-10 md:py-20" id="support">
             <div className="max-w-[1200px] mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="flex flex-col lg:flex-row gap-16 lg:gap-20"
+                    className="flex flex-col gap-10 md:gap-14 lg:flex-row lg:gap-20"
                 >
                     {/* Left Column: Info */}
-                    <div className="flex-1 space-y-10">
+                    <div className="flex-1 space-y-8 md:space-y-10">
                         {/* Section Header */}
                         <div className="space-y-6">
                             {/* Section Tag */}
@@ -68,12 +68,12 @@ export function ContactForm() {
                             </div>
 
                             <h2
-                                className="text-[36px] md:text-[45px] lg:text-[58px] font-normal text-white leading-[1.2em] tracking-[-0.02em]"
+                                className="text-[32px] font-normal leading-[1.15] tracking-[-0.02em] text-white sm:text-[40px] md:text-[45px] lg:text-[58px]"
                                 style={{ fontFamily: '"Inter Display", sans-serif' }}
                             >
                                 Security Experts Available
                             </h2>
-                            <p className="text-[17px] text-[#9ba9c4] leading-relaxed max-w-[400px]">
+                            <p className="max-w-[520px] text-base leading-relaxed text-[#9ba9c4] md:max-w-[400px] md:text-[17px]">
                                 Have cybersecurity questions or need immediate assistance? Contact our team via form, phone, or email.
                             </p>
                         </div>
@@ -108,7 +108,7 @@ export function ContactForm() {
                                         />
                                         <Phone className="w-5 h-5 text-white relative z-10 group-hover:text-[#0175ff] transition-colors" />
                                     </motion.div>
-                                    <span className="text-lg font-medium text-white group-hover:text-[#0175ff] transition-colors">
+                                    <span className="break-all text-base font-medium text-white transition-colors group-hover:text-[#0175ff] md:text-lg">
                                         +966 55 123 4567
                                     </span>
                                 </Link>
@@ -135,7 +135,7 @@ export function ContactForm() {
                                         />
                                         <Mail className="w-5 h-5 text-white relative z-10 group-hover:text-[#0175ff] transition-colors" />
                                     </motion.div>
-                                    <span className="text-lg font-medium text-white group-hover:text-[#0175ff] transition-colors">
+                                    <span className="break-all text-base font-medium text-white transition-colors group-hover:text-[#0175ff] md:text-lg">
                                         support@rasytech.com
                                     </span>
                                 </Link>
@@ -152,7 +152,7 @@ export function ContactForm() {
                         className="flex-1"
                     >
                         <div
-                            className="rounded-3xl p-6 md:p-8 lg:p-10"
+                            className="rounded-[24px] p-5 sm:p-6 md:rounded-3xl md:p-8 lg:p-10"
                             style={{
                                 background: "#06070a",
                                 border: "1px solid #2f3950",
@@ -175,7 +175,7 @@ export function ContactForm() {
                             ) : (
                                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                                     {/* Name Row */}
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                                         <div className="space-y-2">
                                             <label className="text-sm text-white font-medium pl-1">First Name</label>
                                             <input
@@ -202,7 +202,7 @@ export function ContactForm() {
                                     </div>
 
                                     {/* Contact Row */}
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                                         <div className="space-y-2">
                                             <label className="text-sm text-white font-medium pl-1">Email</label>
                                             <input

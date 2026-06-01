@@ -12,7 +12,7 @@ const charVariants = {
 
 export function ContactHero() {
     return (
-        <header className="pt-32 pb-20 md:pt-48 md:pb-32 px-5 md:px-10 relative overflow-hidden flex flex-col items-center justify-center">
+        <header className="relative flex flex-col items-center justify-center overflow-hidden px-5 pb-16 pt-28 sm:px-6 md:px-10 md:pb-28 md:pt-44">
             {/* Background Image & Light Leak */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 <div
@@ -37,7 +37,7 @@ export function ContactHero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex items-center justify-center mb-10"
+                    className="mb-8 flex items-center justify-center md:mb-10"
                 >
                     <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/10 bg-[#06070a] shadow-lg">
                         <img
@@ -54,11 +54,11 @@ export function ContactHero() {
                 {/* Main Headline with Character Animation */}
                 <div className="relative">
                     <h1
-                        className="text-[48px] md:text-[64px] lg:text-[88px] font-medium text-white text-center leading-[1.05] tracking-[-0.04em] max-w-[900px] mx-auto"
+                        className="mx-auto max-w-[900px] text-center text-[38px] font-medium leading-[1.08] tracking-[-0.025em] text-white sm:text-[48px] md:text-[64px] lg:text-[88px]"
                         style={{ fontFamily: '"Inter", sans-serif' }}
                     >
                         {titleText.split(" ").map((word, wordIndex) => (
-                            <span key={wordIndex} className="inline-block whitespace-nowrap mr-[0.25em]">
+                            <span key={wordIndex} className="inline-block mr-[0.25em]">
                                 {word.split("").map((char, charIndex) => (
                                     <motion.span
                                         key={charIndex}
@@ -85,7 +85,7 @@ export function ContactHero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="mt-8 text-lg md:text-[20px] text-[#9ba9c4] max-w-[500px] mx-auto leading-relaxed font-normal"
+                    className="mx-auto mt-6 max-w-[500px] text-base font-normal leading-relaxed text-[#9ba9c4] md:mt-8 md:text-[20px]"
                 >
                     Get expert consultation and discover how RASY can strengthen your organization's security posture.
                 </motion.p>
