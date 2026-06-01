@@ -2,11 +2,14 @@
 
 import { motion } from "framer-motion";
 
+const officeGroupImage =
+    "https://res.cloudinary.com/doibx3aol/image/upload/v1780335176/WhatsApp_Image_2025-12-22_at_14.20.01_c0ech2.jpg";
+
 export function AboutHero() {
     const words = "Securing the Future of Digital Enterprise".split(" ");
 
     return (
-        <section className="relative pt-48 pb-0 px-6 flex flex-col items-center justify-center text-center overflow-hidden bg-black">
+        <section className="relative flex flex-col items-center justify-center overflow-hidden bg-black px-5 pb-0 pt-32 text-center sm:px-6 md:pt-40 lg:pt-48">
             {/* Background Light Streaks */}
             <div className="absolute top-[10%] left-1/4 w-[2px] h-[60%] bg-gradient-to-b from-transparent via-orange-500/20 to-transparent blur-[2px] -z-10" />
             <div className="absolute top-[20%] right-1/4 w-[2px] h-[50%] bg-gradient-to-b from-transparent via-blue-500/20 to-transparent blur-[2px] -z-10" />
@@ -24,8 +27,8 @@ export function AboutHero() {
             </motion.div>
 
             {/* Main Heading with Staggered Blur Effect */}
-            <div className="max-w-6xl mx-auto mb-8">
-                <h1 className="text-[58px] md:text-[82px] font-bold leading-[1.1] tracking-tight text-white">
+            <div className="mx-auto mb-6 max-w-6xl md:mb-8">
+                <h1 className="text-[40px] font-bold leading-[1.08] tracking-tight text-white sm:text-[52px] md:text-[70px] lg:text-[82px]">
                     {words.map((word, i) => (
                         <motion.span
                             key={i}
@@ -45,7 +48,7 @@ export function AboutHero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8, duration: 0.8 }}
-                className="max-w-2xl mx-auto text-[18px] md:text-[20px] text-[#9ba9c4] leading-relaxed mb-16 font-light opacity-80"
+                className="mx-auto mb-10 max-w-2xl text-[16px] font-light leading-relaxed text-[#9ba9c4] opacity-80 md:mb-16 md:text-[20px]"
             >
                 Comprehensive cybersecurity solutions built for modern business challenges.
             </motion.p>
@@ -55,24 +58,25 @@ export function AboutHero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
-                className="w-full max-w-[1200px] relative px-4"
+                className="relative w-full max-w-[1200px]"
             >
                 {/* Image Container with 150px Bottom Mask */}
-                <div className="relative rounded-3xl overflow-hidden group">
+                <div className="group relative min-h-[430px] overflow-hidden rounded-[24px] border border-[rgba(125,164,255,0.16)] bg-[#06070a] sm:min-h-[520px] md:min-h-[620px] md:rounded-3xl">
                     <img
-                        src="https://framerusercontent.com/images/QideC8FgAh77VffdlgsnsQ7AarU.png"
-                        alt="Team"
-                        className="w-full h-auto object-cover transform translate-z-0"
+                        src={officeGroupImage}
+                        alt="RASY office team"
+                        className="absolute inset-0 h-full w-full object-cover object-bottom transform-gpu transition-transform duration-700 group-hover:scale-[1.03]"
                     />
                     {/* Bottom Mask Gradient - Exactly 150px as per snippet */}
                     <div className="absolute bottom-0 left-0 w-full h-[150px] bg-gradient-to-t from-black to-transparent z-10" />
 
                     {/* Dark Overlays */}
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-700" />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.28)_0%,rgba(0,0,0,0.58)_46%,rgba(0,0,0,0.82)_100%)] transition-colors duration-700 group-hover:bg-black/45" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.72)_62%,rgba(0,0,0,0.9)_100%)]" />
 
                     {/* Mission Text Overlay - Centered overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center p-12 z-20">
-                        <p className="text-xl md:text-3xl lg:text-4xl font-light leading-[1.4] text-white text-center max-w-4xl tracking-tight">
+                    <div className="absolute inset-0 z-20 flex items-center justify-center p-6 sm:p-8 md:p-12">
+                        <p className="max-w-4xl text-center text-[24px] font-light leading-[1.35] tracking-tight text-white drop-shadow-[0_4px_28px_rgba(0,0,0,0.95)] sm:text-3xl md:text-4xl">
                             At RASY, we deliver intelligent cybersecurity that empowers businesses to stay <span className="text-blue-400 font-medium tracking-tighter">protected, resilient</span>, and ahead of emerging threats.
                         </p>
                     </div>

@@ -102,15 +102,21 @@ export function StepsGuide() {
         .step-card-sticky-container {
           position: sticky !important;
         }
-        @media (max-width: 809px) {
+        @media (max-width: 1023px) {
           .step-card-sticky-container {
-            top: 100px !important;
+            position: relative !important;
+            top: auto !important;
+          }
+        }
+        @media (max-width: 809px) {
+          .steps-guide-section .steps-content {
+            gap: 40px !important;
           }
         }
       `}</style>
       {/* Main Container - max-width 1200px centered */}
       <div
-        className="mx-auto flex flex-col gap-20"
+        className="mx-auto flex flex-col gap-12 md:gap-20"
         style={{ maxWidth: "1200px" }}
       >
         {/* HEADING AREA */}
@@ -170,7 +176,7 @@ export function StepsGuide() {
         </div>
 
         {/* CONTENT AREA - Numbers + Cards */}
-        <div className="flex flex-col gap-16">
+        <div className="steps-content flex flex-col gap-12 md:gap-16">
           {/* FIX #3: Numbers Indicator - Independently sticky at top: 120px */}
           <div
             className="hidden lg:flex items-center gap-0 relative"
@@ -243,7 +249,7 @@ export function StepsGuide() {
           </div>
 
           {/* Cards Container - FIX #2: Each card has specific sticky top */}
-          <div className="flex flex-col gap-12">
+          <div className="flex flex-col gap-8 md:gap-12">
             {steps.map((step, index) => (
               <StepCard
                 key={step.id}
@@ -352,7 +358,7 @@ function StepCard({
         </div>
 
         {/* Image Side - Mobile */}
-        <div className="lg:hidden relative w-full" style={{ height: "331px" }}>
+        <div className="lg:hidden relative w-full h-[250px] sm:h-[331px]">
           <Image
             src={step.image}
             alt={step.title}

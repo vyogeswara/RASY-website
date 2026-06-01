@@ -43,12 +43,12 @@ const FAQItem = ({ faq, index }: { faq: typeof faqs[0], index: number }) => {
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-8 rounded-[24px] border border-[rgba(125,164,255,0.16)] bg-[#0c0f16] text-left transition-all hover:border-white/20"
+        className="w-full flex items-start justify-between gap-4 rounded-[20px] border border-[rgba(125,164,255,0.16)] bg-[#0c0f16] p-5 text-left transition-all hover:border-white/20 md:items-center md:rounded-[24px] md:p-8"
       >
-        <span className="text-xl font-medium text-white">{faq.question}</span>
+        <span className="text-base font-medium leading-snug text-white md:text-xl">{faq.question}</span>
         <motion.div
           animate={{ rotate: isOpen ? 45 : 0 }}
-          className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10"
+          className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white/10"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white">
             <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -64,7 +64,7 @@ const FAQItem = ({ faq, index }: { faq: typeof faqs[0], index: number }) => {
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden"
           >
-            <div className="p-8 pt-0 text-[rgb(176,190,217)] text-lg leading-relaxed">
+            <div className="px-5 pb-6 pt-0 text-base leading-relaxed text-[rgb(176,190,217)] md:px-8 md:text-lg">
               {faq.answer}
             </div>
           </motion.div>
@@ -76,10 +76,10 @@ const FAQItem = ({ faq, index }: { faq: typeof faqs[0], index: number }) => {
 
 const FAQSection = () => {
   return (
-    <section className="framer-1ocarzi relative bg-black py-24 md:py-32 overflow-hidden">
-      <div className="container relative z-10 px-6 md:px-10 max-w-[1200px] mx-auto">
+    <section className="framer-1ocarzi relative bg-black py-16 md:py-24 lg:py-32 overflow-hidden">
+      <div className="container relative z-10 px-5 sm:px-6 md:px-10 max-w-[1200px] mx-auto">
         {/* Heading */}
-        <div className="framer-4beoi6 flex flex-col gap-12 mb-16">
+        <div className="framer-4beoi6 flex flex-col gap-8 md:gap-12 mb-12 md:mb-16">
           <div className="flex flex-col gap-4">
             <div className="framer-xjRP0 flex items-center gap-3">
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-[1px] border border-white/10 bg-[rgb(6,7,10)] w-fit">
@@ -90,10 +90,10 @@ const FAQSection = () => {
             </div>
           </div>
           <div className="framer-16ky6uj flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <h2 className="text-5xl md:text-7xl font-medium text-white tracking-tight leading-[1.1] max-w-[720px]">
+            <h2 className="text-[36px] sm:text-5xl md:text-7xl font-medium text-white tracking-tight leading-[1.1] max-w-[720px]">
               Questions About RASY?
             </h2>
-            <p className="text-xl text-[#b0bed9] max-w-[320px] pb-2">
+            <p className="text-base md:text-xl text-[#b0bed9] max-w-[320px] pb-2">
               Answers to help you understand our cybersecurity services and capabilities.
             </p>
           </div>

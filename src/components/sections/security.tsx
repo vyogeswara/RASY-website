@@ -69,10 +69,10 @@ const layeredImages = [
 export default function MultiLayerSecurity() {
   return (
     <section
-      className="relative bg-black py-20 md:py-28 lg:py-32 overflow-hidden"
+      className="relative bg-black py-16 md:py-24 lg:py-32 overflow-hidden"
       data-framer-name="Data & Privacy"
     >
-      <div className="container relative z-10 px-5 md:px-10 max-w-[1200px] mx-auto">
+      <div className="container relative z-10 px-5 sm:px-6 md:px-10 max-w-[1200px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start lg:items-center">
 
           {/* Left Column: Content */}
@@ -120,7 +120,7 @@ export default function MultiLayerSecurity() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 2.4, duration: 0.6, ease: [0.12, 0.23, 0.5, 1] }}
-                className="text-base md:text-lg text-[#b0bed9] leading-relaxed max-w-[420px]"
+              className="text-base md:text-lg text-[#b0bed9] leading-relaxed max-w-[520px] lg:max-w-[420px]"
               >
                 Protect your organization with multi-layered cybersecurity approach. From perimeter defense to behavioral analytics, every component works together.
               </motion.p>
@@ -162,7 +162,7 @@ export default function MultiLayerSecurity() {
 
           {/* Right Column: Layered Gradient Images */}
           <motion.div
-            className="relative w-full lg:w-[480px] h-[300px] sm:h-[400px] md:h-[480px] flex-shrink-0 overflow-hidden"
+            className="relative w-full lg:w-[480px] h-[260px] sm:h-[360px] md:h-[440px] lg:h-[480px] flex-shrink-0 overflow-hidden"
             initial={{ opacity: 0.001, y: 80, scale: 1.1 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}

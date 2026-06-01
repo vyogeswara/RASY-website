@@ -31,12 +31,13 @@ export default function ImpactSection() {
             flex-direction: column !important;
           }
           .impact-text {
-            font-size: 24px !important;
-            line-height: 1.3em !important;
+            font-size: 22px !important;
+            line-height: 1.35em !important;
+            letter-spacing: -0.01em !important;
           }
           .globe-wrapper {
-            width: 280px !important;
-            height: 280px !important;
+            width: min(78vw, 280px) !important;
+            height: min(78vw, 280px) !important;
           }
         }
         @media (min-width: 810px) and (max-width: 1199px) {
@@ -45,8 +46,8 @@ export default function ImpactSection() {
             flex-direction: column !important;
           }
           .impact-text {
-            font-size: 40px !important;
-            line-height: 1.1em !important;
+            font-size: 36px !important;
+            line-height: 1.2em !important;
           }
           .globe-wrapper {
             width: 340px !important;
@@ -66,8 +67,8 @@ export default function ImpactSection() {
               fontSize: '48px',
               letterSpacing: '-0.03em',
               lineHeight: '1.2em',
-              wordWrap: 'break-word',
-              overflowWrap: 'break-word',
+              wordBreak: 'normal',
+              overflowWrap: 'normal',
               width: '100%',
               maxWidth: '100%'
             }}
@@ -103,7 +104,7 @@ const Word = ({ children, progress, index, total }: { children: React.ReactNode,
   return (
     <motion.span
       style={{ color }}
-      className="mr-[0.3em]"
+      className="mr-[0.3em] inline-block whitespace-nowrap"
     >
       {children}
     </motion.span>

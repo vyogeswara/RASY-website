@@ -90,7 +90,7 @@ const FeatureTab = ({
   }
 
   return (
-    <div className={`flex flex-col transition-opacity duration-300 ${isActive || isCompleted ? 'opacity-100' : 'opacity-40'}`}>
+    <div className={`flex min-w-[180px] flex-col transition-opacity duration-300 ${isActive || isCompleted ? 'opacity-100' : 'opacity-40'}`}>
       <div className="flex items-center gap-4 py-4">
         <img src={feature.tabIcon} alt="" className="w-6 h-6" />
         <span className="text-white font-medium text-[14px] uppercase tracking-[0.2em]">{feature.tabLabel}</span>
@@ -143,9 +143,9 @@ const FeatureCard = ({
       transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
       className="w-full rounded-[24px] border border-[rgba(125,164,255,0.16)] bg-[rgb(6,7,10)] overflow-hidden flex flex-col md:flex-row"
     >
-      <div className="flex-1 p-8 md:p-10 flex flex-col justify-between">
+      <div className="flex-1 p-6 sm:p-8 md:p-10 flex flex-col justify-between">
         <div className="flex flex-col gap-4">
-          <h4 className="text-[28px] md:text-[32px] font-medium text-white tracking-[-0.02em]">
+          <h4 className="text-[24px] sm:text-[28px] md:text-[32px] font-medium text-white tracking-[-0.02em] leading-[1.15]">
             {feature.title}
           </h4>
           <p className="text-[16px] md:text-[18px] leading-[1.6] text-[#b0bed9] max-w-[400px]">
@@ -165,7 +165,7 @@ const FeatureCard = ({
         </div>
         <a
           href={feature.ctaLink}
-          className="mt-8 inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-[rgb(12,15,22)] border border-[rgb(47,57,80)] w-fit font-semibold hover:bg-white/5 transition-all hover:-translate-y-0.5"
+          className="mt-8 inline-flex w-full items-center justify-center rounded-2xl border border-[rgb(47,57,80)] bg-[rgb(12,15,22)] px-6 py-4 font-semibold transition-all hover:-translate-y-0.5 hover:bg-white/5 sm:w-fit sm:px-8"
         >
           <span className="bg-gradient-to-r from-[rgb(1,117,255)] to-[rgb(255,205,125)] bg-clip-text text-transparent">
             {feature.ctaText}
@@ -173,7 +173,7 @@ const FeatureCard = ({
         </a>
       </div>
 
-      <div className="flex-1 md:flex-[1.2] relative overflow-hidden min-h-[280px]">
+      <div className="flex-1 md:flex-[1.2] relative overflow-hidden min-h-[240px] sm:min-h-[280px]">
         <img
           src={feature.image}
           className="w-full h-full object-cover"
@@ -183,11 +183,11 @@ const FeatureCard = ({
             WebkitMaskImage: 'linear-gradient(-90deg, black 0%, rgba(0,0,0,0.94) 71%, transparent 100%)',
           }}
         />
-        <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 p-2 rounded-full bg-white/5 backdrop-blur-[40px] border border-white/10 flex items-center gap-3">
+        <div className="absolute bottom-4 left-4 hidden max-w-[calc(100%-32px)] items-center gap-3 rounded-full border border-white/10 bg-white/5 p-2 backdrop-blur-[40px] sm:flex md:bottom-10 md:left-10">
           <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border border-white/20">
             <img src={feature.framerImage} className="w-full h-full object-cover" alt="" />
           </div>
-          <span className="pr-4 md:pr-6 font-medium text-white/80">Help me with the bank|</span>
+          <span className="truncate pr-4 text-sm font-medium text-white/80 md:pr-6 md:text-base">Help me with the bank|</span>
         </div>
       </div>
     </motion.div>
@@ -215,7 +215,7 @@ const AllInOneFeatures = () => {
 
   return (
     <section className="bg-black relative">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-16 md:py-20">
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-6 md:px-10 py-14 md:py-20">
         {/* Section Header */}
         <div className="flex flex-col gap-6 mb-12">
           <div className="flex flex-col gap-3">
@@ -267,7 +267,7 @@ const AllInOneFeatures = () => {
           </div>
 
           {/* Mobile Tabs (visible only on mobile) */}
-          <div className="lg:hidden flex flex-row gap-4 overflow-x-auto w-full col-span-full no-scrollbar">
+          <div className="lg:hidden flex flex-row gap-4 overflow-x-auto w-full col-span-full no-scrollbar pb-2">
             <FeatureTab
               feature={features[0]}
               isActive={activeIdx === 0}

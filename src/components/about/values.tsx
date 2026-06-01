@@ -15,24 +15,24 @@ const ValueCard = ({ title, description, icon, gradientClass }: { title: string;
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="relative bg-[#06070a] border border-[#2f3950] rounded-[24px] p-10 flex flex-col justify-between overflow-hidden group h-full min-h-[350px]"
+        className="group relative flex h-full min-h-[300px] flex-col justify-between overflow-hidden rounded-[22px] border border-[#2f3950] bg-[#06070a] p-6 sm:p-8 md:min-h-[350px] md:rounded-[24px] md:p-10"
     >
         {/* Card Background Gradient */}
         <div className={`absolute inset-0 opacity-20 bg-gradient-to-br ${gradientClass} pointer-events-none`} />
 
         {/* Content */}
         <div className="relative z-10">
-            <h3 className="text-[22px] md:text-[24px] font-bold mb-6 text-white leading-[1.2] tracking-tight">
+            <h3 className="mb-4 text-[21px] font-bold leading-[1.2] tracking-tight text-white md:mb-6 md:text-[24px]">
                 {title}
             </h3>
-            <p className="text-[#9ba9c4] leading-relaxed text-[16px] font-light opacity-80">
+            <p className="text-[15px] font-light leading-relaxed text-[#9ba9c4] opacity-80 md:text-[16px]">
                 {description}
             </p>
         </div>
 
         {/* Icon at bottom */}
-        <div className="relative z-10 mt-auto pt-10 flex justify-center">
-            <div className="w-full h-[150px] text-white/40 group-hover:text-white/60 transition-colors">
+        <div className="relative z-10 mt-auto flex justify-center pt-8 md:pt-10">
+            <div className="h-[110px] w-full text-white/40 transition-colors group-hover:text-white/60 md:h-[150px]">
                 {icon}
             </div>
         </div>
@@ -41,30 +41,30 @@ const ValueCard = ({ title, description, icon, gradientClass }: { title: string;
 
 export function AboutValues() {
     return (
-        <section className="py-32 px-6 max-w-[1200px] mx-auto bg-black border-t border-white/5">
+        <section className="mx-auto max-w-[1200px] border-t border-white/5 bg-black px-5 py-16 sm:px-6 md:py-24 lg:py-32">
             {/* Section Header */}
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-20 gap-10">
+            <div className="mb-12 flex flex-col justify-between gap-8 md:mb-20 lg:flex-row lg:items-end lg:gap-10">
                 <div className="max-w-2xl">
-                    <div className="flex items-center gap-3 mb-8">
+                    <div className="mb-6 flex items-center gap-3 md:mb-8">
                         <div className="bg-white/10 rounded p-1.5 backdrop-blur-md border border-white/5">
                             <img src="https://framerusercontent.com/images/eWJcm0cKj3Rsxetaz4suNQKuW8o.svg" width="16" alt="Icon" />
                         </div>
                         <span className="text-white/40 text-xs font-bold tracking-[0.2em] uppercase">OUR COMMITMENT</span>
                         <div className="h-px bg-white/10 flex-1 ml-4 hidden md:block"></div>
                     </div>
-                    <h2 className="text-5xl md:text-6xl font-bold text-white tracking-tight leading-[1.1]">
+                    <h2 className="text-[36px] font-bold leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl">
                         Our Security Philosophy
                     </h2>
                 </div>
                 <div className="lg:max-w-md">
-                    <p className="text-[#9ba9c4] text-xl leading-relaxed font-light opacity-80">
+                    <p className="text-lg font-light leading-relaxed text-[#9ba9c4] opacity-80 md:text-xl">
                         Driven by protection, innovation, and trust in every solution we deliver.
                     </p>
                 </div>
             </div>
 
             {/* Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
                 <ValueCard
                     title="Pioneering Advanced Security Solutions"
                     description="We push the boundaries of cybersecurity technology to create smarter, faster, and more effective protection for enterprises."

@@ -9,7 +9,9 @@
 // Section Components
 import Hero from "@/components/sections/hero";
 import ImpactSection from "@/components/sections/impact-section";
+import LeadershipSnapshot from "@/components/sections/leadership-snapshot";
 import Exceptionalities from "@/components/sections/exceptionalities";
+import OfficeCulture from "@/components/sections/office-culture";
 import AllInOneFeatures from "@/components/sections/all-in-one-features";
 import ProductsVerticals from "@/components/sections/products-verticals";
 import { StepsGuide } from "@/components/sections/steps-guide";
@@ -27,9 +29,13 @@ export default function Home() {
 
       <ImpactSection />
 
+      <LeadershipSnapshot />
+
       {/* ========== 3. WHY RASY SECTION ========== */}
       {/* 5 feature cards: Speed, Deep Capabilities, Control, Flexibility, Contact */}
       <Exceptionalities />
+
+      <OfficeCulture />
 
       {/* ========== 4. SECURITY SOLUTIONS SECTION ========== */}
       {/* Tabbed feature showcase with scroll-linked progress */}

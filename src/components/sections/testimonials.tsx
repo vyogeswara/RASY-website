@@ -31,7 +31,7 @@ const TestimonialSection = () => {
   const prev = () => setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section className="framer-1gadtmk relative bg-black py-24 md:py-32 overflow-hidden">
+    <section className="framer-1gadtmk relative bg-black py-16 pb-28 md:py-24 md:pb-32 lg:py-32 overflow-hidden">
       {/* Background Gradient */}
       <figure className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <img
@@ -41,9 +41,9 @@ const TestimonialSection = () => {
         />
       </figure>
 
-      <div className="container relative z-10 px-6 md:px-10 max-w-[1200px] mx-auto">
+      <div className="container relative z-10 px-5 sm:px-6 md:px-10 max-w-[1200px] mx-auto">
         {/* Info Header */}
-        <div className="framer-1q1fqtw flex flex-col gap-12 mb-20">
+        <div className="framer-1q1fqtw flex flex-col gap-8 md:gap-12 mb-12 md:mb-20">
           <div className="flex flex-col gap-4">
             <div className="framer-xjRP0 flex items-center gap-3">
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-[1px] border border-white/10 bg-[rgb(6,7,10)] w-fit">
@@ -54,17 +54,17 @@ const TestimonialSection = () => {
             </div>
           </div>
           <div className="framer-fajt0x flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <h2 className="text-5xl md:text-7xl font-medium text-white tracking-tight leading-[1.1] max-w-[720px]">
+            <h2 className="text-[36px] sm:text-5xl md:text-7xl font-medium text-white tracking-tight leading-[1.1] max-w-[720px]">
               Securing organizations worldwide
             </h2>
-            <p className="text-xl text-[#b0bed9] max-w-[320px] pb-2">
+            <p className="text-base md:text-xl text-[#b0bed9] max-w-[320px] pb-2">
               Proven security outcomes delivered to industry leaders.
             </p>
           </div>
         </div>
 
         {/* Slideshow */}
-        <div className="relative min-h-[500px]">
+        <div className="relative min-h-[620px] sm:min-h-[560px] lg:min-h-[500px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
@@ -72,10 +72,10 @@ const TestimonialSection = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col lg:flex-row rounded-[24px] overflow-hidden border border-[rgba(125,164,255,0.16)] bg-white/[0.07] backdrop-blur-[10px]"
+              className="flex flex-col lg:flex-row rounded-[22px] md:rounded-[24px] overflow-hidden border border-[rgba(125,164,255,0.16)] bg-white/[0.07] backdrop-blur-[10px]"
             >
               {/* Image */}
-              <div className="flex-1 min-h-[400px]">
+              <div className="flex-1 min-h-[240px] sm:min-h-[320px] lg:min-h-[400px]">
                 <img
                   src={testimonials[index].image}
                   className="w-full h-full object-cover"
@@ -84,8 +84,8 @@ const TestimonialSection = () => {
               </div>
 
               {/* Content */}
-              <div className="flex-[1.5] p-10 md:p-16 flex flex-col justify-between">
-                <h4 className="text-2xl md:text-3xl font-medium text-white leading-relaxed italic">
+              <div className="flex-[1.5] p-6 sm:p-8 md:p-16 flex flex-col justify-between">
+                <h4 className="text-xl md:text-3xl font-medium text-white leading-relaxed italic">
                   "{testimonials[index].content}"
                 </h4>
 

@@ -21,7 +21,7 @@ const TeamMember = ({ name, role, img }: TeamMemberProps) => (
             <img
                 src={img}
                 alt={name}
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out group-hover:scale-110"
+                className="h-full w-full object-cover transition-all duration-700 ease-in-out group-hover:scale-105"
             />
         </div>
         <div>
@@ -33,41 +33,41 @@ const TeamMember = ({ name, role, img }: TeamMemberProps) => (
 
 export function AboutTeam() {
     const members: TeamMemberProps[] = [
-        { name: "Yogeswara Rao Veeravalli", role: "Founder & CEO", img: "https://framerusercontent.com/images/0RzulRwff33IEQYq44WadnRO9w.png" },
-        { name: "Sarvani Vidyadharani", role: "Technical Director", img: "https://framerusercontent.com/images/pogDSBBcXE1ARRGZ4ymWiMN9k3s.png" },
-        { name: "Phani Kumar Ayyagari", role: "Director of Business Operations", img: "https://framerusercontent.com/images/zH9OJGqbKlLQPDJpmS5CTGnk3U.png" },
+        { name: "Yogeswara Rao Veeravalli", role: "Founder & CEO", img: "https://res.cloudinary.com/doibx3aol/image/upload/v1768793589/Yogesh_ppwpwe.png" },
+        { name: "Sarvani Vidyadharani", role: "Technical Director", img: "https://res.cloudinary.com/doibx3aol/image/upload/v1768793597/Sarvani_t6n24h.png" },
+        { name: "Phani Kumar Ayyagari", role: "Director Business", img: "https://res.cloudinary.com/doibx3aol/image/upload/v1768793591/Phani_cloith.png" },
     ];
 
     return (
-        <section className="py-32 px-6 relative overflow-hidden bg-black">
+        <section className="relative overflow-hidden bg-black px-5 py-16 sm:px-6 md:py-24 lg:py-32">
             {/* Background Glows */}
             <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-orange-500/5 blur-[120px] -z-10" />
             <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] -z-10" />
 
             <div className="max-w-[1200px] mx-auto">
                 {/* Section Header */}
-                <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-20 gap-10">
+                <div className="mb-12 flex flex-col justify-between gap-8 md:mb-20 lg:flex-row lg:items-end lg:gap-10">
                     <div className="max-w-2xl">
-                        <div className="flex items-center gap-3 mb-8">
+                        <div className="mb-6 flex items-center gap-3 md:mb-8">
                             <div className="bg-white/10 rounded p-1.5 backdrop-blur-md border border-white/5">
                                 <img src="https://framerusercontent.com/images/eWJcm0cKj3Rsxetaz4suNQKuW8o.svg" width="16" alt="Icon" />
                             </div>
                             <span className="text-white/40 text-xs font-bold tracking-[0.2em] uppercase">SECURITY EXPERTS</span>
                             <div className="h-px bg-white/10 w-24 ml-4 hidden md:block"></div>
                         </div>
-                        <h2 className="text-5xl md:text-6xl font-bold text-white tracking-tight leading-[1.1]">
+                        <h2 className="text-[36px] font-bold leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl">
                             Meet the RASY Security Specialists
                         </h2>
                     </div>
                     <div className="lg:max-w-xs lg:text-right">
-                        <p className="text-[#9ba9c4] text-lg leading-relaxed font-light opacity-80">
+                        <p className="text-base font-light leading-relaxed text-[#9ba9c4] opacity-80 md:text-lg">
                             Industry veterans in cybersecurity and AI, dedicated to safeguarding your digital future.
                         </p>
                     </div>
                 </div>
 
                 {/* Team Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
+                <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-16">
                     {members.map((m, i) => (
                         <TeamMember key={i} {...m} />
                     ))}
@@ -76,4 +76,3 @@ export function AboutTeam() {
         </section>
     );
 }
-

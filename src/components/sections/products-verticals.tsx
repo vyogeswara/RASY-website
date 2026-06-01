@@ -135,7 +135,7 @@ export default function ProductsVerticals() {
   const current = contentMap[activeTab as keyof typeof contentMap];
 
   return (
-    <section className="relative overflow-hidden py-24 md:py-32 bg-black">
+    <section className="relative overflow-hidden py-16 md:py-24 lg:py-32 bg-black">
 
       {/* Background Gradient Image */}
       <div className="absolute inset-0 pointer-events-none">
@@ -156,7 +156,7 @@ export default function ProductsVerticals() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-[1240px] px-6 md:px-10">
+      <div className="relative z-10 mx-auto max-w-[1240px] px-5 sm:px-6 md:px-10">
 
         {/* Section Header */}
         <div className="mb-12 flex flex-col items-start text-left">
@@ -172,7 +172,7 @@ export default function ProductsVerticals() {
           </div>
 
           <div className="flex w-full flex-col justify-between gap-6 md:flex-row md:items-end">
-            <h2 className="text-5xl font-normal text-white md:text-6xl lg:text-7xl tracking-[-0.02em] leading-[1.1]" style={{ fontFamily: '"Inter Display", sans-serif' }}>
+            <h2 className="text-[36px] font-normal text-white sm:text-5xl md:text-6xl lg:text-7xl tracking-[-0.02em] leading-[1.1]" style={{ fontFamily: '"Inter Display", sans-serif' }}>
               Tailored Security Solutions
             </h2>
             <p className="max-w-sm text-lg text-[rgb(176,190,217)] md:text-right">
@@ -182,13 +182,13 @@ export default function ProductsVerticals() {
         </div>
 
         {/* Tab Switcher */}
-        <div className="mb-14 flex justify-center">
-          <div className="flex rounded-full border border-[rgba(255,255,255,0.08)] bg-[rgba(6,7,10,0.6)] p-1.5 backdrop-blur-md overflow-x-auto no-scrollbar max-w-full">
+        <div className="mb-10 md:mb-14 flex justify-start overflow-x-auto no-scrollbar sm:justify-center">
+          <div className="flex max-w-full rounded-full border border-[rgba(255,255,255,0.08)] bg-[rgba(6,7,10,0.6)] p-1.5 backdrop-blur-md">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className="relative rounded-full px-8 py-3 text-sm font-medium transition-colors"
+                className="relative whitespace-nowrap rounded-full px-4 py-3 text-sm font-medium transition-colors sm:px-8"
                 style={{
                   color: activeTab === tab.id ? "#000" : "rgb(176, 190, 217)",
                 }}
@@ -207,7 +207,7 @@ export default function ProductsVerticals() {
         </div>
 
         {/* Main Feature Content */}
-        <div className="relative mb-16 overflow-hidden rounded-[32px] border bg-[#0A0C10]/40 shadow-2xl backdrop-blur-xl md:min-h-[560px]" style={{ borderColor: "#7da4ff29" }}>
+        <div className="relative mb-14 overflow-hidden rounded-[24px] border bg-[#0A0C10]/40 shadow-2xl backdrop-blur-xl md:mb-16 md:min-h-[560px] md:rounded-[32px]" style={{ borderColor: "#7da4ff29" }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -218,19 +218,19 @@ export default function ProductsVerticals() {
               className="flex flex-col h-full md:flex-row"
             >
               {/* Left Column */}
-              <div className="flex flex-col justify-center p-8 md:w-[45%] md:p-16">
+              <div className="flex flex-col justify-center p-6 sm:p-8 md:w-[45%] md:p-16">
                 <h3 className="mb-4 text-3xl font-medium text-white md:text-[32px] tracking-tight" style={{ fontFamily: '"Inter Display", sans-serif' }}>
                   {current.title}
                 </h3>
-                <p className="mb-10 text-[17px] leading-relaxed text-[rgb(176,190,217)]">
+                <p className="mb-8 md:mb-10 text-[16px] sm:text-[17px] leading-relaxed text-[rgb(176,190,217)]">
                   {current.description}
                 </p>
 
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-3 sm:gap-5">
                   {current.features.map((feature, i) => (
                     <div
                       key={i}
-                      className="group flex items-center gap-4 rounded-2xl border bg-[rgba(255,255,255,0.02)] p-4 transition-colors hover:bg-[rgba(255,255,255,0.04)]"
+                      className="group flex items-start gap-3 rounded-2xl border bg-[rgba(255,255,255,0.02)] p-4 transition-colors hover:bg-[rgba(255,255,255,0.04)] sm:items-center sm:gap-4"
                       style={{ borderColor: "rgba(255,255,255,0.05)" }}
                     >
                       <div className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#18181B] shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)]">
@@ -246,8 +246,8 @@ export default function ProductsVerticals() {
               </div>
 
               {/* Right Column */}
-              <div className="relative md:w-[55%] min-h-[400px] border-l border-white/5 bg-black/20">
-                <div className="absolute inset-0 flex items-center justify-center p-12">
+              <div className="relative min-h-[260px] border-t border-white/5 bg-black/20 sm:min-h-[340px] md:w-[55%] md:min-h-[400px] md:border-l md:border-t-0">
+                <div className="absolute inset-0 flex items-center justify-center p-6 sm:p-8 md:p-12">
                   <motion.img
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}

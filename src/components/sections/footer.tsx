@@ -1,9 +1,16 @@
 "use client";
 
 import React from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+
+type FooterLink = {
+  label: string;
+  href: string;
+  comingSoon?: boolean;
+};
 
 // Footer Link Data
 const footerLinks = {
@@ -14,26 +21,23 @@ const footerLinks = {
     { label: "Contact", href: "/contact" },
   ],
   documentation: [
-    { label: "Blogs", href: "/blog" },
-    { label: "Changelog", href: "/changelog" },
+    { label: "Blog", href: "/blog", comingSoon: true },
     { label: "Privacy policy", href: "/privacy-policy/privacy-policy" },
     { label: "Terms and Conditions", href: "/privacy-policy/terms-and-conditions" },
-  ],
-  other: [
-    { label: "Launchin Soon...", href: "#" },
-    { label: "404", href: "/404" },
-  ],
-  social: [
-    { label: "Instagram", href: "https://www.instagram.com/jitu.ux/" },
-    { label: "X/twitter", href: "https://x.com/jituux" },
-    { label: "Linkedin", href: "https://www.linkedin.com/in/jitendra-raut/" },
-    { label: "Reddit", href: "https://www.reddit.com/" },
   ],
 };
 
 // Sub-component for Link columns - LEFT ALIGNED per raw CSS
-const FooterColumn = ({ title, links }: { title: string; links: { label: string; href: string }[] }) => (
-  <div className="flex flex-col flex-1 items-center gap-4 min-w-0">
+const FooterColumn = ({
+  title,
+  links,
+  onComingSoon,
+}: {
+  title: string;
+  links: FooterLink[];
+  onComingSoon: (label: string) => void;
+}) => (
+  <div className="flex min-w-[140px] flex-col items-start gap-4">
     <p className="w-full text-white text-[17px] font-medium">
       {title}
     </p>
@@ -42,9 +46,21 @@ const FooterColumn = ({ title, links }: { title: string; links: { label: string;
         <Link
           key={link.label}
           href={link.href}
+          onClick={(event) => {
+            if (!link.comingSoon) return;
+            event.preventDefault();
+            onComingSoon(link.label);
+          }}
           className="group relative text-[15px] text-[#9ba9c4] transition-colors hover:text-white"
         >
-          {link.label}
+          <span className="inline-flex items-center gap-2">
+            {link.label}
+            {link.comingSoon && (
+              <span className="rounded-full border border-[rgba(125,164,255,0.16)] bg-white/5 px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.16em] text-[#ffcd7d]">
+                Soon
+              </span>
+            )}
+          </span>
           <span className="absolute left-0 -bottom-0.5 w-0 h-px bg-white/10 transition-all duration-300 group-hover:w-full" />
         </Link>
       ))}
@@ -54,26 +70,28 @@ const FooterColumn = ({ title, links }: { title: string; links: { label: string;
 
 export default function Footer() {
   const ctaWords = ["Empower", "Your", "Enterprise", "with", "RASY", "Security", "&", "AI"];
+  const [teaser, setTeaser] = useState("");
+
+  const showComingSoon = (label: string) => {
+    setTeaser(`${label} is coming soon. We are preparing useful AI and cybersecurity insights.`);
+  };
 
   return (
     <footer className="relative w-full bg-black overflow-hidden flex justify-center">
       {/* Main Container: width 1200px, centered, flex-col, padding-top 80px, gap 42px */}
-      <div
-        className="relative flex flex-col items-center w-full max-w-[1200px]"
-        style={{ gap: '42px', paddingTop: '80px' }}
-      >
+      <div className="relative flex w-full max-w-[1200px] flex-col items-center gap-9 pt-14 md:gap-[42px] md:pt-20">
 
         {/* === LAYER 1: TOP CTA === */}
         <div
-          className="relative z-10 flex flex-col items-center w-full px-10"
+          className="relative z-10 flex w-full flex-col items-center px-5 sm:px-6 md:px-10"
           style={{ gap: '48px', maxWidth: '1200px' }}
         >
           {/* Text Block */}
           <div className="flex flex-col items-center gap-6 w-full">
             {/* Title - max-width 687px, centered */}
             <h2
-              className="text-white text-center font-normal leading-[1.2] tracking-[-0.02em]"
-              style={{ fontFamily: '"Inter Display", sans-serif', fontSize: '56px', maxWidth: '687px' }}
+              className="max-w-[687px] text-center text-[34px] font-normal leading-[1.15] tracking-[-0.02em] text-white sm:text-[42px] md:text-[56px] md:leading-[1.2]"
+              style={{ fontFamily: '"Inter Display", sans-serif' }}
             >
               {ctaWords.map((word, i) => (
                 <motion.span
@@ -91,7 +109,7 @@ export default function Footer() {
 
             {/* Subtext - max-width 470px */}
             <motion.p
-              className="text-[#9ba9c4] text-center text-lg"
+              className="text-center text-base text-[#9ba9c4] md:text-lg"
               style={{ maxWidth: '470px' }}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -108,7 +126,7 @@ export default function Footer() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            style={{ width: '156px' }}
+            className="w-[156px]"
           >
             <Link
               href="/contact"
@@ -157,8 +175,8 @@ export default function Footer() {
 
           {/* Overlays - 952px, mix-blend-mode overlay */}
           <div
-            className="relative flex justify-center items-center"
-            style={{ width: '952px', height: '236px', mixBlendMode: 'overlay' }}
+            className="relative flex h-auto w-[min(92vw,952px)] items-center justify-center"
+            style={{ mixBlendMode: 'overlay' }}
           >
             <Image
               src="https://res.cloudinary.com/doibx3aol/image/upload/v1767948498/RASY_LOGO_vtjngu.svg"
@@ -171,21 +189,30 @@ export default function Footer() {
         </div>
 
         {/* === LAYER 3: SITEMAP LINKS === */}
-        <div className="relative z-10 w-full px-10" style={{ maxWidth: '1200px' }}>
+        <div className="relative z-10 w-full px-5 sm:px-6 md:px-10" style={{ maxWidth: '1200px' }}>
           {/* Links Wrapper: flex-wrap, gap 28px, align-items flex-start */}
           <div
-            className="flex flex-wrap justify-start gap-7 w-full"
+            className="grid w-full grid-cols-1 gap-x-6 gap-y-9 sm:grid-cols-2 md:max-w-[640px] md:gap-10"
             style={{ maxWidth: '1200px' }}
           >
-            <FooterColumn title="Navigation" links={footerLinks.navigation} />
-            <FooterColumn title="Documentation" links={footerLinks.documentation} />
-            <FooterColumn title="Other Pages" links={footerLinks.other} />
-            <FooterColumn title="Social Connect" links={footerLinks.social} />
+            <FooterColumn title="Navigation" links={footerLinks.navigation} onComingSoon={showComingSoon} />
+            <FooterColumn title="Resources" links={footerLinks.documentation} onComingSoon={showComingSoon} />
           </div>
+          {teaser && (
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-8 max-w-[520px] rounded-[18px] border border-[rgba(125,164,255,0.16)] bg-[#06070a] p-4 text-sm leading-relaxed text-[#b0bed9] shadow-[0_24px_80px_rgba(1,117,255,0.08)]"
+              role="status"
+            >
+              <span className="mr-2 font-medium text-white">Coming soon:</span>
+              {teaser}
+            </motion.div>
+          )}
         </div>
 
         {/* === LAYER 4: BOTTOM BAR === */}
-        <div className="relative z-10 w-full px-10" style={{ maxWidth: '1200px' }}>
+        <div className="relative z-10 w-full px-5 sm:px-6 md:px-10" style={{ maxWidth: '1200px' }}>
           {/* Line - 1px, full width, position absolute top 0 */}
           <div className="relative w-full">
             <div
@@ -194,7 +221,7 @@ export default function Footer() {
             />
             {/* Bottom Row - flex-row, justify space-between, padding 20px 0, gap 24px */}
             <div
-              className="flex flex-row justify-between items-center w-full"
+              className="flex w-full flex-col items-start justify-between gap-3 sm:flex-row sm:items-center"
               style={{ padding: '20px 0', gap: '24px', maxWidth: '1200px' }}
             >
               {/* Copyright - left aligned */}

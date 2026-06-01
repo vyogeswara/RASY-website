@@ -39,8 +39,11 @@ const Hero = () => {
                 /* MOBILE MEDIA QUERY (Max Width 809px) */
                 @media screen and (max-width: 809px) {
                     .hero-section {
-                        padding-top: 60px !important;
+                        justify-content: center !important;
+                        padding-top: 96px !important;
+                        padding-bottom: 64px !important;
                         min-height: 100vh !important;
+                        min-height: 100svh !important;
                         width: 100% !important;
                         max-width: 100% !important;
                     }
@@ -49,29 +52,29 @@ const Hero = () => {
                         gap: 0 !important;
                         width: 100% !important;
                         max-width: 100% !important;
-                        margin-top: 200px !important;
                     }
                     .hero-badge-wrapper {
-                        transform: translateY(-40px) !important;
+                        transform: none !important;
                     }
                     .hero-badge {
-                        margin-bottom: 10px !important;
-                        padding: 4px 10px !important;
+                        margin-bottom: 16px !important;
+                        padding: 5px 12px !important;
                     }
                     .hero-badge div {
-                        font-size: 9px !important;
+                        font-size: 11px !important;
                     }
                     .hero-title {
-                        font-size: 32px !important;
+                        font-size: 38px !important;
                         line-height: 1.1em !important;
-                        letter-spacing: -0.03em !important;
-                        margin-bottom: 8px !important;
+                        letter-spacing: -0.02em !important;
+                        margin-bottom: 14px !important;
                     }
                     .hero-subtitle {
-                        font-size: 12px !important;
-                        line-height: 1.4em !important;
-                        padding: 0 10px !important;
-                        margin-bottom: 16px !important;
+                        font-size: 14px !important;
+                        line-height: 1.55em !important;
+                        max-width: 340px !important;
+                        padding: 0 !important;
+                        margin-bottom: 24px !important;
                         opacity: 0.9 !important;
                     }
                     .hero-button-wrapper {
@@ -121,7 +124,7 @@ const Hero = () => {
                         }}
                     >
                         <div className="text-[12px] font-medium text-white">
-                            Secure Launch Q1 2026
+                            AI & Cybersecurity Technologies
                         </div>
                     </motion.div>
                 </div>
@@ -138,7 +141,7 @@ const Hero = () => {
                             lineHeight: '1.1em',
                         }}
                     >
-                        Cybersecurity services <br className="hidden md:block" /> with AI protection.
+                        AI & cybersecurity <br className="hidden md:block" /> for secure growth.
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 30 }}
@@ -151,7 +154,7 @@ const Hero = () => {
                             textShadow: '0 1px 2px rgba(0, 0, 0, 0.32)'
                         }}
                     >
-                        We help enterprises to prevent attacks, detect threats early, and secure systems through expert-led, AI-powered cybersecurity services.
+                        RASY helps organizations automate operations, strengthen cybersecurity, and build AI-ready teams through expert-led solutions and training.
                     </motion.p>
                 </div>
 
@@ -204,7 +207,7 @@ const Hero = () => {
                 {/* A. The Video */}
                 <div className="absolute inset-0 w-full h-full">
                     <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-                        <source src="https://pikaso.cdnpk.net/private/production/2290455794/59751519-c5a8-4e4b-b8dd-94ffbfa08aa8-0.mp4?token=exp=1775001600~hmac=946fe13b73c600580de2f6d03194555735d752048382e42b0ebe1dcdf4a376b6" type="video/mp4" />
+                        <source src="https://res.cloudinary.com/doibx3aol/video/upload/v1767935452/59751519-c5a8-4e4b-b8dd-94ffbfa08aa8-0_poxufs.mp4" type="video/mp4" />
                     </video>
                 </div>
 

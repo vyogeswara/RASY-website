@@ -2,13 +2,16 @@
 
 import { motion } from "framer-motion";
 
+const ceoImage =
+    "https://res.cloudinary.com/doibx3aol/image/upload/v1780335095/WhatsApp_Image_2026-05-18_at_15.10.45_xstkgh.jpg";
+
 export function AboutFounder() {
     return (
-        <section className="py-32 px-6 border-t border-white/5 bg-black">
-            <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <section className="border-t border-white/5 bg-black px-5 py-16 sm:px-6 md:py-24 lg:py-32">
+            <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-10 md:gap-14 lg:grid-cols-2 lg:gap-20">
                 {/* Left Content */}
                 <div>
-                    <div className="flex items-center gap-3 mb-12">
+                    <div className="mb-8 flex items-center gap-3 md:mb-12">
                         <div className="bg-white/10 rounded p-1.5 backdrop-blur-md border border-white/5">
                             <img src="https://framerusercontent.com/images/eWJcm0cKj3Rsxetaz4suNQKuW8o.svg" width="16" alt="Icon" />
                         </div>
@@ -16,24 +19,17 @@ export function AboutFounder() {
                         <div className="h-px bg-white/10 w-24 ml-4 hidden md:block"></div>
                     </div>
 
-                    <h2 className="text-5xl md:text-6xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
+                    <h2 className="mb-6 text-[36px] font-bold leading-[1.1] tracking-tight text-white sm:text-5xl md:mb-8 md:text-6xl">
                         From Our Founders
                     </h2>
-                    <h4 className="text-xl md:text-2xl text-[#9ba9c4] mb-12 leading-relaxed font-light opacity-80">
+                    <h4 className="mb-8 text-lg font-light leading-relaxed text-[#9ba9c4] opacity-80 md:mb-12 md:text-2xl">
                         Vision, expertise, and commitment to transforming enterprise cybersecurity.
                     </h4>
 
-                    <div className="relative mb-12 border-l-2 border-blue-500 pl-8 py-2">
-                        <p className="text-[#9ba9c4] text-xl leading-relaxed font-light opacity-90 italic">
+                    <div className="relative border-l-2 border-blue-500 py-2 pl-5 md:pl-8">
+                        <p className="text-base font-light italic leading-relaxed text-[#9ba9c4] opacity-90 md:text-xl">
                             &quot;When we established RASY, our vision was clear—to create cybersecurity solutions that truly protect and empower businesses. Every innovation, every service we provide is designed to make enterprises more secure, resilient, and confident in their digital transformation. Our mission extends beyond protection to enabling organizations to thrive securely in an evolving threat landscape. We invite you to partner with us on this journey of secure innovation.&quot;
                         </p>
-                    </div>
-
-                    {/* Signature */}
-                    <div className="mt-10">
-                        <svg className="signature w-48 h-20 text-white/80" viewBox="0 0 128 63">
-                            <path d="M 20.588 2.818 C -2.192 5.746 5.8 12.33 21.054 13.57 C 36.308 14.81 58.822 7.746 58.822 23.362 C 58.822 38.978 25.122 41.594 25.122 56.418 C 25.122 71.242 53.072 61.21 82.32 61.21 C 111.568 61.21 128 41.594 128 23.362" stroke="white" strokeWidth="2" fill="none" strokeDasharray="425" />
-                        </svg>
                     </div>
                 </div>
 
@@ -45,11 +41,11 @@ export function AboutFounder() {
                     transition={{ duration: 1, ease: "easeOut" }}
                     className="relative"
                 >
-                    <div className="relative overflow-hidden rounded-[24px]">
+                    <div className="relative min-h-[420px] overflow-hidden rounded-[24px] border border-[rgba(125,164,255,0.16)] bg-[#06070a] sm:min-h-[540px] lg:min-h-[640px]">
                         <img
-                            src="https://framerusercontent.com/images/80PNQ5gECTFURxvZw2l9ozs7c.webp"
-                            alt="Founder"
-                            className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out scale-105 hover:scale-100"
+                            src={ceoImage}
+                            alt="Yogeswara Rao Veeravalli, Founder and CEO of RASY"
+                            className="h-full w-full object-cover object-center transition-all duration-1000 ease-in-out hover:scale-[1.03]"
                             style={{
                                 maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
                                 WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)'
