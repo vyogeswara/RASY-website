@@ -95,6 +95,9 @@ export default function LeadershipSnapshot() {
               <p className="mt-4 text-[16px] leading-[1.7] text-[#b0bed9]">
                 &quot;This is a movement to transform ideas into intelligence, turn ambitions into global leadership, and make India the center of AI excellence.&quot;
               </p>
+              <p className="mt-5 border-l-2 border-[#ffcd7d] pl-4 text-[17px] font-semibold leading-[1.55] text-white md:text-lg">
+                Make India global super power in AI technology
+              </p>
 
               <div className="mt-6 rounded-[18px] border border-[rgba(125,164,255,0.16)] bg-black/60 p-3 sm:p-4">
                 <button

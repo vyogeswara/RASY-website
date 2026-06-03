@@ -30,6 +30,9 @@ export function AboutFounder() {
                         <p className="text-base font-light italic leading-relaxed text-[#9ba9c4] opacity-90 md:text-xl">
                             &quot;When we established RASY, our vision was clear—to create cybersecurity solutions that truly protect and empower businesses. Every innovation, every service we provide is designed to make enterprises more secure, resilient, and confident in their digital transformation. Our mission extends beyond protection to enabling organizations to thrive securely in an evolving threat landscape. We invite you to partner with us on this journey of secure innovation.&quot;
                         </p>
+                        <p className="mt-5 text-base font-semibold leading-relaxed text-white md:text-xl">
+                            Make India global super power in AI technology
+                        </p>
                     </div>
                 </div>
 
