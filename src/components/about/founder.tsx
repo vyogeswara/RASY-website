@@ -13,7 +13,7 @@ export function AboutFounder() {
                 <div>
                     <div className="mb-8 flex items-center gap-3 md:mb-12">
                         <div className="bg-white/10 rounded p-1.5 backdrop-blur-md border border-white/5">
-                            <img src="https://framerusercontent.com/images/eWJcm0cKj3Rsxetaz4suNQKuW8o.svg" width="16" alt="Icon" />
+                            <span className="h-2 w-2 rounded-full bg-gradient-to-br from-[#0175ff] to-[#ffcd7d]" />
                         </div>
                         <span className="text-white/40 text-xs font-bold tracking-[0.2em] uppercase">OUR LEADERSHIP</span>
                         <div className="h-px bg-white/10 w-24 ml-4 hidden md:block"></div>
@@ -31,7 +31,7 @@ export function AboutFounder() {
                             &quot;When we established RASY, our vision was clear—to create cybersecurity solutions that truly protect and empower businesses. Every innovation, every service we provide is designed to make enterprises more secure, resilient, and confident in their digital transformation. Our mission extends beyond protection to enabling organizations to thrive securely in an evolving threat landscape. We invite you to partner with us on this journey of secure innovation.&quot;
                         </p>
                         <p className="mt-5 text-base font-semibold leading-relaxed text-white md:text-xl">
-                            Make India global super power in AI technology
+                            Empowering secure digital transformation under Saudi Vision 2030
                         </p>
                     </div>
                 </div>

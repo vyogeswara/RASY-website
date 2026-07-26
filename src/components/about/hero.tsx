@@ -22,7 +22,7 @@ export function AboutHero() {
                 transition={{ duration: 0.5 }}
                 className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-10 backdrop-blur-md"
             >
-                <img src="https://framerusercontent.com/images/eWJcm0cKj3Rsxetaz4suNQKuW8o.svg" width="16" alt="Icon" />
+                <span className="h-2 w-2 rounded-full bg-gradient-to-br from-[#0175ff] to-[#ffcd7d]" />
                 <span className="text-[12px] font-semibold tracking-[0.2em] text-white uppercase">About RASY</span>
             </motion.div>
 

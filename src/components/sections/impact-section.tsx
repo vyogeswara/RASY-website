@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from "react";
+import type { ReactNode } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import NextImage from 'next/image';
 
 export default function ImpactSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -95,7 +95,7 @@ export default function ImpactSection() {
   );
 }
 
-const Word = ({ children, progress, index, total }: { children: React.ReactNode, progress: any, index: number, total: number }) => {
+const Word = ({ children, progress, index, total }: { children: ReactNode, progress: any, index: number, total: number }) => {
   const start = index / total;
   const end = Math.min(1, (index + 2) / total);
 
@@ -144,20 +144,17 @@ const RotatingGlobe = () => {
         }}
       />
 
-      {/* The Globe Image (Bob) with constant planet-like rotation */}
+      {/* Native rotating globe-style visual */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
         className="relative w-full h-full z-0 flex items-center justify-center"
       >
-        <div className="relative w-[95%] h-[95%]">
-          <NextImage
-            src="https://framerusercontent.com/images/emEabgUGaj1mrFtUh9nCcNLOsk.webp?scale-down-to=512&width=692&height=692"
-            alt="Rotating Globe"
-            fill
-            className="object-contain"
-            priority
-          />
+        <div className="relative h-[92%] w-[92%] rounded-full border border-white/10 bg-[radial-gradient(circle_at_34%_28%,rgba(255,205,125,0.45),transparent_20%),radial-gradient(circle_at_62%_58%,rgba(1,117,255,0.45),transparent_28%),radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.08),rgba(6,7,10,0.86)_60%,rgba(0,0,0,0.95)_100%)] shadow-[inset_0_0_70px_rgba(255,255,255,0.08),0_0_80px_rgba(1,117,255,0.16)]">
+          <div className="absolute inset-[9%] rounded-full border border-white/10" />
+          <div className="absolute left-[12%] right-[12%] top-1/2 h-px bg-white/15" />
+          <div className="absolute bottom-[12%] top-[12%] left-1/2 w-px bg-white/15" />
+          <div className="absolute inset-[18%] rounded-full border border-dashed border-white/10" />
         </div>
       </motion.div>
 

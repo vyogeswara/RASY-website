@@ -55,11 +55,7 @@ export function ContactForm() {
                             {/* Section Tag */}
                             <div className="flex items-center gap-3">
                                 <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-sm border border-white/10 bg-[#06070a]">
-                                    <img
-                                        src="https://framerusercontent.com/images/xHfPV4X6jypeMN7rcPFFyCwnhg.svg"
-                                        className="w-5 h-5 opacity-80"
-                                        alt=""
-                                    />
+                                    <Mail className="h-5 w-5 text-white/80" />
                                     <span className="text-sm font-medium tracking-[0.2em] text-[#8491ab] uppercase">
                                         EXPERT SUPPORT
                                     </span>
@@ -69,7 +65,7 @@ export function ContactForm() {
 
                             <h2
                                 className="text-[32px] font-normal leading-[1.15] tracking-[-0.02em] text-white sm:text-[40px] md:text-[45px] lg:text-[58px]"
-                                style={{ fontFamily: '"Inter Display", sans-serif' }}
+                                style={{ fontFamily: '"Inter", sans-serif' }}
                             >
                                 Security Experts Available
                             </h2>

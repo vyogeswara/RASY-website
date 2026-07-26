@@ -1,0 +1,29 @@
+.leadership-story__copy h2,
+.founder-profile__copy h2 { margin: 0; font-size: clamp(32px,4vw,50px); font-weight: 500; line-height: 1.03; letter-spacing: -.025em; }
+.leadership-story__copy > div > p:not(.eyebrow),
+.founder-profile__copy > div > p:not(.eyebrow) { max-width: 52ch; color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+.about-values { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.about-value { min-height: 250px; border-radius: var(--radius-lg); padding: 26px; background: var(--surface); border: 1px solid var(--line); }
+.about-value:nth-child(2), .about-value:nth-child(5) { background: var(--surface-muted); border-color: transparent; }
+.about-value:nth-child(3) { background: var(--accent-soft); border-color: transparent; }
+.about-value:nth-child(6) { background: var(--ink); color: #fff; border-color: transparent; }
+.about-value > span, .contact-option > span { font-family: var(--font-mono), monospace; color: var(--ink-soft); font-size: 10px; }
+.about-value h3 { margin: 80px 0 12px; font-size: 26px; font-weight: 500; }
+.about-value p { margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.55; }
+.about-value:nth-child(6) p { color: rgba(255,255,255,.62); }
+.contact-options--four { grid-template-columns: repeat(2,1fr); }
+.contact-options--four .contact-option:first-child { grid-column: auto; }
+.contact-options--four .contact-option { min-height: 250px; }
+.contact-options--four .contact-option h3 { margin-top: 72px; }
+.contact-options--four .contact-option a { border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.contact-details__list span { color: var(--ink-soft); font-size: 14px; line-height: 1.6; }
+.home-solutions .solution-card a { min-height: 330px; }
+.home-solutions .solution-card__copy { margin-top: 0; }
+.home-solutions .solution-card__footer { margin-top: auto; }
+
+@media (max-width: 900px) { .about-values { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 720px) {
+  .about-values, .contact-options--four { grid-template-columns: 1fr; }
+  .about-value { min-height: 230px; }
+  .contact-options--four .contact-option { min-height: 230px; }
+}

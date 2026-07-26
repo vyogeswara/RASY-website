@@ -1,49 +1,38 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
-import ErrorReporter from "@/components/ErrorReporter";
-import Script from "next/script";
-import Navbar from "@/components/sections/navbar";
+import "./design.css";
+import "./refinements.css";
+import "./portfolio.css";
+import "./portfolio-refinements.css";
+import "./hero-experience.css";
+import "./home-experience.css";
+import "./shared-sections.css";
+import "./about-editorial.css";
+import "./contact-experience.css";
+import "./training-experience.css";
+import "./services-experience.css";
+import { PageTransition, ScrollProgress, SiteNavigation } from "@/components/rasy/site-shell";
 
 export const metadata: Metadata = {
-  title: "RASY | AI & Cybersecurity Technologies",
-  description: "AI-powered solutions and enterprise cybersecurity. Virtual receptionists, chatbots, threat intelligence, and corporate AI training.",
+  metadataBase: new URL("https://rasytech.com"),
+  title: { default: "RASY | AI, cybersecurity, and digital growth", template: "%s | RASY" },
+  description: "RASY helps organisations apply useful AI, automate critical work, improve digital experiences, and strengthen cyber resilience.",
+  openGraph: {
+    title: "RASY | Build smarter. Operate securely. Grow with confidence.",
+    description: "Practical AI, resilient cybersecurity, connected digital experiences, and capability that lasts.",
+    type: "website",
+    images: [{ url: "/assets/editorial/rasy-command-layers.png", width: 1536, height: 864, alt: "RASY systems under human direction" }],
+  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark">
-      <body className="antialiased bg-black text-white selection:bg-blue-500/30 selection:text-blue-200">
-        <Script
-          id="orchids-browser-logs"
-          src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts/orchids-browser-logs.js"
-          strategy="afterInteractive"
-          data-orchids-project-id="63214024-4028-4f03-a2f6-e32a3b59fd26"
-        />
-        <ErrorReporter />
-        <Script
-          src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"
-          strategy="afterInteractive"
-          data-target-origin="*"
-          data-message-type="ROUTE_CHANGE"
-          data-include-search-params="true"
-          data-only-in-iframe="true"
-          data-debug="true"
-          data-custom-data='{"appName": "YourApp", "version": "1.0.0", "greeting": "hi"}'
-        />
-        {/* Navbar is fixed/sticky and renders above all pages */}
-        <Navbar />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        {/* Footer is now included in individual page components */}
-        <VisualEditsMessenger />
+    <html lang="en">
+      <body>
+        <ScrollProgress />
+        <SiteNavigation />
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );
 }
-

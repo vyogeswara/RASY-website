@@ -1,15 +1,16 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 
 interface CardProps {
     title: string;
     description: string;
-    icon: React.ReactNode;
+    icon: ReactNode;
     gradientColor: string;
 }
 
-const ValueCard = ({ title, description, icon, gradientClass }: { title: string; description: string; icon: React.ReactNode; gradientClass: string }) => (
+const ValueCard = ({ title, description, icon, gradientClass }: { title: string; description: string; icon: ReactNode; gradientClass: string }) => (
     <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -47,7 +48,7 @@ export function AboutValues() {
                 <div className="max-w-2xl">
                     <div className="mb-6 flex items-center gap-3 md:mb-8">
                         <div className="bg-white/10 rounded p-1.5 backdrop-blur-md border border-white/5">
-                            <img src="https://framerusercontent.com/images/eWJcm0cKj3Rsxetaz4suNQKuW8o.svg" width="16" alt="Icon" />
+                            <span className="h-2 w-2 rounded-full bg-gradient-to-br from-[#0175ff] to-[#ffcd7d]" />
                         </div>
                         <span className="text-white/40 text-xs font-bold tracking-[0.2em] uppercase">OUR COMMITMENT</span>
                         <div className="h-px bg-white/10 flex-1 ml-4 hidden md:block"></div>
@@ -106,4 +107,3 @@ export function AboutValues() {
         </section>
     );
 }
-

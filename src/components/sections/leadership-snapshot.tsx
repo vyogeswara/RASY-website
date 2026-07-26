@@ -76,10 +76,10 @@ export default function LeadershipSnapshot() {
               <div className="h-px flex-1 bg-[rgba(125,164,255,0.16)]" />
             </div>
             <h2 className="max-w-[680px] text-[32px] font-medium leading-[1.12] tracking-[-0.02em] text-white sm:text-[40px] md:text-[52px] lg:text-[56px]">
-              India will not follow the AI future. We will help create it.
+              Supporting the Kingdom&apos;s Vision for a Secure Digital Future.
             </h2>
             <p className="max-w-[520px] text-[17px] leading-[1.6] text-[#b0bed9] md:text-lg">
-              By 2030, artificial intelligence will become the foundation of global power, innovation, and progress. RASY is building ecosystems, training minds, creating solutions, and empowering the next generation of AI leaders across education, cybersecurity, innovation, and implementation.
+              By 2030, secure digital infrastructure and artificial intelligence will form the bedrock of national growth, innovation, and progress. RASY is building resilient networks, protecting vital assets, and empowering the next generation of cyber and AI leaders across Saudi Arabia and the region.
             </p>
           </div>
 
@@ -93,10 +93,10 @@ export default function LeadershipSnapshot() {
                 Founder&apos;s vision
               </h3>
               <p className="mt-4 text-[16px] leading-[1.7] text-[#b0bed9]">
-                &quot;This is a movement to transform ideas into intelligence, turn ambitions into global leadership, and make India the center of AI excellence.&quot;
+                &quot;This is a commitment to safeguard our digital borders, enable secure AI transformation, and support the goals of Saudi Vision 2030.&quot;
               </p>
               <p className="mt-5 border-l-2 border-[#ffcd7d] pl-4 text-[17px] font-semibold leading-[1.55] text-white md:text-lg">
-                Make India global super power in AI technology
+                Empowering secure digital transformation under Saudi Vision 2030
               </p>
 
               <div className="mt-6 rounded-[18px] border border-[rgba(125,164,255,0.16)] bg-black/60 p-3 sm:p-4">

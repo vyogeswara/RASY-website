@@ -137,7 +137,7 @@ const Hero = () => {
                         transition={{ duration: 1, delay: 0.2 }}
                         className="hero-title text-center text-[46px] md:text-[58px] lg:text-[82px] font-medium tracking-[-0.03em] mb-[24px] text-white"
                         style={{
-                            fontFamily: '"Inter Display", sans-serif',
+                            fontFamily: '"Inter", sans-serif',
                             lineHeight: '1.1em',
                         }}
                     >
@@ -188,9 +188,8 @@ const Hero = () => {
                 style={{
                     height: '857px',
                     opacity: 0.14,
-                    backgroundImage: 'url(https://framerusercontent.com/images/6mcf62RlDfRfU61Yg5vb2pefpi4.png)',
-                    backgroundSize: '128px',
-                    backgroundRepeat: 'repeat',
+                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.55) 1px, transparent 1px)',
+                    backgroundSize: '128px 128px',
                     WebkitMask: 'linear-gradient(rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 15%, #000 31%, #000 100%)',
                     mask: 'linear-gradient(rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 15%, #000 31%, #000 100%)'
                 }}

@@ -21,7 +21,7 @@ export function AboutCTA() {
                     <div>
                         <div className="mb-8 flex items-center gap-3 md:mb-10">
                             <div className="bg-white/10 rounded p-1.5 backdrop-blur-md border border-white/5">
-                                <img src="https://framerusercontent.com/images/eWJcm0cKj3Rsxetaz4suNQKuW8o.svg" width="16" alt="Icon" />
+                                <span className="h-2 w-2 rounded-full bg-gradient-to-br from-[#0175ff] to-[#ffcd7d]" />
                             </div>
                             <span className="text-white/40 text-xs font-bold tracking-[0.2em] uppercase">PARTNER WITH US</span>
                             <div className="h-px bg-white/10 w-24 ml-4 hidden md:block"></div>

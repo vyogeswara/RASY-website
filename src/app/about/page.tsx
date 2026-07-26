@@ -1,23 +1,5 @@
-"use client";
+import type { Metadata } from "next";
+import { AboutPage } from "@/components/rasy/about-page";
 
-import { AboutHero } from "@/components/about/hero";
-import { AboutFounder } from "@/components/about/founder";
-import { AboutValues } from "@/components/about/values";
-import { AboutLeadershipGroup } from "@/components/about/leadership-group";
-import { AboutTeam } from "@/components/about/team";
-import { AboutCTA } from "@/components/about/cta";
-import Footer from "@/components/sections/footer";
-
-export default function AboutPage() {
-  return (
-    <div className="flex min-h-screen flex-col items-center bg-black">
-      <AboutHero />
-      <AboutValues />
-      <AboutFounder />
-      <AboutLeadershipGroup />
-      <AboutTeam />
-      <AboutCTA />
-      <Footer />
-    </div>
-  );
-}
+export const metadata: Metadata = { title: "About", description: "Meet RASY, its leadership, mission, values, and perspective on responsible technology progress." };
+export default function Page() { return <AboutPage />; }

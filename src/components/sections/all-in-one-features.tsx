@@ -1,309 +1,143 @@
 "use client";
 
-import React, { useRef, useState, useCallback, useEffect } from 'react';
-import { motion, useScroll, useMotionValueEvent, useInView } from 'framer-motion';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Building2, CheckCircle2, CloudCog, DatabaseZap, LockKeyhole, Network, Radar } from "lucide-react";
+import Link from "next/link";
+import { RasyCard, RasyGlow, RasyIconBadge, RasyVisualPanel, SectionHeader } from "@/components/rasy/native";
 
-interface Feature {
-  id: string;
-  tabLabel: string;
-  tabIcon: string;
-  title: string;
-  description: string;
-  ctaText: string;
-  ctaLink: string;
-  badges: { text: string; icon: string }[];
-  image: string;
-  framerImage: string;
-}
-
-const features: Feature[] = [
+const features = [
   {
-    id: 'defense',
-    tabLabel: 'DEFENSE',
-    tabIcon: 'https://framerusercontent.com/images/01d6Xos4x3sbU293TmKaFduYFAc.svg',
-    title: 'AI-Powered Threat Defense',
-    description: 'Integrate with your security infrastructure, understand your threat landscape, and activate intelligent protection.',
-    ctaText: 'Explore Defense',
-    ctaLink: '/services/ai-for-work',
-    badges: [
-      { text: 'Healthcare', icon: 'https://framerusercontent.com/images/rHi83QNHLWfMpfg2vj176ghopo.svg' },
-      { text: 'Financial Services', icon: 'https://framerusercontent.com/images/eULxkhSvgmgm7XIuguu97va5Pqo.svg' },
-      { text: 'Critical Infrastructure', icon: 'https://framerusercontent.com/images/GFmvU3dWENS60V6v8Jglw0qJ7zY.svg' },
-      { text: 'Enterprise', icon: 'https://framerusercontent.com/images/GFmvU3dWENS60V6v8Jglw0qJ7zY.svg' }
-    ],
-    image: 'https://framerusercontent.com/images/DKhCP3xiqB8m3zBp2E6ysooT3SY.webp',
-    framerImage: 'https://framerusercontent.com/images/EKJKz0Ea1JuAJx3wKCZDIGVfoQc.png'
+    id: "defense",
+    label: "Defense",
+    icon: Radar,
+    title: "AI-powered threat defense",
+    description:
+      "Connect monitoring, investigation, and response into a single operational workflow built for security teams.",
+    ctaText: "Explore Defense",
+    ctaLink: "/services/ai-for-work",
+    points: ["Signal prioritization", "Threat context", "Response playbooks", "Executive visibility"],
   },
   {
-    id: 'technology',
-    tabLabel: 'TECHNOLOGY',
-    tabIcon: 'https://framerusercontent.com/images/DzDW9qxLWt1R7V7DL7f89IPJfk.svg',
-    title: 'Advanced Security Technology',
-    description: 'Implement robust security protocols and threat response with confidence and continuous monitoring.',
-    ctaText: 'View Technology',
-    ctaLink: '/technology',
-    badges: [
-      { text: 'Multi-Vector Defense', icon: 'https://framerusercontent.com/images/GFmvU3dWENS60V6v8Jglw0qJ7zY.svg' },
-      { text: 'AI/ML Threat Detection', icon: 'https://framerusercontent.com/images/GFmvU3dWENS60V6v8Jglw0qJ7zY.svg' },
-      { text: 'Intelligence Platform', icon: 'https://framerusercontent.com/images/GFmvU3dWENS60V6v8Jglw0qJ7zY.svg' },
-      { text: 'Automated Response', icon: 'https://framerusercontent.com/images/GFmvU3dWENS60V6v8Jglw0qJ7zY.svg' }
-    ],
-    image: 'https://framerusercontent.com/images/4ABnXaFshXBVkaMyEU2NjeeqE.webp',
-    framerImage: 'https://framerusercontent.com/images/EKJKz0Ea1JuAJx3wKCZDIGVfoQc.png'
+    id: "technology",
+    label: "Technology",
+    icon: LockKeyhole,
+    title: "Advanced security technology",
+    description:
+      "Harden environments with practical controls, automated checks, and continuous visibility across your stack.",
+    ctaText: "View Technology",
+    ctaLink: "/services/cybersecurity",
+    points: ["Endpoint protection", "Identity controls", "Vulnerability tracking", "Compliance support"],
   },
   {
-    id: 'integration',
-    tabLabel: 'INTEGRATION',
-    tabIcon: 'https://framerusercontent.com/images/Akgvq4ROltzdkv9bMr9wLtsd5c.svg',
-    title: 'Enterprise System Integration',
-    description: 'Our solutions work with your existing technology stack, ensuring seamless security implementation.',
-    ctaText: 'Learn More',
-    ctaLink: '/integration',
-    badges: [
-      { text: 'SIEM Integration', icon: 'https://framerusercontent.com/images/GFmvU3dWENS60V6v8Jglw0qJ7zY.svg' },
-      { text: 'Cloud Platforms', icon: 'https://framerusercontent.com/images/GFmvU3dWENS60V6v8Jglw0qJ7zY.svg' },
-      { text: 'Legacy Systems', icon: 'https://framerusercontent.com/images/GFmvU3dWENS60V6v8Jglw0qJ7zY.svg' },
-      { text: 'API Framework', icon: 'https://framerusercontent.com/images/GFmvU3dWENS60V6v8Jglw0qJ7zY.svg' }
-    ],
-    image: 'https://framerusercontent.com/images/rYyqmKb6ZW8scPMDoDnkLicukfc.png',
-    framerImage: 'https://framerusercontent.com/images/EKJKz0Ea1JuAJx3wKCZDIGVfoQc.png'
-  }
+    id: "integration",
+    label: "Integration",
+    icon: CloudCog,
+    title: "Enterprise system integration",
+    description:
+      "Bring RASY workflows into the tools your organization already uses without depending on borrowed UI mockups.",
+    ctaText: "Learn More",
+    ctaLink: "/services/business-technology",
+    points: ["SIEM alignment", "Cloud platforms", "Legacy workflows", "API-first delivery"],
+  },
 ];
 
-// Tab with smooth scroll-linked progress bar
-const FeatureTab = ({
-  feature,
-  isActive,
-  isCompleted,
-  progress
-}: {
-  feature: Feature;
-  isActive: boolean;
-  isCompleted: boolean;
-  progress: number;
-}) => {
-  let translateX = "-100%";
-  if (isCompleted) {
-    translateX = "0%";
-  } else if (isActive) {
-    translateX = `${(progress - 1) * 100}%`;
-  }
+const environmentIcons = [Building2, Network, DatabaseZap, CloudCog];
+
+export default function AllInOneFeatures() {
+  const [activeId, setActiveId] = useState(features[0].id);
+  const activeFeature = features.find((feature) => feature.id === activeId) ?? features[0];
+  const ActiveIcon = activeFeature.icon;
 
   return (
-    <div className={`flex min-w-[180px] flex-col transition-opacity duration-300 ${isActive || isCompleted ? 'opacity-100' : 'opacity-40'}`}>
-      <div className="flex items-center gap-4 py-4">
-        <img src={feature.tabIcon} alt="" className="w-6 h-6" />
-        <span className="text-white font-medium text-[14px] uppercase tracking-[0.2em]">{feature.tabLabel}</span>
-      </div>
-      <div className="h-[1px] w-full relative overflow-hidden">
-        <div className="absolute inset-0 bg-[rgb(47,57,80)]" />
-        <motion.div
-          animate={{ x: translateX }}
-          transition={{ duration: 0.1, ease: "linear" }}
-          className="absolute inset-0 bg-gradient-to-r from-[rgb(255,205,125)] to-[rgb(1,117,255)]"
+    <section className="relative overflow-hidden bg-black py-16 md:py-24">
+      <RasyGlow className="right-[-14%] top-[18%]" color="blue" />
+      <div className="relative z-10 mx-auto max-w-[1200px] px-5 sm:px-6 md:px-10">
+        <SectionHeader
+          eyebrow="Solutions"
+          title="Complete cybersecurity for your organization"
+          description="Simplify, accelerate, and transform with an integrated security ecosystem."
         />
-      </div>
-    </div>
-  );
-};
 
-// Feature Card with scroll progress tracking
-const FeatureCard = ({
-  feature,
-  index,
-  onProgressChange,
-  onActiveChange
-}: {
-  feature: Feature;
-  index: number;
-  onProgressChange: (index: number, progress: number) => void;
-  onActiveChange: (index: number) => void;
-}) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { margin: "-20% 0px -20% 0px" });
+        <div className="mt-10 grid gap-6 lg:grid-cols-[280px_1fr]">
+          <div className="flex gap-3 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
+            {features.map((feature) => {
+              const Icon = feature.icon;
+              const isActive = feature.id === activeId;
+              return (
+                <button
+                  key={feature.id}
+                  type="button"
+                  onClick={() => setActiveId(feature.id)}
+                  className={`flex min-w-[220px] items-center gap-3 rounded-xl border px-4 py-4 text-left transition lg:min-w-0 ${
+                    isActive
+                      ? "border-[#0175ff]/60 bg-[#0175ff]/10 text-white"
+                      : "border-white/10 bg-white/[0.03] text-[#9ba9c4] hover:border-white/20"
+                  }`}
+                >
+                  <Icon className="h-5 w-5" />
+                  <span className="text-sm font-semibold uppercase tracking-[0.18em]">{feature.label}</span>
+                </button>
+              );
+            })}
+          </div>
 
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start end", "center center"]
-  });
-
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    if (isInView) {
-      onActiveChange(index);
-      onProgressChange(index, Math.min(v * 1.5, 1));
-    }
-  });
-
-  return (
-    <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, x: 80, y: 40 }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: false, margin: "-50px" }}
-      transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-      className="w-full rounded-[24px] border border-[rgba(125,164,255,0.16)] bg-[rgb(6,7,10)] overflow-hidden flex flex-col md:flex-row"
-    >
-      <div className="flex-1 p-6 sm:p-8 md:p-10 flex flex-col justify-between">
-        <div className="flex flex-col gap-4">
-          <h4 className="text-[24px] sm:text-[28px] md:text-[32px] font-medium text-white tracking-[-0.02em] leading-[1.15]">
-            {feature.title}
-          </h4>
-          <p className="text-[16px] md:text-[18px] leading-[1.6] text-[#b0bed9] max-w-[400px]">
-            {feature.description}
-          </p>
-          <div className="flex flex-wrap gap-2 mt-4">
-            {feature.badges.map((badge, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-[rgba(125,164,255,0.16)] bg-white/5 text-[rgb(209,212,227)] text-[14px]"
-              >
-                <img src={badge.icon} alt="" className="w-4 h-4 opacity-80" />
-                {badge.text}
+          <RasyCard className="min-h-[560px]">
+            <div className="grid h-full gap-8 lg:grid-cols-[1fr_1.05fr] lg:items-center">
+              <div className="space-y-6">
+                <RasyIconBadge icon={ActiveIcon} />
+                <div className="space-y-4">
+                  <motion.h3
+                    key={activeFeature.title}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-3xl font-medium tracking-tight text-white md:text-5xl"
+                  >
+                    {activeFeature.title}
+                  </motion.h3>
+                  <p className="max-w-xl text-base leading-relaxed text-[#b0bed9] md:text-lg">
+                    {activeFeature.description}
+                  </p>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {activeFeature.points.map((point) => (
+                    <div key={point} className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.03] p-3">
+                      <CheckCircle2 className="h-4 w-4 text-[#ffcd7d]" />
+                      <span className="text-sm text-[#d1d4e3]">{point}</span>
+                    </div>
+                  ))}
+                </div>
+                <Link
+                  href={activeFeature.ctaLink}
+                  className="inline-flex items-center gap-2 rounded-xl border border-[#2f3950] bg-[#0c0f16] px-5 py-3 font-semibold text-white transition hover:border-[#0175ff]/60"
+                >
+                  {activeFeature.ctaText}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
-            ))}
-          </div>
-        </div>
-        <a
-          href={feature.ctaLink}
-          className="mt-8 inline-flex w-full items-center justify-center rounded-2xl border border-[rgb(47,57,80)] bg-[rgb(12,15,22)] px-6 py-4 font-semibold transition-all hover:-translate-y-0.5 hover:bg-white/5 sm:w-fit sm:px-8"
-        >
-          <span className="bg-gradient-to-r from-[rgb(1,117,255)] to-[rgb(255,205,125)] bg-clip-text text-transparent">
-            {feature.ctaText}
-          </span>
-        </a>
-      </div>
 
-      <div className="flex-1 md:flex-[1.2] relative overflow-hidden min-h-[240px] sm:min-h-[280px]">
-        <img
-          src={feature.image}
-          className="w-full h-full object-cover"
-          alt=""
-          style={{
-            maskImage: 'linear-gradient(-90deg, black 0%, rgba(0,0,0,0.94) 71%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(-90deg, black 0%, rgba(0,0,0,0.94) 71%, transparent 100%)',
-          }}
-        />
-        <div className="absolute bottom-4 left-4 hidden max-w-[calc(100%-32px)] items-center gap-3 rounded-full border border-white/10 bg-white/5 p-2 backdrop-blur-[40px] sm:flex md:bottom-10 md:left-10">
-          <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border border-white/20">
-            <img src={feature.framerImage} className="w-full h-full object-cover" alt="" />
-          </div>
-          <span className="truncate pr-4 text-sm font-medium text-white/80 md:pr-6 md:text-base">Help me with the bank|</span>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
-const AllInOneFeatures = () => {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [progressValues, setProgressValues] = useState([0, 0, 0]);
-
-  const handleProgressChange = useCallback((index: number, progress: number) => {
-    setProgressValues(prev => {
-      const newValues = [...prev];
-      newValues[index] = progress;
-      for (let i = 0; i < index; i++) {
-        newValues[i] = 1;
-      }
-      return newValues;
-    });
-  }, []);
-
-  const handleActiveChange = useCallback((index: number) => {
-    setActiveIdx(index);
-  }, []);
-
-  return (
-    <section className="bg-black relative">
-      <div className="max-w-[1200px] mx-auto px-5 sm:px-6 md:px-10 py-14 md:py-20">
-        {/* Section Header */}
-        <div className="flex flex-col gap-6 mb-12">
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-3 py-3">
-              <img
-                src="https://framerusercontent.com/images/GFmvU3dWENS60V6v8Jglw0qJ7zY.svg"
-                className="w-6 h-6 opacity-80"
-                alt=""
-              />
-              <span className="text-[14px] font-medium tracking-[0.2em] text-[#8491ab] uppercase">SOLUTIONS</span>
+              <RasyVisualPanel title="Security workflow" accent={activeFeature.id === "technology" ? "gold" : "blue"}>
+                <div className="grid grid-cols-2 gap-3">
+                  {environmentIcons.map((Icon, index) => (
+                    <div key={index} className="rounded-xl border border-white/10 bg-black/30 p-4">
+                      <Icon className="mb-8 h-6 w-6 text-[#d1d4e3]" />
+                      <div className="h-2 w-full rounded-full bg-white/10">
+                        <div
+                          className="h-full rounded-full bg-gradient-to-r from-[#0175ff] to-[#ffcd7d]"
+                          style={{ width: `${55 + index * 11}%` }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 rounded-full border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-medium text-[#d1d4e3]">
+                  Review controls, prioritize risks, and route action owners
+                </div>
+              </RasyVisualPanel>
             </div>
-            <div className="w-full h-[1px] bg-[rgba(125,164,255,0.16)]" />
-          </div>
-
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <h2 className="flex-1 max-w-[680px] text-[36px] md:text-[60px] font-medium text-white leading-[1.1] tracking-[-0.02em]">
-              Complete cybersecurity for your organization
-            </h2>
-            <p className="md:flex-1 max-w-[310px] text-[16px] md:text-[18px] leading-[1.5] text-[#b0bed9] md:pb-2">
-              Simplify, accelerate, and transform with integrated security ecosystem.
-            </p>
-          </div>
-        </div>
-
-        {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
-          {/* Left Column - Sticky Tabs */}
-          <div className="hidden lg:block relative">
-            <div className="sticky top-[120px] w-full flex flex-col gap-0">
-              <FeatureTab
-                feature={features[0]}
-                isActive={activeIdx === 0}
-                isCompleted={activeIdx > 0}
-                progress={progressValues[0]}
-              />
-              <FeatureTab
-                feature={features[1]}
-                isActive={activeIdx === 1}
-                isCompleted={activeIdx > 1}
-                progress={progressValues[1]}
-              />
-              <FeatureTab
-                feature={features[2]}
-                isActive={activeIdx === 2}
-                isCompleted={activeIdx > 2}
-                progress={progressValues[2]}
-              />
-            </div>
-          </div>
-
-          {/* Mobile Tabs (visible only on mobile) */}
-          <div className="lg:hidden flex flex-row gap-4 overflow-x-auto w-full col-span-full no-scrollbar pb-2">
-            <FeatureTab
-              feature={features[0]}
-              isActive={activeIdx === 0}
-              isCompleted={activeIdx > 0}
-              progress={progressValues[0]}
-            />
-            <FeatureTab
-              feature={features[1]}
-              isActive={activeIdx === 1}
-              isCompleted={activeIdx > 1}
-              progress={progressValues[1]}
-            />
-            <FeatureTab
-              feature={features[2]}
-              isActive={activeIdx === 2}
-              isCompleted={activeIdx > 2}
-              progress={progressValues[2]}
-            />
-          </div>
-
-          {/* Right Column - Cards */}
-          <div className="flex flex-col gap-8">
-            {features.map((feature, index) => (
-              <FeatureCard
-                key={feature.id}
-                feature={feature}
-                index={index}
-                onProgressChange={handleProgressChange}
-                onActiveChange={handleActiveChange}
-              />
-            ))}
-          </div>
+          </RasyCard>
         </div>
       </div>
     </section>
   );
-};
-
-export default AllInOneFeatures;
+}

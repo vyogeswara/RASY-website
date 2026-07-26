@@ -26,7 +26,7 @@ export function AboutLeadershipGroup() {
         >
           <div className="mb-10 flex items-center gap-3">
             <div className="rounded border border-white/5 bg-white/10 p-1.5 backdrop-blur-md">
-              <img src="https://framerusercontent.com/images/eWJcm0cKj3Rsxetaz4suNQKuW8o.svg" width="16" alt="" />
+              <span className="h-2 w-2 rounded-full bg-gradient-to-br from-[#0175ff] to-[#ffcd7d]" />
             </div>
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-white/40">
               Leadership Group

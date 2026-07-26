@@ -2,12 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { X } from "lucide-react";
 
-/**
- * Navbar component for RASY website.
- * Styled to match COSMOQ design with glassmorphism effects.
- */
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -117,7 +113,7 @@ const Navbar = () => {
                         </a>
                     </div>
 
-                    {/* Central Navigation Links - COSMOQ glassmorphism pill with masked border */}
+                    {/* Central Navigation Links - RASY glassmorphism pill with masked border */}
                     <div
                         className="nav-links-pill hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 overflow-hidden"
                         style={{
